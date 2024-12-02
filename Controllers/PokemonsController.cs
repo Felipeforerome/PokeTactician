@@ -94,6 +94,7 @@ namespace PokeTactician_Backend.Controllers
             if (pokemonDto.MoveIds != null)
             {
                 moves = await _context.Moves
+                    .Include(p => p.Type)
                     .Where(m => pokemonDto.MoveIds.Contains(m.Id))
                     .ToListAsync();
 
@@ -115,23 +116,15 @@ namespace PokeTactician_Backend.Controllers
             }
 
             // Create the Pokemon entity and assign the moves to it
-            var pokemon = new Pokemon
+            var pokemon = _mapper.Map<Pokemon>(pokemonDto);
+            pokemon.Type1 = type1;
+            pokemon.Type2 = type2;
+            pokemon.KnowableMoves = moves;
+
+            if (!TryValidateModel(pokemon))
             {
-                Name = pokemonDto.Name,
-                Hp = pokemonDto.Hp,
-                Att = pokemonDto.Att,
-                Deff = pokemonDto.Deff,
-                SpAtt = pokemonDto.SpAtt,
-                SpDeff = pokemonDto.SpDeff,
-                Spe = pokemonDto.Spe,
-                Type1 = type1,
-                Type2 = type2,
-                Mythical = pokemonDto.Mythical,
-                Legendary = pokemonDto.Legendary,
-                BattleOnly = pokemonDto.BattleOnly,
-                Mega = pokemonDto.Mega,
-                KnowableMoves = moves
-            };
+                return BadRequest(ModelState);
+            }
 
             _context.Pokemons.Add(pokemon);
             await _context.SaveChangesAsync();

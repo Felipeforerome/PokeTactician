@@ -8,9 +8,11 @@ namespace PokeTactician_Backend.Mappings
     {
         public MappingProfile()
         {
+            CreateMap<PokemonDtoIn, Pokemon>();
             CreateMap<Pokemon, PokemonDtoOut>()
                 .ForMember(dest => dest.KnowableMoves, opt => opt.MapFrom(src => src.KnowableMoves != null ? src.KnowableMoves.Select(m => m.Id) : Enumerable.Empty<int>()));
-            CreateMap<Move, MoveDtoOut>();
+            CreateMap<Move, MoveDtoOut>()
+                .ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.Type));
             CreateMap<MoveDtoIn, Move>();
             CreateMap<PokemonType, PokemonTypeDto>();
             CreateMap<PokemonTypeDto, PokemonType>();
