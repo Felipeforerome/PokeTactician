@@ -25,23 +25,34 @@ namespace PokeTactician_Backend.Controllers
 
         // GET: api/Moves
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Move>>> GetMoves()
+        public async Task<ActionResult<IEnumerable<MoveDtoOut>>> GetMoves()
         {
-            return await _context.Moves.ToListAsync();
+            var move = await _context.Moves
+                .Include(p => p.Type)
+                .ToListAsync();
+
+            var moveDtoOut = _mapper.Map<List<MoveDtoOut>>(move);
+
+            return moveDtoOut;
+
         }
 
         // GET: api/Moves/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Move>> GetMove(int id)
+        public async Task<ActionResult<MoveDtoOut>> GetMove(int id)
         {
-            var move = await _context.Moves.FindAsync(id);
+            var move = await _context.Moves
+                .Include(p => p.Type)
+                .FirstOrDefaultAsync(p => p.Id == id);
 
             if (move == null)
             {
                 return NotFound();
             }
 
-            return move;
+            var moveDtoOut = _mapper.Map<MoveDtoOut>(move);
+
+            return moveDtoOut;
         }
 
         // PUT: api/Moves/5
