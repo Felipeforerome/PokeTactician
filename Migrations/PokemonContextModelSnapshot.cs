@@ -116,24 +116,19 @@ namespace PokeTactician_Backend.Migrations
                     b.Property<int>("Spe")
                         .HasColumnType("integer");
 
+                    b.Property<int>("Type1Id")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("Type2Id")
+                        .HasColumnType("integer");
+
                     b.HasKey("Id");
 
+                    b.HasIndex("Type1Id");
+
+                    b.HasIndex("Type2Id");
+
                     b.ToTable("Pokemons");
-                });
-
-            modelBuilder.Entity("PokemonPokemonType", b =>
-                {
-                    b.Property<int>("PokemonsId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("TypesId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("PokemonsId", "TypesId");
-
-                    b.HasIndex("TypesId");
-
-                    b.ToTable("PokemonPokemonType");
                 });
 
             modelBuilder.Entity("PokemonType", b =>
@@ -179,19 +174,21 @@ namespace PokeTactician_Backend.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("PokemonPokemonType", b =>
+            modelBuilder.Entity("Pokemon", b =>
                 {
-                    b.HasOne("Pokemon", null)
+                    b.HasOne("PokemonType", "Type1")
                         .WithMany()
-                        .HasForeignKey("PokemonsId")
+                        .HasForeignKey("Type1Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("PokemonType", null)
+                    b.HasOne("PokemonType", "Type2")
                         .WithMany()
-                        .HasForeignKey("TypesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("Type2Id");
+
+                    b.Navigation("Type1");
+
+                    b.Navigation("Type2");
                 });
 #pragma warning restore 612, 618
         }

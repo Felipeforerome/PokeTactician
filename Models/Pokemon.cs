@@ -12,7 +12,8 @@ public class Pokemon
     public int SpAtt { get; set; }
     public int SpDeff { get; set; }
     public int Spe { get; set; }
-    public required List<PokemonType> Types { get; set; }
+    public required PokemonType Type1 { get; set; }
+    public PokemonType? Type2 { get; set; }
     public bool Mythical { get; set; }
     public bool Legendary { get; set; }
     public bool BattleOnly { get; set; }

@@ -12,29 +12,6 @@ namespace PokeTactician_Backend.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Pokemons",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Name = table.Column<string>(type: "text", nullable: false),
-                    Hp = table.Column<int>(type: "integer", nullable: false),
-                    Att = table.Column<int>(type: "integer", nullable: false),
-                    Deff = table.Column<int>(type: "integer", nullable: false),
-                    SpAtt = table.Column<int>(type: "integer", nullable: false),
-                    SpDeff = table.Column<int>(type: "integer", nullable: false),
-                    Spe = table.Column<int>(type: "integer", nullable: false),
-                    Mythical = table.Column<bool>(type: "boolean", nullable: false),
-                    Legendary = table.Column<bool>(type: "boolean", nullable: false),
-                    BattleOnly = table.Column<bool>(type: "boolean", nullable: false),
-                    Mega = table.Column<bool>(type: "boolean", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Pokemons", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Types",
                 columns: table => new
                 {
@@ -73,27 +50,39 @@ namespace PokeTactician_Backend.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "PokemonPokemonType",
+                name: "Pokemons",
                 columns: table => new
                 {
-                    PokemonsId = table.Column<int>(type: "integer", nullable: false),
-                    TypesId = table.Column<int>(type: "integer", nullable: false)
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "text", nullable: false),
+                    Hp = table.Column<int>(type: "integer", nullable: false),
+                    Att = table.Column<int>(type: "integer", nullable: false),
+                    Deff = table.Column<int>(type: "integer", nullable: false),
+                    SpAtt = table.Column<int>(type: "integer", nullable: false),
+                    SpDeff = table.Column<int>(type: "integer", nullable: false),
+                    Spe = table.Column<int>(type: "integer", nullable: false),
+                    Type1Id = table.Column<int>(type: "integer", nullable: false),
+                    Type2Id = table.Column<int>(type: "integer", nullable: true),
+                    Mythical = table.Column<bool>(type: "boolean", nullable: false),
+                    Legendary = table.Column<bool>(type: "boolean", nullable: false),
+                    BattleOnly = table.Column<bool>(type: "boolean", nullable: false),
+                    Mega = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PokemonPokemonType", x => new { x.PokemonsId, x.TypesId });
+                    table.PrimaryKey("PK_Pokemons", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_PokemonPokemonType_Pokemons_PokemonsId",
-                        column: x => x.PokemonsId,
-                        principalTable: "Pokemons",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_PokemonPokemonType_Types_TypesId",
-                        column: x => x.TypesId,
+                        name: "FK_Pokemons_Types_Type1Id",
+                        column: x => x.Type1Id,
                         principalTable: "Types",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Pokemons_Types_Type2Id",
+                        column: x => x.Type2Id,
+                        principalTable: "Types",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -131,9 +120,14 @@ namespace PokeTactician_Backend.Migrations
                 column: "TypeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PokemonPokemonType_TypesId",
-                table: "PokemonPokemonType",
-                column: "TypesId");
+                name: "IX_Pokemons_Type1Id",
+                table: "Pokemons",
+                column: "Type1Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Pokemons_Type2Id",
+                table: "Pokemons",
+                column: "Type2Id");
         }
 
         /// <inheritdoc />
@@ -141,9 +135,6 @@ namespace PokeTactician_Backend.Migrations
         {
             migrationBuilder.DropTable(
                 name: "MovePokemon");
-
-            migrationBuilder.DropTable(
-                name: "PokemonPokemonType");
 
             migrationBuilder.DropTable(
                 name: "Moves");

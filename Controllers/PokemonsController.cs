@@ -16,28 +16,30 @@ namespace PokeTactician_Backend.Controllers
     public class PokemonsController(PokemonContext context, IMapper mapper) : ControllerBase
     {
         private readonly PokemonContext _context = context;
-        private readonly IMapper _mapper= mapper;
+        private readonly IMapper _mapper = mapper;
         // GET: api/Pokemons
         [HttpGet]
         public async Task<ActionResult<IEnumerable<PokemonDtoOut>>> GetPokemons()
         {
             var pokemons = await _context.Pokemons
-                .Include(p => p.Types)
+                .Include(p => p.Type1)
+                .Include(p => p.Type2)
                 .Include(p => p.KnowableMoves)
                 .ToListAsync();
-            
+
             var pokemonDtos = _mapper.Map<List<PokemonDtoOut>>(pokemons);
 
             return pokemonDtos;
         }
-        
+
 
         // GET: api/Pokemons/5
         [HttpGet("{id}")]
         public async Task<ActionResult<PokemonDtoOut>> GetPokemon(int id)
         {
             var pokemon = await _context.Pokemons
-                .Include(p => p.Types) // Eager load the Types property
+                .Include(p => p.Type1) // Eager load the Types property
+                .Include(p => p.Type2) // Eager load the Types property
                 .Include(p => p.KnowableMoves) // Eager load the KnowableMoves property
                 .FirstOrDefaultAsync(p => p.Id == id);
 
@@ -85,7 +87,7 @@ namespace PokeTactician_Backend.Controllers
         // POST: api/Pokemons
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Pokemon>> PostPokemon(PokemonDtoIn pokemonDto)
+        public async Task<ActionResult<PokemonDtoOut>> PostPokemon(PokemonDtoIn pokemonDto)
         {
             // Retrieve the moves from the database
             var moves = new List<Move>();
@@ -101,26 +103,15 @@ namespace PokeTactician_Backend.Controllers
                 }
             }
 
-            var types = new List<PokemonType>();
             var type1 = await _context.Types.FindAsync(pokemonDto.Type1Id);
             if (type1 == null)
             {
                 return BadRequest("Type1 was not found.");
             }
-            else
+            var type2 = await _context.Types.FindAsync(pokemonDto.Type2Id);
+            if (pokemonDto.Type2Id != null & pokemonDto.Type2Id != 0 & type2 == null)
             {
-                types.Add(type1);
-            }
-
-            if (pokemonDto.Type2Id != null)
-            {
-                var type2 = await _context.Types.FindAsync(pokemonDto.Type2Id);
-                if (type2 == null)
-                {
-                    return BadRequest("Type2 was not found.");
-                }
-
-                types.Add(type2);
+                return BadRequest("Type2 was not found.");
             }
 
             // Create the Pokemon entity and assign the moves to it
@@ -133,7 +124,8 @@ namespace PokeTactician_Backend.Controllers
                 SpAtt = pokemonDto.SpAtt,
                 SpDeff = pokemonDto.SpDeff,
                 Spe = pokemonDto.Spe,
-                Types = types,
+                Type1 = type1,
+                Type2 = type2,
                 Mythical = pokemonDto.Mythical,
                 Legendary = pokemonDto.Legendary,
                 BattleOnly = pokemonDto.BattleOnly,
@@ -144,7 +136,9 @@ namespace PokeTactician_Backend.Controllers
             _context.Pokemons.Add(pokemon);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetPokemon", new { id = pokemon.Id }, pokemon);
+            var pokemonDtoOut = _mapper.Map<PokemonDtoOut>(pokemon);
+
+            return CreatedAtAction(nameof(GetPokemon), new { id = pokemonDtoOut.Id }, pokemonDtoOut);
         }
 
         // DELETE: api/Pokemons/5
