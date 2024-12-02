@@ -6,7 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PokeTactician_Backend.Models;
-
+using PokeTactician_Backend.DTOs;
+using AutoMapper;
 namespace PokeTactician_Backend.Controllers
 {
     [Route("api/[controller]")]
@@ -14,10 +15,12 @@ namespace PokeTactician_Backend.Controllers
     public class MovesController : ControllerBase
     {
         private readonly PokemonContext _context;
+        private readonly IMapper _mapper;
 
-        public MovesController(PokemonContext context)
+        public MovesController(PokemonContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         // GET: api/Moves
@@ -75,12 +78,22 @@ namespace PokeTactician_Backend.Controllers
         // POST: api/Moves
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Move>> PostMove(Move move)
+        public async Task<ActionResult<MoveDtoOut>> PostMove(MoveDtoIn moveDtoIn)
         {
+            var pokemonType = await _context.Types.FindAsync(moveDtoIn.TypeId);
+            if (pokemonType == null)
+            {
+                return BadRequest("Type was not found.");
+            }
+
+            var move = _mapper.Map<Move>(moveDtoIn);
+            move.Type = pokemonType;
+
             _context.Moves.Add(move);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetMove", new { id = move.Id }, move);
+            var moveDtoOut = _mapper.Map<MoveDtoOut>(move);
+            return CreatedAtAction("GetMove", new { id = moveDtoOut.Id }, moveDtoOut);
         }
 
         // DELETE: api/Moves/5
