@@ -11,6 +11,7 @@ namespace PokeTactician_Backend.Mappings
             CreateMap<Pokemon, PokemonDtoOut>();
             CreateMap<Move, MoveDto>();
             CreateMap<PokemonType, PokemonTypeDto>();
+            CreateMap<PokemonTypeDto, PokemonType>();
         }
     }
 }

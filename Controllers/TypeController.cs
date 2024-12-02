@@ -6,25 +6,30 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PokeTactician_Backend.Models;
+using PokeTactician_Backend.DTOs;
+using AutoMapper;
 
 namespace PokeTactician_Backend.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TypeController(PokemonContext context) : ControllerBase
+    public class TypeController(PokemonContext context, IMapper mapper) : ControllerBase
     {
         private readonly PokemonContext _context = context;
+        private readonly IMapper _mapper = mapper;
 
         // GET: api/Type
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<PokemonType>>> GetTypes()
+        public async Task<ActionResult<IEnumerable<PokemonTypeDto>>> GetTypes()
         {
-            return await _context.Types.ToListAsync();
+            var pokemonType = await _context.Types.ToListAsync();
+            var pokemonTypeDto = _mapper.Map<List<PokemonTypeDto>>(pokemonType);
+            return pokemonTypeDto;
         }
 
         // GET: api/Type/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<PokemonType>> GetPokemonType(int id)
+        public async Task<ActionResult<PokemonTypeDto>> GetPokemonType(int id)
         {
             var pokemonType = await _context.Types.FindAsync(id);
 
@@ -32,8 +37,8 @@ namespace PokeTactician_Backend.Controllers
             {
                 return NotFound();
             }
-
-            return pokemonType;
+            var pokemonTypeDto = _mapper.Map<PokemonTypeDto>(pokemonType);
+            return pokemonTypeDto;
         }
 
         // PUT: api/Type/5
@@ -70,12 +75,13 @@ namespace PokeTactician_Backend.Controllers
         // POST: api/Type
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<PokemonType>> PostPokemonType(PokemonType pokemonType)
+        public async Task<ActionResult<PokemonTypeDto>> PostPokemonType(PokemonTypeDto pokemonTypeDto)
         {
+            var pokemonType = _mapper.Map<PokemonType>(pokemonTypeDto);
             _context.Types.Add(pokemonType);
             await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetPokemonType", new { id = pokemonType.Id }, pokemonType);
+            var pokemonTypeDtoOut = _mapper.Map<PokemonTypeDto>(pokemonType);
+            return CreatedAtAction("GetPokemonType", new { id = pokemonType.Id }, pokemonTypeDtoOut);
         }
 
         // DELETE: api/Type/5
