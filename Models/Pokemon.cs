@@ -20,7 +20,7 @@ public class Pokemon : IValidatableObject
     public bool BattleOnly { get; set; }
     public bool Mega { get; set; }
 
-    public List<Move>? KnowableMoves { get; set; }
+    public required List<Move> KnowableMoves { get; set; } = new List<Move>();
 
     public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
     {
