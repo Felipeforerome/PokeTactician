@@ -14,5 +14,5 @@ public class PokemonDtoIn
     public bool Legendary { get; set; }
     public bool BattleOnly { get; set; }
     public bool Mega { get; set; }
-    public List<int>? MoveIds { get; set; }
+    public required List<int> MoveIds { get; set; }
 }
