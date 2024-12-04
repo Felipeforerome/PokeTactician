@@ -10,8 +10,8 @@ namespace PokeTactician_Backend.Mappings
         {
             CreateMap<PokemonDtoIn, Pokemon>();
             CreateMap<Pokemon, PokemonDtoOut>()
-                .ForMember(dest => dest.KnowableMoves, opt => opt.MapFrom(src => src.KnowableMoves != null ? src.KnowableMoves.Select(m => m.Id) : Enumerable.Empty<int>()))
-                .ForMember(dest => dest.Games, opt => opt.MapFrom(src => src.Games != null ? src.Games.Select(g => g.Id) : Enumerable.Empty<int>()));
+                .ForMember(dest => dest.KnowableMoves, opt => opt.MapFrom(src => src.KnowableMoves.Select(m => m.Id)))
+                .ForMember(dest => dest.Games, opt => opt.MapFrom(src => src.Games.Select(g => g.Id)));
             CreateMap<Move, MoveDtoOut>()
                 .ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.Type));
             CreateMap<MoveDtoIn, Move>();
