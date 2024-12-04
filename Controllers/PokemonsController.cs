@@ -90,18 +90,14 @@ namespace PokeTactician_Backend.Controllers
         public async Task<ActionResult<PokemonDtoOut>> PostPokemon(PokemonDtoIn pokemonDto)
         {
             // Retrieve the moves from the database
-            var moves = new List<Move>();
-            if (pokemonDto.MoveIds != null)
-            {
-                moves = await _context.Moves
-                    .Include(p => p.Type)
-                    .Where(m => pokemonDto.MoveIds.Contains(m.Id))
-                    .ToListAsync();
+            var moves = await _context.Moves
+                .Include(p => p.Type)
+                .Where(m => pokemonDto.MoveIds.Contains(m.Id))
+                .ToListAsync();
 
-                if (moves.Count != pokemonDto.MoveIds.Count)
-                {
-                    return BadRequest("Some moves were not found.");
-                }
+            if (moves.Count != pokemonDto.MoveIds.Count)
+            {
+                return BadRequest("Some moves were not found.");
             }
 
             var type1 = await _context.Types.FindAsync(pokemonDto.Type1Id);
