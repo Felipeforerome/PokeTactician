@@ -19,8 +19,8 @@ public class Pokemon : IValidatableObject
     public bool Legendary { get; set; }
     public bool BattleOnly { get; set; }
     public bool Mega { get; set; }
-
     public required List<Move> KnowableMoves { get; set; } = new List<Move>();
+    public required List<Game> Games { get; set; } = new List<Game>();
 
     public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
     {

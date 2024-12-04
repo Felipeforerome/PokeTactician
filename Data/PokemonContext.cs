@@ -12,6 +12,7 @@ namespace PokeTactician_Backend.Models
         public DbSet<Pokemon> Pokemons { get; set; } = null!;
         public DbSet<Move> Moves { get; set; } = null!;
         public DbSet<PokemonType> Types { get; set; } = null!;
+        public DbSet<Game> Games { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

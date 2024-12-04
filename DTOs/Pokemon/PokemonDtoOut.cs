@@ -16,4 +16,5 @@ public class PokemonDtoOut
     public bool BattleOnly { get; set; }
     public bool Mega { get; set; }
     public required List<int> KnowableMoves { get; set; } = new List<int>();
+    public required List<int> Games { get; set; } = new List<int>();
 }

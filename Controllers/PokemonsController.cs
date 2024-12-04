@@ -100,6 +100,15 @@ namespace PokeTactician_Backend.Controllers
                 return BadRequest("Some moves were not found.");
             }
 
+            var games = await _context.Games
+                .Where(m => pokemonDto.GameIds.Contains(m.Id))
+                .ToListAsync();
+
+            if (games.Count != pokemonDto.GameIds.Count)
+            {
+                return BadRequest("Some games were not found.");
+            }
+
             var type1 = await _context.Types.FindAsync(pokemonDto.Type1Id);
             if (type1 == null)
             {
@@ -116,6 +125,7 @@ namespace PokeTactician_Backend.Controllers
             pokemon.Type1 = type1;
             pokemon.Type2 = type2;
             pokemon.KnowableMoves = moves;
+            pokemon.Games = games;
 
             if (!TryValidateModel(pokemon))
             {
