@@ -1,6 +1,7 @@
 namespace PokeTactician_Backend.DTOs;
 
-public class PokemonTypeDto
+public class PokemonTypeDtoIn
 {
+    public int Id { get; set; }
     public required string Name { get; set; }
 }

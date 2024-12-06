@@ -15,8 +15,11 @@ namespace PokeTactician_Backend.Mappings
             CreateMap<Move, MoveDtoOut>()
                 .ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.Type));
             CreateMap<MoveDtoIn, Move>();
-            CreateMap<PokemonType, PokemonTypeDto>();
-            CreateMap<PokemonTypeDto, PokemonType>();
+            CreateMap<PokemonType, PokemonTypeDtoOut>();
+            CreateMap<PokemonTypeDtoIn, PokemonType>();
+            CreateMap<PokemonType, PokemonTypeDtoOut>();
+            CreateMap<GameDto, Game>()
+                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Game));
         }
     }
 }
