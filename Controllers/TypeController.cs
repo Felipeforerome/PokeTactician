@@ -20,16 +20,16 @@ namespace PokeTactician_Backend.Controllers
 
         // GET: api/Type
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<PokemonTypeDto>>> GetTypes()
+        public async Task<ActionResult<IEnumerable<PokemonTypeDtoOut>>> GetTypes()
         {
             var pokemonType = await _context.Types.ToListAsync();
-            var pokemonTypeDto = _mapper.Map<List<PokemonTypeDto>>(pokemonType);
+            var pokemonTypeDto = _mapper.Map<List<PokemonTypeDtoOut>>(pokemonType);
             return pokemonTypeDto;
         }
 
         // GET: api/Type/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<PokemonTypeDto>> GetPokemonType(int id)
+        public async Task<ActionResult<PokemonTypeDtoOut>> GetPokemonType(int id)
         {
             var pokemonType = await _context.Types.FindAsync(id);
 
@@ -37,7 +37,7 @@ namespace PokeTactician_Backend.Controllers
             {
                 return NotFound();
             }
-            var pokemonTypeDto = _mapper.Map<PokemonTypeDto>(pokemonType);
+            var pokemonTypeDto = _mapper.Map<PokemonTypeDtoOut>(pokemonType);
             return pokemonTypeDto;
         }
 
@@ -75,12 +75,12 @@ namespace PokeTactician_Backend.Controllers
         // POST: api/Type
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<PokemonTypeDto>> PostPokemonType(PokemonTypeDto pokemonTypeDto)
+        public async Task<ActionResult<PokemonTypeDtoOut>> PostPokemonType(PokemonTypeDtoOut pokemonTypeDto)
         {
             var pokemonType = _mapper.Map<PokemonType>(pokemonTypeDto);
             _context.Types.Add(pokemonType);
             await _context.SaveChangesAsync();
-            var pokemonTypeDtoOut = _mapper.Map<PokemonTypeDto>(pokemonType);
+            var pokemonTypeDtoOut = _mapper.Map<PokemonTypeDtoOut>(pokemonType);
             return CreatedAtAction("GetPokemonType", new { id = pokemonType.Id }, pokemonTypeDtoOut);
         }
 
