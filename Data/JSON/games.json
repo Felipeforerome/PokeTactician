@@ -1,0 +1,162 @@
+[
+    {
+        "Id": 1,
+        "Game": "Red"
+    },
+    {
+        "Id": 2,
+        "Game": "Green"
+    },
+    {
+        "Id": 3,
+        "Game": "Blue"
+    },
+    {
+        "Id": 4,
+        "Game": "Yellow"
+    },
+    {
+        "Id": 5,
+        "Game": "Gold"
+    },
+    {
+        "Id": 6,
+        "Game": "Silver"
+    },
+    {
+        "Id": 7,
+        "Game": "Crystal"
+    },
+    {
+        "Id": 8,
+        "Game": "Ruby"
+    },
+    {
+        "Id": 9,
+        "Game": "Sapphire"
+    },
+    {
+        "Id": 10,
+        "Game": "FireRed"
+    },
+    {
+        "Id": 11,
+        "Game": "LeafGreen"
+    },
+    {
+        "Id": 12,
+        "Game": "Emerald"
+    },
+    {
+        "Id": 13,
+        "Game": "Colosseum"
+    },
+    {
+        "Id": 14,
+        "Game": "XD"
+    },
+    {
+        "Id": 15,
+        "Game": "Diamond"
+    },
+    {
+        "Id": 16,
+        "Game": "Pearl"
+    },
+    {
+        "Id": 17,
+        "Game": "Platinum"
+    },
+    {
+        "Id": 18,
+        "Game": "HeartGold"
+    },
+    {
+        "Id": 19,
+        "Game": "SoulSilver"
+    },
+    {
+        "Id": 20,
+        "Game": "Black"
+    },
+    {
+        "Id": 21,
+        "Game": "White"
+    },
+    {
+        "Id": 22,
+        "Game": "Black 2"
+    },
+    {
+        "Id": 23,
+        "Game": "White 2"
+    },
+    {
+        "Id": 24,
+        "Game": "X"
+    },
+    {
+        "Id": 25,
+        "Game": "Y"
+    },
+    {
+        "Id": 26,
+        "Game": "Omega Ruby"
+    },
+    {
+        "Id": 27,
+        "Game": "Alpha Sapphire"
+    },
+    {
+        "Id": 28,
+        "Game": "Sun"
+    },
+    {
+        "Id": 29,
+        "Game": "Moon"
+    },
+    {
+        "Id": 30,
+        "Game": "Ultra Sun"
+    },
+    {
+        "Id": 31,
+        "Game": "Ultra Moon"
+    },
+    {
+        "Id": 32,
+        "Game": "Let's Go, Pikachu!"
+    },
+    {
+        "Id": 33,
+        "Game": "Let's Go, Eevee!"
+    },
+    {
+        "Id": 34,
+        "Game": "Sword"
+    },
+    {
+        "Id": 35,
+        "Game": "Shield"
+    },
+    {
+        "Id": 36,
+        "Game": "Brilliant Diamond"
+    },
+    {
+        "Id": 37,
+        "Game": "Shining Pearl"
+    },
+    {
+        "Id": 38,
+        "Game": "Legends: Arceus"
+    },
+    {
+        "Id": 39,
+        "Game": "Scarlet"
+    },
+    {
+        "Id": 40,
+        "Game": "Violet"
+    }
+]

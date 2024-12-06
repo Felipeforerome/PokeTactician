@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using PokeTactician_Backend.Models;
 using PokeTactician_Backend.Mappings;
+using PokeTactician_Backend.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,7 @@ builder.Services.AddDbContext<PokemonContext>(opt =>
     opt.UseNpgsql(connectionString));
 
 builder.Services.AddAutoMapper(typeof(MappingProfile));
+builder.Services.AddScoped<DataLoaderService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

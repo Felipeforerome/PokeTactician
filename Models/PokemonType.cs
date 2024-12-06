@@ -10,7 +10,7 @@ public class PokemonType
 
     public List<Pokemon>? PrimaryTypePokemons { get; set; } = new List<Pokemon>();
     public List<Pokemon>? SecondaryTypePokemons { get; set; } = new List<Pokemon>();
-
+    public List<Move>? Moves { get; set; } = new List<Move>();
     // Computed property to aggregate both PrimaryTypePokemons and SecondaryTypePokemons
     [NotMapped]
     public IEnumerable<Pokemon> Pokemons => (PrimaryTypePokemons ?? Enumerable.Empty<Pokemon>()).Concat(SecondaryTypePokemons ?? Enumerable.Empty<Pokemon>());
