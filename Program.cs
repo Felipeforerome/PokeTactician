@@ -17,6 +17,10 @@ builder.Services.AddScoped<DataLoaderService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Clean database on startup
+builder.Services.AddHostedService<DataInitializationService>();
+
+
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
     {
