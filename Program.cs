@@ -8,7 +8,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 Env.Load();
 
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+var connectionString = (builder.Configuration.GetConnectionString("DefaultConnection") ?? string.Empty)
+    .Replace("__DB_HOST__", Environment.GetEnvironmentVariable("DB_HOST"))
+    .Replace("__DB_NAME__", Environment.GetEnvironmentVariable("DB_NAME"))
+    .Replace("__DB_USER__", Environment.GetEnvironmentVariable("DB_USER"))
+    .Replace("__DB_PASSWORD__", Environment.GetEnvironmentVariable("DB_PASSWORD"));
 
 // Add services to the container.
 builder.Services.AddControllers();
