@@ -14,6 +14,7 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddControllers();
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 var useInMemoryDatabase = Environment.GetEnvironmentVariable("USE_IN_MEMORY_DATABASE") == "True";
+
 if (useInMemoryDatabase)
 {
     builder.Services.AddDbContext<PokemonContext>(opt =>
@@ -41,7 +42,16 @@ builder.Services.AddControllers()
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+
+var logger = app.Services.GetRequiredService<ILogger<Program>>();
+if (useInMemoryDatabase)
+{
+    logger.LogInformation("Using InMemory Database");
+}
+else
+{
+    logger.LogInformation("Using PostgreSQL Database");
+}
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
