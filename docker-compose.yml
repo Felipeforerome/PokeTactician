@@ -16,10 +16,8 @@ services:
     build: .
     ports:
       - "8080:80"
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - USE_IN_MEMORY_DATABASE=False
-      - ConnectionStrings__DefaultConnection=Host=db;Database=PokeTactician;Username=postgres;Password=postgres
+    env_file:
+      - .env
     depends_on:
       - db
 
