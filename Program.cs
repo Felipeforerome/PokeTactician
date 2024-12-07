@@ -2,18 +2,30 @@ using Microsoft.EntityFrameworkCore;
 using PokeTactician_Backend.Models;
 using PokeTactician_Backend.Mappings;
 using PokeTactician_Backend.Services;
+using DotNetEnv;
 
 var builder = WebApplication.CreateBuilder(args);
+
+Env.Load();
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 // Add services to the container.
 builder.Services.AddControllers();
-builder.Services.AddDbContext<PokemonContext>(opt =>
-    opt.UseNpgsql(connectionString));
-
 builder.Services.AddAutoMapper(typeof(MappingProfile));
-builder.Services.AddScoped<DataLoaderService>();
+var useInMemoryDatabase = Environment.GetEnvironmentVariable("USE_IN_MEMORY_DATABASE") == "True";
+if (useInMemoryDatabase)
+{
+    builder.Services.AddDbContext<PokemonContext>(opt =>
+        opt.UseInMemoryDatabase("InMemoryDb"));
+}
+else
+{
+    builder.Services.AddDbContext<PokemonContext>(opt =>
+        opt.UseNpgsql(connectionString));
+    builder.Services.AddHostedService<DatabaseCleanupService>();
+}
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
