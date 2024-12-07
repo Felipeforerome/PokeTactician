@@ -25,6 +25,7 @@ namespace PokeTactician_Backend.Controllers
                 .Include(p => p.Type1)
                 .Include(p => p.Type2)
                 .Include(p => p.KnowableMoves)
+                .Include(p => p.Games)
                 .ToListAsync();
 
             var pokemonDtos = _mapper.Map<List<PokemonDtoOut>>(pokemons);
@@ -41,6 +42,7 @@ namespace PokeTactician_Backend.Controllers
                 .Include(p => p.Type1) // Eager load the Types property
                 .Include(p => p.Type2) // Eager load the Types property
                 .Include(p => p.KnowableMoves) // Eager load the KnowableMoves property
+                .Include(p => p.Games)
                 .FirstOrDefaultAsync(p => p.Id == id);
 
             if (pokemon == null)
