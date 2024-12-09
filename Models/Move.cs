@@ -6,6 +6,7 @@ public class Move
     [Key]
     public int Id { get; set; }
     public required string Name { get; set; }
+    public required int TypeId { get; set; }
     public required PokemonType Type { get; set; }
     public int Power { get; set; }
     public float Accuracy { get; set; }

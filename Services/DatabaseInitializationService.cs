@@ -66,9 +66,7 @@ namespace PokeTactician_Backend.Services
                 }
                 foreach (var moveDto in moveDtos)
                 {
-                    var pokemonType = await context.Types.FindAsync(moveDto.TypeId) ?? throw new InvalidDataException("The type of the move could not be found.");
                     var move = _mapper.Map<MoveDtoIn, Move>(moveDto);
-                    move.Type = pokemonType;
                     context.Moves.Add(move);
                 }
 
@@ -110,21 +108,6 @@ namespace PokeTactician_Backend.Services
                             .ToListAsync();
                         pokemon.Games = games;
                     }
-
-                    // Retrieve and set the types
-                    var type1 = await context.Types.FindAsync(pokemonDto.Type1Id);
-                    if (type1 == null)
-                    {
-                        throw new InvalidDataException("The primary type of the pokemon could not be found.");
-                    }
-                    pokemon.Type1 = type1;
-
-                    var type2 = await context.Types.FindAsync(pokemonDto.Type2Id);
-                    if (pokemonDto.Type2Id != null & pokemonDto.Type2Id != 0 & type2 == null)
-                    {
-                        throw new InvalidDataException("Type2 was not found.");
-                    }
-                    pokemon.Type2 = type2;
                     context.Pokemons.Add(pokemon);
                 }
 

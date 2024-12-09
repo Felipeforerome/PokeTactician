@@ -111,21 +111,8 @@ namespace PokeTactician_Backend.Controllers
                 return BadRequest("Some games were not found.");
             }
 
-            var type1 = await _context.Types.FindAsync(pokemonDto.Type1Id);
-            if (type1 == null)
-            {
-                return BadRequest("Type1 was not found.");
-            }
-            var type2 = await _context.Types.FindAsync(pokemonDto.Type2Id);
-            if (pokemonDto.Type2Id != null & pokemonDto.Type2Id != 0 & type2 == null)
-            {
-                return BadRequest("Type2 was not found.");
-            }
-
             // Create the Pokemon entity and assign the moves to it
             var pokemon = _mapper.Map<Pokemon>(pokemonDto);
-            pokemon.Type1 = type1;
-            pokemon.Type2 = type2;
             pokemon.KnowableMoves = moves;
             pokemon.Games = games;
 

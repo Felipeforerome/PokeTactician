@@ -91,14 +91,8 @@ namespace PokeTactician_Backend.Controllers
         [HttpPost]
         public async Task<ActionResult<MoveDtoOut>> PostMove(MoveDtoIn moveDtoIn)
         {
-            var pokemonType = await _context.Types.FindAsync(moveDtoIn.TypeId);
-            if (pokemonType == null)
-            {
-                return BadRequest("Type was not found.");
-            }
 
             var move = _mapper.Map<Move>(moveDtoIn);
-            move.Type = pokemonType;
 
             _context.Moves.Add(move);
             await _context.SaveChangesAsync();

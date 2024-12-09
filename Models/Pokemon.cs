@@ -13,7 +13,9 @@ public class Pokemon : IValidatableObject
     public int SpAtt { get; set; }
     public int SpDeff { get; set; }
     public int Spe { get; set; }
+    public required int Type1Id { get; set; }
     public required PokemonType Type1 { get; set; }
+    public int? Type2Id { get; set; }
     public PokemonType? Type2 { get; set; }
     public bool Mythical { get; set; }
     public bool Legendary { get; set; }
