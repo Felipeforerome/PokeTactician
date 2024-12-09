@@ -18,24 +18,28 @@ var connectionString = (builder.Configuration.GetConnectionString("DefaultConnec
 builder.Services.AddControllers();
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 var useInMemoryDatabase = Environment.GetEnvironmentVariable("USE_IN_MEMORY_DATABASE") == "True";
-
+var restartDatabase = Environment.GetEnvironmentVariable("RESTART_DATABASE") == "True";
 if (useInMemoryDatabase)
 {
     builder.Services.AddDbContext<PokemonContext>(opt =>
         opt.UseInMemoryDatabase("InMemoryDb"));
+    builder.Services.AddHostedService<DataInitializationService>();
 }
 else
 {
     builder.Services.AddDbContext<PokemonContext>(opt =>
         opt.UseNpgsql(connectionString));
-    builder.Services.AddHostedService<DatabaseCleanupService>();
+    if (restartDatabase)
+    {
+        builder.Services.AddHostedService<DatabaseCleanupService>();
+        builder.Services.AddHostedService<DataInitializationService>();
+    }
 }
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // Clean database on startup
-builder.Services.AddHostedService<DataInitializationService>();
 
 
 builder.Services.AddControllers()
