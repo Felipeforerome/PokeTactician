@@ -46,7 +46,23 @@ namespace PokeTactician_Backend.Controllers
             }
             if (typeId != null && typeId.Any())
             {
-                predicate = predicate.And(p => typeId.Contains(p.Type1.Id) || p.Type2 != null && typeId.Contains(p.Type2.Id));
+                // If exclusiveType is true, the Pokemon must have both types in the list or be a mono-type Pokemon of the types in the list
+                // Otherwise, the Pokemon must have at least one of the types in the list
+                if (exclusiveType.HasValue)
+                {
+                    if (exclusiveType.Value)
+                    {
+                        predicate = predicate.And(p => (typeId.Contains(p.Type1.Id) && p.Type2 == null) || (p.Type2 != null && typeId.Contains(p.Type1.Id) && typeId.Contains(p.Type2.Id)));
+                    }
+                    else
+                    {
+                        predicate = predicate.And(p => typeId.Contains(p.Type1.Id) || p.Type2 != null && typeId.Contains(p.Type2.Id));
+                    }
+                }
+                else
+                {
+                    predicate = predicate.And(p => typeId.Contains(p.Type1.Id) || p.Type2 != null && typeId.Contains(p.Type2.Id));
+                }
             }
             if (mythical.HasValue)
             {
