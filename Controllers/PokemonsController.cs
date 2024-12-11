@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using PokeTactician_Backend.Models;
 using PokeTactician_Backend.DTOs;
 using AutoMapper;
-
+using LinqKit;
 namespace PokeTactician_Backend.Controllers
 {
     [Route("api/[controller]")]
@@ -19,15 +19,96 @@ namespace PokeTactician_Backend.Controllers
         private readonly IMapper _mapper = mapper;
         // GET: api/Pokemons
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<PokemonDtoOut>>> GetPokemons()
+        public async Task<ActionResult<IEnumerable<PokemonDtoOut>>> GetPokemons(
+            [FromQuery] List<int>? excluded = null,
+            [FromQuery] List<int>? preSelected = null,
+            [FromQuery] List<int>? typeId = null,
+            [FromQuery] bool? mythical = null,
+            [FromQuery] bool? legendary = null,
+            [FromQuery] bool? battleOnly = null,
+            [FromQuery] bool? mega = null,
+            [FromQuery] bool? totem = null,
+            [FromQuery] List<int>? gameIds = null,
+            [FromQuery] List<int>? generations = null
+            )
         {
-            var pokemons = await _context.Pokemons
+            var query = _context.Pokemons
                 .Include(p => p.Type1)
                 .Include(p => p.Type2)
                 .Include(p => p.KnowableMoves)
                 .Include(p => p.Games)
-                .ToListAsync();
+                .AsQueryable();
 
+            if (excluded != null && excluded.Any())
+            {
+                query = query.Where(p => !excluded.Contains(p.Id));
+            }
+            if (typeId != null && typeId.Any())
+            {
+                query = query.Where(p => typeId.Contains(p.Type1.Id) || p.Type2 != null && typeId.Contains(p.Type2.Id));
+            }
+            if (mythical.HasValue)
+            {
+                query = query.Where(p => p.Mythical == mythical.Value);
+            }
+            if (legendary.HasValue)
+            {
+                query = query.Where(p => p.Legendary == legendary.Value);
+            }
+            if (battleOnly.HasValue)
+            {
+                query = query.Where(p => p.BattleOnly == battleOnly.Value);
+            }
+            if (mega.HasValue)
+            {
+                query = query.Where(p => p.Mega == mega.Value);
+            }
+            if (totem.HasValue)
+            {
+                if (totem.Value)
+                {
+                    query = query.Where(p => p.Name.Contains("totem"));
+                }
+                else
+                {
+                    query = query.Where(p => !p.Name.Contains("totem"));
+                }
+            }
+            if (gameIds != null && gameIds.Any())
+            {
+                query = query.Where(p => p.Games.Any(g => gameIds.Contains(g.Id)));
+            }
+            if (generations != null && generations.Any())
+            {
+                var generationRanges = new Dictionary<int, (int start, int end)>
+                {
+                    { 1, (1, 151) },
+                    { 2, (152, 251) },
+                    { 3, (252, 386) },
+                    { 4, (387, 493) },
+                    { 5, (494, 649) },
+                    { 6, (650, 721) },
+                    { 7, (722, 809) },
+                    { 8, (810, 905) },
+                    { 9, (906, 1025) }
+                };
+
+                var predicate = PredicateBuilder.New<Pokemon>(false); // Start with "false"
+                foreach (var generation in generations)
+                {
+                    if (!generationRanges.ContainsKey(generation))
+                    {
+                        return BadRequest("Invalid generation number.");
+                    }
+
+                    var range = generationRanges[generation];
+                    predicate = predicate.Or(p => range.start <= p.Id && p.Id <= range.end);
+                }
+
+                query = query.Where(predicate);
+
+            }
+            var pokemons = await query.ToListAsync();
             var pokemonDtos = _mapper.Map<List<PokemonDtoOut>>(pokemons);
 
             return pokemonDtos;
