@@ -23,6 +23,7 @@ namespace PokeTactician_Backend.Controllers
             [FromQuery] List<int>? excluded = null,
             [FromQuery] List<int>? preSelected = null,
             [FromQuery] List<int>? typeId = null,
+            [FromQuery] bool? exclusiveType = null,
             [FromQuery] bool? mythical = null,
             [FromQuery] bool? legendary = null,
             [FromQuery] bool? battleOnly = null,
@@ -32,51 +33,51 @@ namespace PokeTactician_Backend.Controllers
             [FromQuery] List<int>? generations = null
             )
         {
-            var query = _context.Pokemons
-                .Include(p => p.Type1)
-                .Include(p => p.Type2)
-                .Include(p => p.KnowableMoves)
-                .Include(p => p.Games)
-                .AsQueryable();
+            var predicate = PredicateBuilder.New<Pokemon>(true); // Start with "true" to include all
+
+            if (excluded != null && preSelected != null && excluded.Intersect(preSelected).Any())
+            {
+                return BadRequest("Excluded and preSelected lists cannot contain the same IDs.");
+            }
 
             if (excluded != null && excluded.Any())
             {
-                query = query.Where(p => !excluded.Contains(p.Id));
+                predicate = predicate.And(p => !excluded.Contains(p.Id));
             }
             if (typeId != null && typeId.Any())
             {
-                query = query.Where(p => typeId.Contains(p.Type1.Id) || p.Type2 != null && typeId.Contains(p.Type2.Id));
+                predicate = predicate.And(p => typeId.Contains(p.Type1.Id) || p.Type2 != null && typeId.Contains(p.Type2.Id));
             }
             if (mythical.HasValue)
             {
-                query = query.Where(p => p.Mythical == mythical.Value);
+                predicate = predicate.And(p => p.Mythical == mythical.Value);
             }
             if (legendary.HasValue)
             {
-                query = query.Where(p => p.Legendary == legendary.Value);
+                predicate = predicate.And(p => p.Legendary == legendary.Value && p.Mythical == false);
             }
             if (battleOnly.HasValue)
             {
-                query = query.Where(p => p.BattleOnly == battleOnly.Value);
+                predicate = predicate.And(p => p.BattleOnly == battleOnly.Value);
             }
             if (mega.HasValue)
             {
-                query = query.Where(p => p.Mega == mega.Value);
+                predicate = predicate.And(p => p.Mega == mega.Value);
             }
             if (totem.HasValue)
             {
                 if (totem.Value)
                 {
-                    query = query.Where(p => p.Name.Contains("totem"));
+                    predicate = predicate.And(p => p.Name.Contains("totem"));
                 }
                 else
                 {
-                    query = query.Where(p => !p.Name.Contains("totem"));
+                    predicate = predicate.And(p => !p.Name.Contains("totem"));
                 }
             }
             if (gameIds != null && gameIds.Any())
             {
-                query = query.Where(p => p.Games.Any(g => gameIds.Contains(g.Id)));
+                predicate = predicate.And(p => p.Games.Any(g => gameIds.Contains(g.Id)));
             }
             if (generations != null && generations.Any())
             {
@@ -93,7 +94,7 @@ namespace PokeTactician_Backend.Controllers
                     { 9, (906, 1025) }
                 };
 
-                var predicate = PredicateBuilder.New<Pokemon>(false); // Start with "false"
+                var generationPredicate = PredicateBuilder.New<Pokemon>(false); // Start with "false"
                 foreach (var generation in generations)
                 {
                     if (!generationRanges.ContainsKey(generation))
@@ -102,12 +103,25 @@ namespace PokeTactician_Backend.Controllers
                     }
 
                     var range = generationRanges[generation];
-                    predicate = predicate.Or(p => range.start <= p.Id && p.Id <= range.end);
+                    generationPredicate = generationPredicate.Or(p => range.start <= p.Id && p.Id <= range.end);
                 }
 
-                query = query.Where(predicate);
-
+                predicate = predicate.And(generationPredicate);
             }
+
+            if (preSelected != null && preSelected.Any())
+            {
+                predicate = predicate.Or(p => preSelected.Contains(p.Id));
+            }
+
+            var query = _context.Pokemons
+                .Include(p => p.Type1)
+                .Include(p => p.Type2)
+                .Include(p => p.KnowableMoves)
+                .Include(p => p.Games)
+                .AsQueryable()
+                .Where(predicate);
+
             var pokemons = await query.ToListAsync();
             var pokemonDtos = _mapper.Map<List<PokemonDtoOut>>(pokemons);
 
