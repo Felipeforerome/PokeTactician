@@ -21,7 +21,7 @@ RUN apt-get update && \
     tar -xvzf julia-1.9.3-linux-aarch64.tar.gz && \
     mv julia-1.9.3 /opt/julia && \
     ln -s /opt/julia/bin/julia /usr/local/bin/julia && \
-    rm julia-1.9.3-linux-aarch64.tar.g
+    rm julia-1.9.3-linux-aarch64.tar.gz
 
 COPY --from=build /app/out .
 
@@ -31,7 +31,7 @@ COPY Scripts/ /app/Scripts/
 # Install Julia packages
 # TODO Replace package installation with a Manifest.toml file
 # https://pkgdocs.julialang.org/v1/
-RUN julia 'using Pkg; Pkg.add("JSON")'
+RUN julia -e 'using Pkg; Pkg.add("JSON")'
 
 # Set environment variables
 ENV ASPNETCORE_URLS=http://+:80
