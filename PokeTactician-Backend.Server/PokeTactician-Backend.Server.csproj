@@ -32,7 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\poketactician_backend.client\poketactician_backend.client.esproj">
+    <ProjectReference Include="..\poketactician-backend.client\poketactician-backend.client.esproj">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
   </ItemGroup>
