@@ -484,4 +484,4 @@ $RECYCLE.BIN/
 *.swp
 
 #Docker Data
-Data/DB
+PokeTactician-Backend.Server/Data/DB
