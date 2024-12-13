@@ -1,18 +1,18 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 
-interface Forecast {
-    date: string;
-    temperatureC: number;
-    temperatureF: number;
-    summary: string;
+interface Pokemon {
+    name: string;
+    hp: number;
+    att: number;
+    type1: string;
 }
 
 function App() {
-    const [forecasts, setForecasts] = useState<Forecast[]>();
+    const [forecasts, setPokemons] = useState<Pokemon[]>();
 
     useEffect(() => {
-        populateWeatherData();
+        populatePokemonData();
     }, []);
 
     const contents = forecasts === undefined
@@ -20,19 +20,19 @@ function App() {
         : <table className="table table-striped" aria-labelledby="tableLabel">
             <thead>
                 <tr>
-                    <th>Date</th>
-                    <th>Temp. (C)</th>
-                    <th>Temp. (F)</th>
-                    <th>Summary</th>
+                    <th>Name</th>
+                    <th>HP</th>
+                    <th>Attack</th>
+                    <th>Type 1</th>
                 </tr>
             </thead>
             <tbody>
                 {forecasts.map(forecast =>
-                    <tr key={forecast.date}>
-                        <td>{forecast.date}</td>
-                        <td>{forecast.temperatureC}</td>
-                        <td>{forecast.temperatureF}</td>
-                        <td>{forecast.summary}</td>
+                    <tr key={forecast.name}>
+                        <td>{forecast.name}</td>
+                        <td>{forecast.hp}</td>
+                        <td>{forecast.att}</td>
+                        <td>{forecast.type1}</td>
                     </tr>
                 )}
             </tbody>
@@ -40,16 +40,17 @@ function App() {
 
     return (
         <div>
-            <h1 id="tableLabel">Weather forecast</h1>
+            <h1 id="tableLabel">Pokemon Stats</h1>
             <p>This component demonstrates fetching data from the server.</p>
             {contents}
         </div>
     );
 
-    async function populateWeatherData() {
-        const response = await fetch('weatherforecast');
+    async function populatePokemonData() {
+        const response = await fetch('/api/pokemons');
+        console.log(response);
         const data = await response.json();
-        setForecasts(data);
+        setPokemons(data);
     }
 }
 
