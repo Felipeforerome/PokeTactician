@@ -33,6 +33,8 @@ namespace PokeTactician_Backend.Services
                 }
 
                 await context.SaveChangesAsync();
+
+                _logger.LogInformation("Games loaded successfully.");
             }
         }
 
@@ -50,6 +52,25 @@ namespace PokeTactician_Backend.Services
                 }
 
                 await context.SaveChangesAsync();
+
+                _logger.LogInformation("Types loaded successfully.");
+            }
+        }
+
+        private async Task LoadTypeEffectiveness(string filePath)
+        {
+            using (var scope = _serviceProvider.CreateScope())
+            {
+                var context = scope.ServiceProvider.GetRequiredService<PokemonContext>();
+                var json = await File.ReadAllTextAsync(filePath);
+                var typeChart = JsonConvert.DeserializeObject<List<TypeEffectiveness>>(json) ?? throw new InvalidDataException("The type effectiveness data could not be loaded.");
+                foreach (var typeEffectiveness in typeChart)
+                {
+                    context.TypeEffectivenesses.Add(typeEffectiveness);
+                }
+                await context.SaveChangesAsync();
+
+                _logger.LogInformation("Type Chart loaded successfully.");
             }
         }
         private async Task LoadMovesAsync(string filePath)
@@ -71,6 +92,8 @@ namespace PokeTactician_Backend.Services
                 }
 
                 await context.SaveChangesAsync();
+
+                _logger.LogInformation("Moves loaded successfully.");
             }
         }
 
@@ -112,6 +135,8 @@ namespace PokeTactician_Backend.Services
                 }
 
                 await context.SaveChangesAsync();
+
+                _logger.LogInformation("Pokemon loaded successfully.");
             }
         }
 
@@ -125,6 +150,7 @@ namespace PokeTactician_Backend.Services
                 {
                     await LoadGamesAsync("Data/JSON/games.json");
                     await LoadTypesAsync("Data/JSON/pokemon_types.json");
+                    await LoadTypeEffectiveness("Data/JSON/type_effectiveness.json");
                     await LoadMovesAsync("Data/JSON/move_data.json");
                     await LoadPokemonsAsync("Data/JSON/pokemon_data.json");
 

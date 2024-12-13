@@ -20,6 +20,12 @@ namespace PokeTactician_Backend.Mappings
             CreateMap<PokemonType, PokemonTypeDtoOut>();
             CreateMap<PokemonTypeDtoIn, PokemonType>();
             CreateMap<PokemonType, PokemonTypeDtoOut>();
+            CreateMap<PokemonType, PokemonTypeChartAttacking>()
+                .ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.Name))
+                .ForMember(dest => dest.Effectiveness, opt => opt.MapFrom(src => src.Attacking != null ? src.Attacking.ToDictionary(te => te.DefendingType.Name, te => te.Effectiveness) : new Dictionary<string, double>()));
+            CreateMap<PokemonType, PokemonTypeChartDefending>()
+                .ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.Name))
+                .ForMember(dest => dest.Effectiveness, opt => opt.MapFrom(src => src.Defending != null ? src.Defending.ToDictionary(te => te.AttackingType.Name, te => te.Effectiveness) : new Dictionary<string, double>()));
             CreateMap<GameDto, Game>()
                 .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Game));
         }

@@ -1,0 +1,1622 @@
+[
+  {
+    "AttackingTypeId": 1,
+    "DefendingTypeId": 1,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 1,
+    "DefendingTypeId": 2,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 1,
+    "DefendingTypeId": 3,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 1,
+    "DefendingTypeId": 4,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 1,
+    "DefendingTypeId": 5,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 1,
+    "DefendingTypeId": 6,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 1,
+    "DefendingTypeId": 7,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 1,
+    "DefendingTypeId": 8,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 1,
+    "DefendingTypeId": 9,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 1,
+    "DefendingTypeId": 10,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 1,
+    "DefendingTypeId": 11,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 1,
+    "DefendingTypeId": 12,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 1,
+    "DefendingTypeId": 13,
+    "Effectiveness": 0.5
+  },
+  {
+    "AttackingTypeId": 1,
+    "DefendingTypeId": 14,
+    "Effectiveness": 0
+  },
+  {
+    "AttackingTypeId": 1,
+    "DefendingTypeId": 15,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 1,
+    "DefendingTypeId": 16,
+    "Effectiveness": 0.5
+  },
+  {
+    "AttackingTypeId": 1,
+    "DefendingTypeId": 17,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 1,
+    "DefendingTypeId": 18,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 2,
+    "DefendingTypeId": 1,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 2,
+    "DefendingTypeId": 2,
+    "Effectiveness": 0.5
+  },
+  {
+    "AttackingTypeId": 2,
+    "DefendingTypeId": 3,
+    "Effectiveness": 0.5
+  },
+  {
+    "AttackingTypeId": 2,
+    "DefendingTypeId": 4,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 2,
+    "DefendingTypeId": 5,
+    "Effectiveness": 2
+  },
+  {
+    "AttackingTypeId": 2,
+    "DefendingTypeId": 6,
+    "Effectiveness": 2
+  },
+  {
+    "AttackingTypeId": 2,
+    "DefendingTypeId": 7,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 2,
+    "DefendingTypeId": 8,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 2,
+    "DefendingTypeId": 9,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 2,
+    "DefendingTypeId": 10,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 2,
+    "DefendingTypeId": 11,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 2,
+    "DefendingTypeId": 12,
+    "Effectiveness": 2
+  },
+  {
+    "AttackingTypeId": 2,
+    "DefendingTypeId": 13,
+    "Effectiveness": 0.5
+  },
+  {
+    "AttackingTypeId": 2,
+    "DefendingTypeId": 14,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 2,
+    "DefendingTypeId": 15,
+    "Effectiveness": 0.5
+  },
+  {
+    "AttackingTypeId": 2,
+    "DefendingTypeId": 16,
+    "Effectiveness": 2
+  },
+  {
+    "AttackingTypeId": 2,
+    "DefendingTypeId": 17,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 2,
+    "DefendingTypeId": 18,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 3,
+    "DefendingTypeId": 1,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 3,
+    "DefendingTypeId": 2,
+    "Effectiveness": 2
+  },
+  {
+    "AttackingTypeId": 3,
+    "DefendingTypeId": 3,
+    "Effectiveness": 0.5
+  },
+  {
+    "AttackingTypeId": 3,
+    "DefendingTypeId": 4,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 3,
+    "DefendingTypeId": 5,
+    "Effectiveness": 0.5
+  },
+  {
+    "AttackingTypeId": 3,
+    "DefendingTypeId": 6,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 3,
+    "DefendingTypeId": 7,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 3,
+    "DefendingTypeId": 8,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 3,
+    "DefendingTypeId": 9,
+    "Effectiveness": 2
+  },
+  {
+    "AttackingTypeId": 3,
+    "DefendingTypeId": 10,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 3,
+    "DefendingTypeId": 11,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 3,
+    "DefendingTypeId": 12,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 3,
+    "DefendingTypeId": 13,
+    "Effectiveness": 2
+  },
+  {
+    "AttackingTypeId": 3,
+    "DefendingTypeId": 14,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 3,
+    "DefendingTypeId": 15,
+    "Effectiveness": 0.5
+  },
+  {
+    "AttackingTypeId": 3,
+    "DefendingTypeId": 16,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 3,
+    "DefendingTypeId": 17,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 3,
+    "DefendingTypeId": 18,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 4,
+    "DefendingTypeId": 1,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 4,
+    "DefendingTypeId": 2,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 4,
+    "DefendingTypeId": 3,
+    "Effectiveness": 2
+  },
+  {
+    "AttackingTypeId": 4,
+    "DefendingTypeId": 4,
+    "Effectiveness": 0.5
+  },
+  {
+    "AttackingTypeId": 4,
+    "DefendingTypeId": 5,
+    "Effectiveness": 0.5
+  },
+  {
+    "AttackingTypeId": 4,
+    "DefendingTypeId": 6,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 4,
+    "DefendingTypeId": 7,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 4,
+    "DefendingTypeId": 8,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 4,
+    "DefendingTypeId": 9,
+    "Effectiveness": 0
+  },
+  {
+    "AttackingTypeId": 4,
+    "DefendingTypeId": 10,
+    "Effectiveness": 2
+  },
+  {
+    "AttackingTypeId": 4,
+    "DefendingTypeId": 11,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 4,
+    "DefendingTypeId": 12,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 4,
+    "DefendingTypeId": 13,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 4,
+    "DefendingTypeId": 14,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 4,
+    "DefendingTypeId": 15,
+    "Effectiveness": 0.5
+  },
+  {
+    "AttackingTypeId": 4,
+    "DefendingTypeId": 16,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 4,
+    "DefendingTypeId": 17,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 4,
+    "DefendingTypeId": 18,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 5,
+    "DefendingTypeId": 1,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 5,
+    "DefendingTypeId": 2,
+    "Effectiveness": 0.5
+  },
+  {
+    "AttackingTypeId": 5,
+    "DefendingTypeId": 3,
+    "Effectiveness": 2
+  },
+  {
+    "AttackingTypeId": 5,
+    "DefendingTypeId": 4,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 5,
+    "DefendingTypeId": 5,
+    "Effectiveness": 0.5
+  },
+  {
+    "AttackingTypeId": 5,
+    "DefendingTypeId": 6,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 5,
+    "DefendingTypeId": 7,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 5,
+    "DefendingTypeId": 8,
+    "Effectiveness": 0.5
+  },
+  {
+    "AttackingTypeId": 5,
+    "DefendingTypeId": 9,
+    "Effectiveness": 2
+  },
+  {
+    "AttackingTypeId": 5,
+    "DefendingTypeId": 10,
+    "Effectiveness": 0.5
+  },
+  {
+    "AttackingTypeId": 5,
+    "DefendingTypeId": 11,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 5,
+    "DefendingTypeId": 12,
+    "Effectiveness": 0.5
+  },
+  {
+    "AttackingTypeId": 5,
+    "DefendingTypeId": 13,
+    "Effectiveness": 2
+  },
+  {
+    "AttackingTypeId": 5,
+    "DefendingTypeId": 14,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 5,
+    "DefendingTypeId": 15,
+    "Effectiveness": 0.5
+  },
+  {
+    "AttackingTypeId": 5,
+    "DefendingTypeId": 16,
+    "Effectiveness": 0.5
+  },
+  {
+    "AttackingTypeId": 5,
+    "DefendingTypeId": 17,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 5,
+    "DefendingTypeId": 18,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 6,
+    "DefendingTypeId": 1,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 6,
+    "DefendingTypeId": 2,
+    "Effectiveness": 0.5
+  },
+  {
+    "AttackingTypeId": 6,
+    "DefendingTypeId": 3,
+    "Effectiveness": 0.5
+  },
+  {
+    "AttackingTypeId": 6,
+    "DefendingTypeId": 4,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 6,
+    "DefendingTypeId": 5,
+    "Effectiveness": 2
+  },
+  {
+    "AttackingTypeId": 6,
+    "DefendingTypeId": 6,
+    "Effectiveness": 0.5
+  },
+  {
+    "AttackingTypeId": 6,
+    "DefendingTypeId": 7,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 6,
+    "DefendingTypeId": 8,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 6,
+    "DefendingTypeId": 9,
+    "Effectiveness": 2
+  },
+  {
+    "AttackingTypeId": 6,
+    "DefendingTypeId": 10,
+    "Effectiveness": 2
+  },
+  {
+    "AttackingTypeId": 6,
+    "DefendingTypeId": 11,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 6,
+    "DefendingTypeId": 12,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 6,
+    "DefendingTypeId": 13,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 6,
+    "DefendingTypeId": 14,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 6,
+    "DefendingTypeId": 15,
+    "Effectiveness": 2
+  },
+  {
+    "AttackingTypeId": 6,
+    "DefendingTypeId": 16,
+    "Effectiveness": 0.5
+  },
+  {
+    "AttackingTypeId": 6,
+    "DefendingTypeId": 17,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 6,
+    "DefendingTypeId": 18,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 7,
+    "DefendingTypeId": 1,
+    "Effectiveness": 2
+  },
+  {
+    "AttackingTypeId": 7,
+    "DefendingTypeId": 2,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 7,
+    "DefendingTypeId": 3,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 7,
+    "DefendingTypeId": 4,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 7,
+    "DefendingTypeId": 5,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 7,
+    "DefendingTypeId": 6,
+    "Effectiveness": 2
+  },
+  {
+    "AttackingTypeId": 7,
+    "DefendingTypeId": 7,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 7,
+    "DefendingTypeId": 8,
+    "Effectiveness": 0.5
+  },
+  {
+    "AttackingTypeId": 7,
+    "DefendingTypeId": 9,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 7,
+    "DefendingTypeId": 10,
+    "Effectiveness": 0.5
+  },
+  {
+    "AttackingTypeId": 7,
+    "DefendingTypeId": 11,
+    "Effectiveness": 0.5
+  },
+  {
+    "AttackingTypeId": 7,
+    "DefendingTypeId": 12,
+    "Effectiveness": 0.5
+  },
+  {
+    "AttackingTypeId": 7,
+    "DefendingTypeId": 13,
+    "Effectiveness": 2
+  },
+  {
+    "AttackingTypeId": 7,
+    "DefendingTypeId": 14,
+    "Effectiveness": 0
+  },
+  {
+    "AttackingTypeId": 7,
+    "DefendingTypeId": 15,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 7,
+    "DefendingTypeId": 16,
+    "Effectiveness": 2
+  },
+  {
+    "AttackingTypeId": 7,
+    "DefendingTypeId": 17,
+    "Effectiveness": 2
+  },
+  {
+    "AttackingTypeId": 7,
+    "DefendingTypeId": 18,
+    "Effectiveness": 0.5
+  },
+  {
+    "AttackingTypeId": 8,
+    "DefendingTypeId": 1,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 8,
+    "DefendingTypeId": 2,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 8,
+    "DefendingTypeId": 3,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 8,
+    "DefendingTypeId": 4,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 8,
+    "DefendingTypeId": 5,
+    "Effectiveness": 2
+  },
+  {
+    "AttackingTypeId": 8,
+    "DefendingTypeId": 6,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 8,
+    "DefendingTypeId": 7,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 8,
+    "DefendingTypeId": 8,
+    "Effectiveness": 0.5
+  },
+  {
+    "AttackingTypeId": 8,
+    "DefendingTypeId": 9,
+    "Effectiveness": 0.5
+  },
+  {
+    "AttackingTypeId": 8,
+    "DefendingTypeId": 10,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 8,
+    "DefendingTypeId": 11,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 8,
+    "DefendingTypeId": 12,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 8,
+    "DefendingTypeId": 13,
+    "Effectiveness": 0.5
+  },
+  {
+    "AttackingTypeId": 8,
+    "DefendingTypeId": 14,
+    "Effectiveness": 0.5
+  },
+  {
+    "AttackingTypeId": 8,
+    "DefendingTypeId": 15,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 8,
+    "DefendingTypeId": 16,
+    "Effectiveness": 0
+  },
+  {
+    "AttackingTypeId": 8,
+    "DefendingTypeId": 17,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 8,
+    "DefendingTypeId": 18,
+    "Effectiveness": 2
+  },
+  {
+    "AttackingTypeId": 9,
+    "DefendingTypeId": 1,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 9,
+    "DefendingTypeId": 2,
+    "Effectiveness": 2
+  },
+  {
+    "AttackingTypeId": 9,
+    "DefendingTypeId": 3,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 9,
+    "DefendingTypeId": 4,
+    "Effectiveness": 2
+  },
+  {
+    "AttackingTypeId": 9,
+    "DefendingTypeId": 5,
+    "Effectiveness": 0.5
+  },
+  {
+    "AttackingTypeId": 9,
+    "DefendingTypeId": 6,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 9,
+    "DefendingTypeId": 7,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 9,
+    "DefendingTypeId": 8,
+    "Effectiveness": 2
+  },
+  {
+    "AttackingTypeId": 9,
+    "DefendingTypeId": 9,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 9,
+    "DefendingTypeId": 10,
+    "Effectiveness": 0
+  },
+  {
+    "AttackingTypeId": 9,
+    "DefendingTypeId": 11,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 9,
+    "DefendingTypeId": 12,
+    "Effectiveness": 0.5
+  },
+  {
+    "AttackingTypeId": 9,
+    "DefendingTypeId": 13,
+    "Effectiveness": 2
+  },
+  {
+    "AttackingTypeId": 9,
+    "DefendingTypeId": 14,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 9,
+    "DefendingTypeId": 15,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 9,
+    "DefendingTypeId": 16,
+    "Effectiveness": 2
+  },
+  {
+    "AttackingTypeId": 9,
+    "DefendingTypeId": 17,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 9,
+    "DefendingTypeId": 18,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 10,
+    "DefendingTypeId": 1,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 10,
+    "DefendingTypeId": 2,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 10,
+    "DefendingTypeId": 3,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 10,
+    "DefendingTypeId": 4,
+    "Effectiveness": 0.5
+  },
+  {
+    "AttackingTypeId": 10,
+    "DefendingTypeId": 5,
+    "Effectiveness": 2
+  },
+  {
+    "AttackingTypeId": 10,
+    "DefendingTypeId": 6,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 10,
+    "DefendingTypeId": 7,
+    "Effectiveness": 2
+  },
+  {
+    "AttackingTypeId": 10,
+    "DefendingTypeId": 8,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 10,
+    "DefendingTypeId": 9,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 10,
+    "DefendingTypeId": 10,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 10,
+    "DefendingTypeId": 11,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 10,
+    "DefendingTypeId": 12,
+    "Effectiveness": 2
+  },
+  {
+    "AttackingTypeId": 10,
+    "DefendingTypeId": 13,
+    "Effectiveness": 0.5
+  },
+  {
+    "AttackingTypeId": 10,
+    "DefendingTypeId": 14,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 10,
+    "DefendingTypeId": 15,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 10,
+    "DefendingTypeId": 16,
+    "Effectiveness": 0.5
+  },
+  {
+    "AttackingTypeId": 10,
+    "DefendingTypeId": 17,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 10,
+    "DefendingTypeId": 18,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 11,
+    "DefendingTypeId": 1,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 11,
+    "DefendingTypeId": 2,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 11,
+    "DefendingTypeId": 3,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 11,
+    "DefendingTypeId": 4,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 11,
+    "DefendingTypeId": 5,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 11,
+    "DefendingTypeId": 6,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 11,
+    "DefendingTypeId": 7,
+    "Effectiveness": 2
+  },
+  {
+    "AttackingTypeId": 11,
+    "DefendingTypeId": 8,
+    "Effectiveness": 2
+  },
+  {
+    "AttackingTypeId": 11,
+    "DefendingTypeId": 9,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 11,
+    "DefendingTypeId": 10,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 11,
+    "DefendingTypeId": 11,
+    "Effectiveness": 0.5
+  },
+  {
+    "AttackingTypeId": 11,
+    "DefendingTypeId": 12,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 11,
+    "DefendingTypeId": 13,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 11,
+    "DefendingTypeId": 14,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 11,
+    "DefendingTypeId": 15,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 11,
+    "DefendingTypeId": 16,
+    "Effectiveness": 0.5
+  },
+  {
+    "AttackingTypeId": 11,
+    "DefendingTypeId": 17,
+    "Effectiveness": 0
+  },
+  {
+    "AttackingTypeId": 11,
+    "DefendingTypeId": 18,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 12,
+    "DefendingTypeId": 1,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 12,
+    "DefendingTypeId": 2,
+    "Effectiveness": 0.5
+  },
+  {
+    "AttackingTypeId": 12,
+    "DefendingTypeId": 3,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 12,
+    "DefendingTypeId": 4,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 12,
+    "DefendingTypeId": 5,
+    "Effectiveness": 2
+  },
+  {
+    "AttackingTypeId": 12,
+    "DefendingTypeId": 6,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 12,
+    "DefendingTypeId": 7,
+    "Effectiveness": 0.5
+  },
+  {
+    "AttackingTypeId": 12,
+    "DefendingTypeId": 8,
+    "Effectiveness": 0.5
+  },
+  {
+    "AttackingTypeId": 12,
+    "DefendingTypeId": 9,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 12,
+    "DefendingTypeId": 10,
+    "Effectiveness": 0.5
+  },
+  {
+    "AttackingTypeId": 12,
+    "DefendingTypeId": 11,
+    "Effectiveness": 2
+  },
+  {
+    "AttackingTypeId": 12,
+    "DefendingTypeId": 12,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 12,
+    "DefendingTypeId": 13,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 12,
+    "DefendingTypeId": 14,
+    "Effectiveness": 0.5
+  },
+  {
+    "AttackingTypeId": 12,
+    "DefendingTypeId": 15,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 12,
+    "DefendingTypeId": 16,
+    "Effectiveness": 0.5
+  },
+  {
+    "AttackingTypeId": 12,
+    "DefendingTypeId": 17,
+    "Effectiveness": 2
+  },
+  {
+    "AttackingTypeId": 12,
+    "DefendingTypeId": 18,
+    "Effectiveness": 0.5
+  },
+  {
+    "AttackingTypeId": 13,
+    "DefendingTypeId": 1,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 13,
+    "DefendingTypeId": 2,
+    "Effectiveness": 2
+  },
+  {
+    "AttackingTypeId": 13,
+    "DefendingTypeId": 3,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 13,
+    "DefendingTypeId": 4,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 13,
+    "DefendingTypeId": 5,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 13,
+    "DefendingTypeId": 6,
+    "Effectiveness": 2
+  },
+  {
+    "AttackingTypeId": 13,
+    "DefendingTypeId": 7,
+    "Effectiveness": 0.5
+  },
+  {
+    "AttackingTypeId": 13,
+    "DefendingTypeId": 8,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 13,
+    "DefendingTypeId": 9,
+    "Effectiveness": 0.5
+  },
+  {
+    "AttackingTypeId": 13,
+    "DefendingTypeId": 10,
+    "Effectiveness": 2
+  },
+  {
+    "AttackingTypeId": 13,
+    "DefendingTypeId": 11,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 13,
+    "DefendingTypeId": 12,
+    "Effectiveness": 2
+  },
+  {
+    "AttackingTypeId": 13,
+    "DefendingTypeId": 13,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 13,
+    "DefendingTypeId": 14,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 13,
+    "DefendingTypeId": 15,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 13,
+    "DefendingTypeId": 16,
+    "Effectiveness": 0.5
+  },
+  {
+    "AttackingTypeId": 13,
+    "DefendingTypeId": 17,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 13,
+    "DefendingTypeId": 18,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 14,
+    "DefendingTypeId": 1,
+    "Effectiveness": 0
+  },
+  {
+    "AttackingTypeId": 14,
+    "DefendingTypeId": 2,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 14,
+    "DefendingTypeId": 3,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 14,
+    "DefendingTypeId": 4,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 14,
+    "DefendingTypeId": 5,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 14,
+    "DefendingTypeId": 6,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 14,
+    "DefendingTypeId": 7,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 14,
+    "DefendingTypeId": 8,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 14,
+    "DefendingTypeId": 9,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 14,
+    "DefendingTypeId": 10,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 14,
+    "DefendingTypeId": 11,
+    "Effectiveness": 2
+  },
+  {
+    "AttackingTypeId": 14,
+    "DefendingTypeId": 12,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 14,
+    "DefendingTypeId": 13,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 14,
+    "DefendingTypeId": 14,
+    "Effectiveness": 2
+  },
+  {
+    "AttackingTypeId": 14,
+    "DefendingTypeId": 15,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 14,
+    "DefendingTypeId": 16,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 14,
+    "DefendingTypeId": 17,
+    "Effectiveness": 0.5
+  },
+  {
+    "AttackingTypeId": 14,
+    "DefendingTypeId": 18,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 15,
+    "DefendingTypeId": 1,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 15,
+    "DefendingTypeId": 2,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 15,
+    "DefendingTypeId": 3,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 15,
+    "DefendingTypeId": 4,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 15,
+    "DefendingTypeId": 5,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 15,
+    "DefendingTypeId": 6,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 15,
+    "DefendingTypeId": 7,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 15,
+    "DefendingTypeId": 8,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 15,
+    "DefendingTypeId": 9,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 15,
+    "DefendingTypeId": 10,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 15,
+    "DefendingTypeId": 11,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 15,
+    "DefendingTypeId": 12,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 15,
+    "DefendingTypeId": 13,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 15,
+    "DefendingTypeId": 14,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 15,
+    "DefendingTypeId": 15,
+    "Effectiveness": 2
+  },
+  {
+    "AttackingTypeId": 15,
+    "DefendingTypeId": 16,
+    "Effectiveness": 0.5
+  },
+  {
+    "AttackingTypeId": 15,
+    "DefendingTypeId": 17,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 15,
+    "DefendingTypeId": 18,
+    "Effectiveness": 0
+  },
+  {
+    "AttackingTypeId": 16,
+    "DefendingTypeId": 1,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 16,
+    "DefendingTypeId": 2,
+    "Effectiveness": 0.5
+  },
+  {
+    "AttackingTypeId": 16,
+    "DefendingTypeId": 3,
+    "Effectiveness": 0.5
+  },
+  {
+    "AttackingTypeId": 16,
+    "DefendingTypeId": 4,
+    "Effectiveness": 0.5
+  },
+  {
+    "AttackingTypeId": 16,
+    "DefendingTypeId": 5,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 16,
+    "DefendingTypeId": 6,
+    "Effectiveness": 2
+  },
+  {
+    "AttackingTypeId": 16,
+    "DefendingTypeId": 7,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 16,
+    "DefendingTypeId": 8,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 16,
+    "DefendingTypeId": 9,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 16,
+    "DefendingTypeId": 10,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 16,
+    "DefendingTypeId": 11,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 16,
+    "DefendingTypeId": 12,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 16,
+    "DefendingTypeId": 13,
+    "Effectiveness": 2
+  },
+  {
+    "AttackingTypeId": 16,
+    "DefendingTypeId": 14,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 16,
+    "DefendingTypeId": 15,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 16,
+    "DefendingTypeId": 16,
+    "Effectiveness": 0.5
+  },
+  {
+    "AttackingTypeId": 16,
+    "DefendingTypeId": 17,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 16,
+    "DefendingTypeId": 18,
+    "Effectiveness": 2
+  },
+  {
+    "AttackingTypeId": 17,
+    "DefendingTypeId": 1,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 17,
+    "DefendingTypeId": 2,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 17,
+    "DefendingTypeId": 3,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 17,
+    "DefendingTypeId": 4,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 17,
+    "DefendingTypeId": 5,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 17,
+    "DefendingTypeId": 6,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 17,
+    "DefendingTypeId": 7,
+    "Effectiveness": 0.5
+  },
+  {
+    "AttackingTypeId": 17,
+    "DefendingTypeId": 8,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 17,
+    "DefendingTypeId": 9,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 17,
+    "DefendingTypeId": 10,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 17,
+    "DefendingTypeId": 11,
+    "Effectiveness": 2
+  },
+  {
+    "AttackingTypeId": 17,
+    "DefendingTypeId": 12,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 17,
+    "DefendingTypeId": 13,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 17,
+    "DefendingTypeId": 14,
+    "Effectiveness": 2
+  },
+  {
+    "AttackingTypeId": 17,
+    "DefendingTypeId": 15,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 17,
+    "DefendingTypeId": 16,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 17,
+    "DefendingTypeId": 17,
+    "Effectiveness": 0.5
+  },
+  {
+    "AttackingTypeId": 17,
+    "DefendingTypeId": 18,
+    "Effectiveness": 0.5
+  },
+  {
+    "AttackingTypeId": 18,
+    "DefendingTypeId": 1,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 18,
+    "DefendingTypeId": 2,
+    "Effectiveness": 0.5
+  },
+  {
+    "AttackingTypeId": 18,
+    "DefendingTypeId": 3,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 18,
+    "DefendingTypeId": 4,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 18,
+    "DefendingTypeId": 5,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 18,
+    "DefendingTypeId": 6,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 18,
+    "DefendingTypeId": 7,
+    "Effectiveness": 2
+  },
+  {
+    "AttackingTypeId": 18,
+    "DefendingTypeId": 8,
+    "Effectiveness": 0.5
+  },
+  {
+    "AttackingTypeId": 18,
+    "DefendingTypeId": 9,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 18,
+    "DefendingTypeId": 10,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 18,
+    "DefendingTypeId": 11,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 18,
+    "DefendingTypeId": 12,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 18,
+    "DefendingTypeId": 13,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 18,
+    "DefendingTypeId": 14,
+    "Effectiveness": 1.0
+  },
+  {
+    "AttackingTypeId": 18,
+    "DefendingTypeId": 15,
+    "Effectiveness": 2
+  },
+  {
+    "AttackingTypeId": 18,
+    "DefendingTypeId": 16,
+    "Effectiveness": 0.5
+  },
+  {
+    "AttackingTypeId": 18,
+    "DefendingTypeId": 17,
+    "Effectiveness": 2
+  },
+  {
+    "AttackingTypeId": 18,
+    "DefendingTypeId": 18,
+    "Effectiveness": 1.0
+  }
+]
