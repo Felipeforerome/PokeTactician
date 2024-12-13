@@ -6,7 +6,7 @@ using DotNetEnv;
 
 var builder = WebApplication.CreateBuilder(args);
 
-Env.Load();
+Env.Load(path: "../.env");
 
 var connectionString = (builder.Configuration.GetConnectionString("DefaultConnection") ?? string.Empty)
     .Replace("__DB_HOST__", Environment.GetEnvironmentVariable("DB_HOST"))
