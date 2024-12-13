@@ -14,8 +14,8 @@ public class JuliaScriptExecutor
         string escapedJsonData = jsonData.Replace("\"", "\\\"");
 
         // Path to Julia executable and script
-        string juliaExecutable = @"/usr/local/bin/julia";
-        string scriptPath = @"/app/Scripts/script.jl";
+        string juliaExecutable = Environment.GetEnvironmentVariable("JULIA_EXECUTABLE_PATH") ?? throw new Exception("JULIA_EXECUTABLE_PATH environment variable is not set.");
+        string scriptPath = Environment.GetEnvironmentVariable("JULIA_SCRIPT_PATH") ?? throw new Exception("JULIA_SCRIPT_PATH environment variable is not set.");
 
         // Set up the process to run Julia
         var process = new Process
