@@ -33,9 +33,8 @@ if (!fs.existsSync(certFilePath) || !fs.existsSync(keyFilePath)) {
         throw new Error("Could not create certificate.");
     }
 }
-
 const target = env.ASPNETCORE_HTTPS_PORT ? `https://localhost:${env.ASPNETCORE_HTTPS_PORT}` :
-    env.ASPNETCORE_URLS ? env.ASPNETCORE_URLS.split(';')[0] : 'https://localhost:7258';
+    env.ASPNETCORE_URLS ? env.ASPNETCORE_URLS.split(';')[0] : 'https://localhost:443';
 
 // https://vitejs.dev/config/
 export default defineConfig({
