@@ -1,0 +1,6 @@
+@PokeTactician.Server_HostAddress = http://localhost:5165
+
+GET {{PokeTactician.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

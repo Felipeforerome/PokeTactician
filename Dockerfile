@@ -16,17 +16,17 @@ RUN apt-get -y install nodejs
 FROM with-node AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY PokeTactician-Backend.Server/*.csproj ./PokeTactician-Backend.Server/
-COPY poketactician-backend.client/*.esproj ./poketactician-backend.client/
-RUN dotnet restore "./PokeTactician-Backend.Server/PokeTactician-Backend.Server.csproj"
+COPY PokeTactician.Server/*.csproj ./PokeTactician.Server/
+COPY poketactician.client/*.esproj ./poketactician.client/
+RUN dotnet restore "./PokeTactician.Server/PokeTactician.Server.csproj"
 COPY . .
-WORKDIR "/src/PokeTactician-Backend.Server"
-RUN dotnet build "./PokeTactician-Backend.Server.csproj" -c $BUILD_CONFIGURATION -o /app/build
+WORKDIR "/src/PokeTactician.Server"
+RUN dotnet build "./PokeTactician.Server.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 # This stage is used to publish the service project to be copied to the final stage
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./PokeTactician-Backend.Server.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "./PokeTactician.Server.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 # This stage is used in production or when running from VS in regular mode (Default when not using the Debug configuration)
 FROM base AS final
@@ -46,7 +46,7 @@ RUN apt-get update && \
 USER $APP_UID
 
 # Add your Julia scripts to the container
-COPY PokeTactician-Backend.Server/Scripts/ /app/Scripts/
+COPY PokeTactician.Server/Scripts/ /app/Scripts/
 
 # Install Julia packages
 # TODO Replace package installation with a Manifest.toml file
@@ -54,5 +54,5 @@ COPY PokeTactician-Backend.Server/Scripts/ /app/Scripts/
 RUN julia -e 'using Pkg; Pkg.add("JSON")'
 
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "PokeTactician-Backend.Server.dll"]
+ENTRYPOINT ["dotnet", "PokeTactician.Server.dll"]
 
