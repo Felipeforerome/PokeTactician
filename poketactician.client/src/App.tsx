@@ -5,7 +5,12 @@ interface Pokemon {
     name: string;
     hp: number;
     att: number;
+    deff: number;
+    spAtt: number;
+    spDeff: number;
+    spe: number;
     type1: string;
+    type2: string;
 }
 
 function App() {
@@ -23,7 +28,12 @@ function App() {
                     <th>Name</th>
                     <th>HP</th>
                     <th>Attack</th>
+                    <th>Defense</th>
+                    <th>Special Attack</th>
+                    <th>Special Defense</th>
+                    <th>Speed</th>
                     <th>Type 1</th>
+                    <th>Type 2</th>
                 </tr>
             </thead>
             <tbody>
@@ -32,7 +42,12 @@ function App() {
                         <td>{forecast.name}</td>
                         <td>{forecast.hp}</td>
                         <td>{forecast.att}</td>
+                        <td>{forecast.deff}</td>
+                        <td>{forecast.spAtt}</td>
+                        <td>{forecast.spDeff}</td>
+                        <td>{forecast.spe}</td>
                         <td>{forecast.type1}</td>
+                        <td>{forecast.type2}</td>
                     </tr>
                 )}
             </tbody>
@@ -47,7 +62,7 @@ function App() {
     );
 
     async function populatePokemonData() {
-        const response = await fetch('/api/pokemons');
+        const response = await fetch('/api/pokemons?typeId=14&generations=1');
         console.log(response);
         const data = await response.json();
         setPokemons(data);
