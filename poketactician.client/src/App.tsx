@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import './App.css';
-import PokemonTeam from './components/PokemonTeam';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Results from './components/Results';
 import { Pokemon } from './types';
