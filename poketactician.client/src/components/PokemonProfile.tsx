@@ -8,7 +8,7 @@ import { Chart as ChartJS, RadialLinearScale, PointElement, LineElement, Filler,
 ChartJS.register(RadialLinearScale, PointElement, LineElement, Filler, Tooltip, Legend);
 
 const PokemonProfile: React.FC<Pokemon> = ({ id, name, type1, type2, hp, att, deff, spAtt, spDeff, spe }) => {
-    const formatType = (type: string) => {
+    const formatString = (type: string) => {
         return type.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' ');
     };
 
@@ -40,7 +40,7 @@ const PokemonProfile: React.FC<Pokemon> = ({ id, name, type1, type2, hp, att, de
         labels: ['HP', 'Attack', 'Defense', 'Sp. Attack', 'Sp. Defense', 'Speed'],
         datasets: [
             {
-                label: name,
+                label: "Base Stats",
                 data: [hp, att, deff, spAtt, spDeff, spe],
                 backgroundColor: 'rgba(255, 99, 132, 0.2)',
                 borderColor: 'rgba(255, 99, 132, 1)',
@@ -92,6 +92,12 @@ const PokemonProfile: React.FC<Pokemon> = ({ id, name, type1, type2, hp, att, de
                     >
                         <motion.div layoutId={`card-${id}`}>
                             <CardBody style={{ overflow: 'visible' }}>
+                                <div>
+                                    <motion.div layoutId={`card-title-${id}`}>
+                                        <h1 className="text-2xl font-semibold text-foreground/90 mt-2">{formatString(name)}</h1>
+                                        <p className="text-small text-foreground/80">{formatString(type1)} {type2 && `- ${formatString(type2)}`}</p>
+                                    </motion.div>
+                                </div>
                                 <div className="grid grid-cols-2 gap-10">
                                     <motion.div layoutId={`card-image-${id}`}>
                                         <Image
@@ -107,11 +113,10 @@ const PokemonProfile: React.FC<Pokemon> = ({ id, name, type1, type2, hp, att, de
                                     </motion.div>
                                     <motion.div layoutId={`card-text-${id}`}>
                                         <div>
-                                            <h3 className="font-semibold text-foreground/90 mt-2">{formatType(name)} - Profile</h3>
-                                            <p className="text-small text-foreground/80">{formatType(type1)} {type2 && `- ${formatType(type2)}`}</p>
-                                            <p className="text-small text-foreground/80">HP: {hp}</p>
-                                            <p className="text-small text-foreground/80">Attack: {att}</p>
-                                            <p className="text-small text-foreground/80">Defense: {deff}</p>
+                                            <p className="text-small text-foreground/80">Move 1</p>
+                                            <p className="text-small text-foreground/80">Move 2</p>
+                                            <p className="text-small text-foreground/80">Move 3</p>
+                                            <p className="text-small text-foreground/80">Move 4</p>
                                         </div>
                                     </motion.div>
                                     <motion.div className="content-container" animate>
