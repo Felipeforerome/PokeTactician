@@ -1,9 +1,11 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { Card, CardBody, Image } from "@nextui-org/react";
 import { Link } from "react-router-dom";
 import { Pokemon } from '../types';
+import { Radar } from 'react-chartjs-2';
+import { Chart as ChartJS, RadialLinearScale, PointElement, LineElement, Filler, Tooltip, Legend } from 'chart.js';
 
+ChartJS.register(RadialLinearScale, PointElement, LineElement, Filler, Tooltip, Legend);
 
 const PokemonProfile: React.FC<Pokemon> = ({ id, name, type1, type2, hp, att, deff, spAtt, spDeff, spe }) => {
     const formatType = (type: string) => {
@@ -33,6 +35,44 @@ const PokemonProfile: React.FC<Pokemon> = ({ id, name, type1, type2, hp, att, de
     const type1Color = pokemonTypeColors[type1];
     const type2Color = type2 ? pokemonTypeColors[type2] : type1Color;
     const bgGradient = `linear-gradient(to right, ${type1Color}, ${type2Color})`;
+
+    const data = {
+        labels: ['HP', 'Attack', 'Defense', 'Sp. Attack', 'Sp. Defense', 'Speed'],
+        datasets: [
+            {
+                label: name,
+                data: [hp, att, deff, spAtt, spDeff, spe],
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 1,
+            },
+        ],
+    };
+
+    const options = {
+        scales: {
+            r: {
+                angleLines: {
+                    display: true,
+                    color: 'rgba(255, 255, 255, 0.2)' // Change axis color
+                },
+                grid: {
+                    color: 'rgba(255, 255, 255, 0.2)' // Change grid color
+                },
+                pointLabels: {
+                    color: 'rgba(255, 255, 255, 0.7)' // Change label color
+                },
+                ticks: {
+                    color: 'rgba(255, 255, 255, 0.7)', // Change tick color
+                    backdropColor: 'rgba(0, 0, 0, 0)', // Change background color
+                    beginAtZero: true,
+                },
+                suggestedMin: 0,
+                suggestedMax: 150
+            }
+        }
+    };
+
     return (
         <motion.div
             initial={{ opacity: 0 }}
@@ -42,10 +82,8 @@ const PokemonProfile: React.FC<Pokemon> = ({ id, name, type1, type2, hp, att, de
             style={{ pointerEvents: "auto" }}
             className="z-10 fixed bg-black bg-opacity-80 will-change-opacity top-5 bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-3xl rounded-lg"
         >
-
             <Link to="/">
-                <motion.div
-                    layoutId={`card-container-${id}`}>
+                <motion.div layoutId={`card-container-${id}`}>
                     <Card
                         isBlurred
                         className="dark border-none bg-background/60 dark:bg-default-100/50 w-full"
@@ -64,6 +102,9 @@ const PokemonProfile: React.FC<Pokemon> = ({ id, name, type1, type2, hp, att, de
                                             style={{ background: bgGradient }}
                                         />
                                     </motion.div>
+                                    <motion.div className='stats-radar'>
+                                        <Radar data={data} options={options} />
+                                    </motion.div>
                                     <motion.div layoutId={`card-text-${id}`}>
                                         <div>
                                             <h3 className="font-semibold text-foreground/90 mt-2">{formatType(name)} - Profile</h3>
@@ -73,7 +114,6 @@ const PokemonProfile: React.FC<Pokemon> = ({ id, name, type1, type2, hp, att, de
                                             <p className="text-small text-foreground/80">Defense: {deff}</p>
                                         </div>
                                     </motion.div>
-
                                     <motion.div className="content-container" animate>
                                         <p>Lorem ipsum odor amet, consectetuer adipiscing elit. Turpis vitae magna nisl cras, ridiculus augue. Orci varius ornare viverra urna eget ridiculus. Lobortis feugiat viverra lacinia a.</p>
                                         <p>Vitae primis felis penatibus. Dis ante nam mattis. Venenatis metus habitant auctor.</p>
