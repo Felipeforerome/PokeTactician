@@ -34,13 +34,16 @@ function Results({ pokemons }: ResultsProps) {
                 {id && pokemon &&
                     <PokemonProfile
                         key={pokemon.id}
+                        id={pokemon.id}
                         name={pokemon.name}
-                        image={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}
                         type1={pokemon.type1}
                         type2={pokemon.type2}
                         hp={pokemon.hp}
-                        attack={pokemon.att}
-                        defense={pokemon.deff}
+                        att={pokemon.att}
+                        deff={pokemon.deff}
+                        spAtt={pokemon.spAtt}
+                        spDeff={pokemon.spDeff}
+                        spe={pokemon.spe}
                     />}
             </AnimatePresence>
         </div>

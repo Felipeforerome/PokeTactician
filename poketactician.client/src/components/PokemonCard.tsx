@@ -37,32 +37,41 @@ const PokemonCard: React.FC<Pokemon> = ({ id, name, type1, type2, hp, att, deff,
     return (
         <motion.div whileHover={{ scale: 1.1 }}>
             <Link to={`/${id}`}>
-                <Card
-                    isBlurred
-                    className="dark border-none bg-background/60 dark:bg-default-100/50 max-w-[300px]"
-                    shadow="sm"
-                    style={{ overflow: 'visible' }}
-                >
-                    <CardBody style={{ overflow: 'visible' }}>
-                        <div className="grid grid-cols-2 gap-10">
-                            <Image
-                                alt={name}
-                                className={`object-cover scale-[1.225] rounded-lg`}
-                                height={140}
-                                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`}
-                                width="100%"
-                                style={{ background: bgGradient }}
-                            />
-                            <div>
-                                <h3 className="font-semibold text-foreground/90 mt-2">{formatType(name)}</h3>
-                                <p className="text-small text-foreground/80">{formatType(type1)} {type2 && `- ${formatType(type2)}`}</p>
-                                <p className="text-small text-foreground/80">HP: {hp}</p>
-                                <p className="text-small text-foreground/80">Attack: {att}</p>
-                                <p className="text-small text-foreground/80">Defense: {deff}</p>
-                            </div>
-                        </div>
-                    </CardBody>
-                </Card>
+                <motion.div
+                    layoutId={`card-container-${id}`}>
+                    <Card
+                        isBlurred
+                        className="dark border-none bg-background/60 dark:bg-default-100/50 max-w-[300px]"
+                        shadow="sm"
+                        style={{ overflow: 'visible' }}
+                    >
+                        <motion.div layoutId={`card-${id}`}>
+                            <CardBody style={{ overflow: 'visible' }}>
+                                <div className="grid grid-cols-2 gap-10">
+                                    <motion.div layoutId={`card-image-${id}`}>
+                                        <Image
+                                            alt={name}
+                                            className={`object-cover scale-[1.225] rounded-lg`}
+                                            height={140}
+                                            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`}
+                                            width="100%"
+                                            style={{ background: bgGradient }}
+                                        />
+                                    </motion.div>
+                                    <motion.div layoutId={`card-text-${id}`}>
+                                        <div>
+                                            <h3 className="font-semibold text-foreground/90 mt-2">{formatType(name)}</h3>
+                                            <p className="text-small text-foreground/80">{formatType(type1)} {type2 && `- ${formatType(type2)}`}</p>
+                                            <p className="text-small text-foreground/80">HP: {hp}</p>
+                                            <p className="text-small text-foreground/80">Attack: {att}</p>
+                                            <p className="text-small text-foreground/80">Defense: {deff}</p>
+                                        </div>
+                                    </motion.div>
+                                </div>
+                            </CardBody>
+                        </motion.div>
+                    </Card>
+                </motion.div>
             </Link>
         </motion.div>
     );

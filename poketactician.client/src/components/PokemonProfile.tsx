@@ -2,18 +2,10 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Card, CardBody, Image } from "@nextui-org/react";
 import { Link } from "react-router-dom";
+import { Pokemon } from '../types';
 
-interface PokemonProfileProps {
-    name: string;
-    image: string;
-    type1: string;
-    type2: string;
-    hp: number;
-    attack: number;
-    defense: number;
-}
 
-const PokemonProfile: React.FC<PokemonProfileProps> = ({ name, image, type1, type2, hp, attack, defense }) => {
+const PokemonProfile: React.FC<Pokemon> = ({ id, name, type1, type2, hp, att, deff, spAtt, spDeff, spe }) => {
     const formatType = (type: string) => {
         return type.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' ');
     };
@@ -42,40 +34,56 @@ const PokemonProfile: React.FC<PokemonProfileProps> = ({ name, image, type1, typ
     const type2Color = type2 ? pokemonTypeColors[type2] : type1Color;
     const bgGradient = `linear-gradient(to right, ${type1Color}, ${type2Color})`;
     return (
-        <motion.div whileHover={{ scale: 1.1 }}
+        <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2, delay: 0.1 }}
             style={{ pointerEvents: "auto" }}
-            className="overlay">
+            className="z-10 fixed bg-black bg-opacity-80 will-change-opacity top-5 bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-3xl rounded-lg"
+        >
 
             <Link to="/">
-                <Card
-                    isBlurred
-                    className="dark border-none bg-background/60 dark:bg-default-100/50"
-                    shadow="sm"
-                    style={{ overflow: 'visible' }}
-                >
-                    <CardBody style={{ overflow: 'visible' }}>
-                        <div className="grid grid-cols-2 gap-10">
-                            <Image
-                                alt={name}
-                                className={`object-cover scale-[1.225] rounded-lg`}
-                                src={image}
-                                width="100%"
-                                style={{ background: bgGradient }}
-                            />
-                            <div>
-                                <h3 className="font-semibold text-foreground/90 mt-2">{formatType(name)} - Profile</h3>
-                                <p className="text-small text-foreground/80">{formatType(type1)} {type2 && `- ${formatType(type2)}`}</p>
-                                <p className="text-small text-foreground/80">HP: {hp}</p>
-                                <p className="text-small text-foreground/80">Attack: {attack}</p>
-                                <p className="text-small text-foreground/80">Defense: {defense}</p>
-                            </div>
-                        </div>
-                    </CardBody>
-                </Card>
+                <motion.div
+                    layoutId={`card-container-${id}`}>
+                    <Card
+                        isBlurred
+                        className="dark border-none bg-background/60 dark:bg-default-100/50 w-full"
+                        shadow="sm"
+                        style={{ overflow: 'visible' }}
+                    >
+                        <motion.div layoutId={`card-${id}`}>
+                            <CardBody style={{ overflow: 'visible' }}>
+                                <div className="grid grid-cols-2 gap-10">
+                                    <motion.div layoutId={`card-image-${id}`}>
+                                        <Image
+                                            alt={name}
+                                            className={`object-cover scale-[0.925] rounded-lg`}
+                                            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`}
+                                            width="100%"
+                                            style={{ background: bgGradient }}
+                                        />
+                                    </motion.div>
+                                    <motion.div layoutId={`card-text-${id}`}>
+                                        <div>
+                                            <h3 className="font-semibold text-foreground/90 mt-2">{formatType(name)} - Profile</h3>
+                                            <p className="text-small text-foreground/80">{formatType(type1)} {type2 && `- ${formatType(type2)}`}</p>
+                                            <p className="text-small text-foreground/80">HP: {hp}</p>
+                                            <p className="text-small text-foreground/80">Attack: {att}</p>
+                                            <p className="text-small text-foreground/80">Defense: {deff}</p>
+                                        </div>
+                                    </motion.div>
+
+                                    <motion.div className="content-container" animate>
+                                        <p>Lorem ipsum odor amet, consectetuer adipiscing elit. Turpis vitae magna nisl cras, ridiculus augue. Orci varius ornare viverra urna eget ridiculus. Lobortis feugiat viverra lacinia a.</p>
+                                        <p>Vitae primis felis penatibus. Dis ante nam mattis. Venenatis metus habitant auctor.</p>
+                                        <p>Semper nisl iaculis erat orci etiam enim. Augue ornare dictumst imperdiet lacinia interdum. Metus facilisi potenti turpis fusce; torquent elit. Faucibus torquent nunc per elementum. Taciti odio penatibus litora nam ex hendrerit congue?</p>
+                                    </motion.div>
+                                </div>
+                            </CardBody>
+                        </motion.div>
+                    </Card>
+                </motion.div>
             </Link>
         </motion.div>
     );
