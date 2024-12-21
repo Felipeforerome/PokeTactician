@@ -36,14 +36,22 @@ const PokemonProfile: React.FC<Pokemon> = ({ id, name, type1, type2, hp, att, de
     const type2Color = type2 ? pokemonTypeColors[type2] : type1Color;
     const bgGradient = `linear-gradient(to right, ${type1Color}, ${type2Color})`;
 
+    const hexToRgba = (hex: string, opacity: number) => {
+        const bigint = parseInt(hex.slice(1), 16);
+        const r = (bigint >> 16) & 255;
+        const g = (bigint >> 8) & 255;
+        const b = bigint & 255;
+        return `rgba(${r}, ${g}, ${b}, ${opacity})`;
+    };
+
     const data = {
         labels: ['HP', 'Attack', 'Defense', 'Sp. Attack', 'Sp. Defense', 'Speed'],
         datasets: [
             {
                 label: "Base Stats",
                 data: [hp, att, deff, spAtt, spDeff, spe],
-                backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                borderColor: 'rgba(255, 99, 132, 1)',
+                backgroundColor: hexToRgba(type1Color, 0.2),
+                borderColor: hexToRgba(type1Color, 1),
                 borderWidth: 1,
             },
         ],
