@@ -29,7 +29,6 @@ function App() {
 
     async function populatePokemonData() {
         const response = await fetch('/api/pokemons?generations=3');
-        console.log(response);
         const data = await response.json();
         setPokemons(data);
     }
