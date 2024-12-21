@@ -1,7 +1,8 @@
 import PokemonProfile from './PokemonProfile';
 import { useParams } from 'react-router-dom';
 import PokemonTeam from './PokemonTeam';
-import { AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 interface Pokemon {
     id: number;
@@ -31,6 +32,15 @@ function Results({ pokemons }: ResultsProps) {
         <div>
             {contents}
             <AnimatePresence>
+                {id && pokemon && <><Link to={`/`}><motion.div
+                    initial={{ zIndex: -1, opacity: 0 }}
+                    animate={{ zIndex: 2, opacity: 1 }}
+                    exit={{ zIndex: -1, opacity: 0 }}
+                    transition={{ duration: 0.2, delay: 0.1 }}
+                    layoutId={`card-background-${id}`} className="dark fixed top-0 left-0 bg-background/60 dark:bg-default-100/50 w-full h-full z-3 backdrop-blur-md">
+                </motion.div>
+                </Link>
+                </>}
                 {id && pokemon &&
                     <PokemonProfile
                         key={pokemon.id}

@@ -80,54 +80,44 @@ const PokemonProfile: React.FC<Pokemon> = ({ id, name, type1, type2, hp, att, de
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2, delay: 0.1 }}
             style={{ pointerEvents: "auto" }}
-            className="z-10 fixed bg-black bg-opacity-80 will-change-opacity top-5 bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-3xl rounded-lg"
+            className="z-10 fixed overflow-y-auto inset-0 md:flex items-center justify-center w-full max-w-3xl mx-auto top-[5%]"
         >
             <Link to="/">
-                <motion.div layoutId={`card-container-${id}`}>
-                    <Card
-                        isBlurred
-                        className="dark border-none bg-background/60 dark:bg-default-100/50 w-full"
-                        shadow="sm"
-                        style={{ overflow: 'visible' }}
-                    >
-                        <motion.div layoutId={`card-${id}`}>
-                            <CardBody style={{ overflow: 'visible' }}>
+                <motion.div layoutId={`card-container-${id}`} className='bg-black rounded-lg'
+                    style={{ overflowY: 'scroll' }}>
+                    <motion.div layoutId={`card-${id}`}>
+                        <br />
+                        <motion.div layoutId={`card-title-${id}`}>
+                            <h1 className="dark text-2xl font-semibold text-foreground/90 mt-2">{formatString(name)}</h1>
+                            <p className="dark text-small text-foreground/80">{formatString(type1)} {type2 && `- ${formatString(type2)}`}</p>
+                        </motion.div><div className="grid sm:grid-cols-2 grid-cols-1">
+                            <motion.div layoutId={`card-image-${id}`} className="flex justify-center items-center">
+                                <Image
+                                    alt={name}
+                                    className={'object-cover sm:scale-[3] rounded-lg'}
+                                    src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`}
+                                    width="100%"
+                                    style={{ background: bgGradient }}
+                                />
+                            </motion.div>
+                            <motion.div className='stats-radar'>
+                                <Radar data={data} options={options} />
+                            </motion.div>
+                            <motion.div layoutId={`card-text-${id}`}>
                                 <div>
-                                    <motion.div layoutId={`card-title-${id}`}>
-                                        <h1 className="text-2xl font-semibold text-foreground/90 mt-2">{formatString(name)}</h1>
-                                        <p className="text-small text-foreground/80">{formatString(type1)} {type2 && `- ${formatString(type2)}`}</p>
-                                    </motion.div>
+                                    <p className="dark text-small text-foreground/80">Move 1</p>
+                                    <p className="dark text-small text-foreground/80">Move 2</p>
+                                    <p className="dark text-small text-foreground/80">Move 3</p>
+                                    <p className="dark text-small text-foreground/80">Move 4</p>
                                 </div>
-                                <div className="grid grid-cols-2 gap-10">
-                                    <motion.div layoutId={`card-image-${id}`}>
-                                        <Image
-                                            alt={name}
-                                            className={`object-cover scale-[0.925] rounded-lg`}
-                                            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`}
-                                            width="100%"
-                                            style={{ background: bgGradient }}
-                                        />
-                                    </motion.div>
-                                    <motion.div className='stats-radar'>
-                                        <Radar data={data} options={options} />
-                                    </motion.div>
-                                    <motion.div layoutId={`card-text-${id}`}>
-                                        <div>
-                                            <p className="text-small text-foreground/80">Move 1</p>
-                                            <p className="text-small text-foreground/80">Move 2</p>
-                                            <p className="text-small text-foreground/80">Move 3</p>
-                                            <p className="text-small text-foreground/80">Move 4</p>
-                                        </div>
-                                    </motion.div>
-                                    <motion.div className="content-container" animate>
-                                        <p>Lorem ipsum odor amet, consectetuer adipiscing elit. Turpis vitae magna nisl cras, ridiculus augue. Orci varius ornare viverra urna eget ridiculus. Lobortis feugiat viverra lacinia a.</p>
-                                        <p>Vitae primis felis penatibus. Dis ante nam mattis. Venenatis metus habitant auctor.</p>
-                                        <p>Semper nisl iaculis erat orci etiam enim. Augue ornare dictumst imperdiet lacinia interdum. Metus facilisi potenti turpis fusce; torquent elit. Faucibus torquent nunc per elementum. Taciti odio penatibus litora nam ex hendrerit congue?</p>
-                                    </motion.div>
-                                </div>
-                            </CardBody>
-                        </motion.div>
-                    </Card>
+                            </motion.div>
+                            <motion.div className="content-container" animate>
+                                <p>Lorem ipsum odor amet, consectetuer adipiscing elit. Turpis vitae magna nisl cras, ridiculus augue. Orci varius ornare viverra urna eget ridiculus. Lobortis feugiat viverra lacinia a.</p>
+                            </motion.div>
+                            <br />
+                        </div>
+
+                    </motion.div>
                 </motion.div>
             </Link>
         </motion.div>
