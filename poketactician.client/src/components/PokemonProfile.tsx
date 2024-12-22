@@ -114,6 +114,7 @@ const PokemonProfile: React.FC<Pokemon> = ({
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
+      transition={{ duration: 0.2, delay: 0.1 }}
       style={{ pointerEvents: 'auto' }}
       className="z-10 fixed overflow-y-auto inset-0 md:flex items-center justify-center w-full max-w-3xl mx-auto top-[5%]"
     >
