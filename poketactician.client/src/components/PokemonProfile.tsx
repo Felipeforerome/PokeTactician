@@ -109,13 +109,11 @@ const PokemonProfile: React.FC<Pokemon> = ({
       },
     },
   };
-
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.2, delay: 0.1 }}
       style={{ pointerEvents: 'auto' }}
       className="z-10 fixed overflow-y-auto inset-0 md:flex items-center justify-center w-full max-w-3xl mx-auto top-[5%]"
     >
@@ -159,7 +157,7 @@ const PokemonProfile: React.FC<Pokemon> = ({
                   <p className="text-small text-foreground/80">Move 4</p>
                 </div>
               </motion.div>
-              <motion.div className="content-container" animate>
+              <motion.div className="content-container">
                 <p>
                   Lorem ipsum odor amet, consectetuer adipiscing elit. Turpis
                   vitae magna nisl cras, ridiculus augue. Orci varius ornare
