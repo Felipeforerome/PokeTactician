@@ -40,6 +40,8 @@ function Results({ pokemons }: ResultsProps) {
     );
   return (
     <div>
+      <h1 id="tableLabel">Suggested Team</h1>
+      <br />
       {contents}
       <AnimatePresence>
         {id && pokemon && (
