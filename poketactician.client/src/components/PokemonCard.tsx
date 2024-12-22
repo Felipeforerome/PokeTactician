@@ -39,7 +39,7 @@ const PokemonCard: React.FC<Pokemon> = ({ id, name, type1, type2 }) => {
   return (
     <>
       <motion.div whileHover={{ scale: 1.1 }}>
-        <Link to={`/${id}`}>
+        <Link to={`/results/${id}`}>
           <motion.div layoutId={`card-container-${id}`}>
             <Card
               isBlurred

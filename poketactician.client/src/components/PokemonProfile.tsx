@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Card, CardBody, Image } from '@nextui-org/react';
+import { Image } from '@nextui-org/react';
 import { Link } from 'react-router-dom';
 import { Pokemon } from '../types';
 import { Radar } from 'react-chartjs-2';
@@ -119,7 +119,7 @@ const PokemonProfile: React.FC<Pokemon> = ({
       style={{ pointerEvents: 'auto' }}
       className="z-10 fixed overflow-y-auto inset-0 md:flex items-center justify-center w-full max-w-3xl mx-auto top-[5%]"
     >
-      <Link to="/">
+      <Link to="/results">
         <motion.div
           layoutId={`card-container-${id}`}
           className="bg-black rounded-lg"

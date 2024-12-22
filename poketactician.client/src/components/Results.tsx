@@ -24,7 +24,6 @@ interface ResultsProps {
 function Results({ pokemons }: ResultsProps) {
   const { id } = useParams<{ id: string }>();
   const pokemon = id ? pokemons.find((p) => p.id === parseInt(id)) : undefined;
-  console.log(pokemons);
   const contents =
     pokemons === undefined ? (
       <p>
@@ -48,7 +47,7 @@ function Results({ pokemons }: ResultsProps) {
             <Link to={`/`}>
               <motion.div
                 initial={{ zIndex: -1, opacity: 0 }}
-                animate={{ zIndex: 2, opacity: 1 }}
+                animate={{ zIndex: 10, opacity: 1 }}
                 exit={{ zIndex: -1, opacity: 0 }}
                 transition={{ duration: 0.2, delay: 0.1 }}
                 layoutId={`card-background-${id}`}
