@@ -60,33 +60,23 @@ const PokemonCard: React.FC<Pokemon> = ({ id, name, type1, type2 }) => {
                         style={{ background: bgGradient }}
                       />
                     </motion.div>
-                    <div>
-                      <motion.div layoutId={`card-title-${id}`}>
-                        <h1 className="text-xl font-semibold text-foreground/90 mt-2">
-                          {formatString(name)}
-                        </h1>
+                    <motion.div layoutId={`card-text-${id}`}>
+                      <div>
+                        <motion.div layoutId={`card-title-${id}`}>
+                          <h1 className="text-xl font-semibold text-foreground/90 mt-2">
+                            {formatString(name)}
+                          </h1>
+                        </motion.div>
                         <p className="text-small text-foreground/80">
                           {formatString(type1)}{' '}
                           {type2 && `- ${formatString(type2)}`}
                         </p>
-                      </motion.div>
-                      <motion.div layoutId={`card-text-${id}`}>
-                        <div>
-                          <p className="text-small text-foreground/80">
-                            Move 1
-                          </p>
-                          <p className="text-small text-foreground/80">
-                            Move 2
-                          </p>
-                          <p className="text-small text-foreground/80">
-                            Move 3
-                          </p>
-                          <p className="text-small text-foreground/80">
-                            Move 4
-                          </p>
-                        </div>
-                      </motion.div>
-                    </div>
+                        <p className="text-small text-foreground/80">Move 1</p>
+                        <p className="text-small text-foreground/80">Move 2</p>
+                        <p className="text-small text-foreground/80">Move 3</p>
+                        <p className="text-small text-foreground/80">Move 4</p>
+                      </div>
+                    </motion.div>
                   </div>
                 </CardBody>
               </motion.div>
