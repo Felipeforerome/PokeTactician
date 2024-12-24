@@ -10,7 +10,3 @@ export interface Pokemon {
   type1: string;
   type2: string;
 }
-
-export interface StoreProps {
-  pokemons: Pokemon[];
-}

@@ -5,9 +5,24 @@ import Results from './components/Results';
 import PokemonNavbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
 import { Pokemon } from './types';
+import { AnimatePresence } from 'framer-motion';
 
 function App() {
   const [pokemons, setPokemons] = useState<Pokemon[]>();
+  const [filtersStore, setFilters] = useState<Record<string, any>>({
+    filter1: false,
+    filter2: false,
+    filter3: false,
+  });
+
+  function handleFilterChange(id: string, value: any) {
+    setFilters((prevFilters) => ({ ...prevFilters, [id]: value }));
+  }
+
+  const applyFilters = () => {
+    // Put your filter application logic here
+    console.log('Applying Filters:', filtersStore);
+  };
 
   useEffect(() => {
     populatePokemonData();
@@ -15,16 +30,23 @@ function App() {
 
   return (
     <>
-      <PokemonNavbar />
+      <PokemonNavbar
+        updateFilters={handleFilterChange}
+        applyFilters={applyFilters}
+      />
       <div className="container pt-12 sm:pt-0 flex h-screen">
         <div className="hidden sm:block">
-          <Sidebar />
+          <Sidebar
+            updateFilters={handleFilterChange}
+            applyFilters={applyFilters}
+          />
         </div>
         <div
           className={`content flex-grow overflow-auto ${
             window.innerWidth >= 768 ? 'ml-64' : ''
           }`}
         >
+          <br />
           <Router>
             <Routes>
               <Route

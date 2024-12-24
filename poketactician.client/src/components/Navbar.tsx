@@ -3,7 +3,6 @@ import {
   DrawerContent,
   DrawerHeader,
   DrawerBody,
-  DrawerFooter,
   Button,
   useDisclosure,
   Navbar,
@@ -14,11 +13,22 @@ import {
   Link as NextUILink,
 } from '@nextui-org/react';
 import useMeasure from 'react-use-measure';
+import Filters from './Filters';
+import { FiltersProps } from './Filters';
 
-function PokemonNavbar() {
+function PokemonNavbar({ updateFilters, applyFilters }: FiltersProps) {
   let [ref, { height }] = useMeasure();
 
+  const handleFilterChange = (id: string, value: any) => {
+    updateFilters(id, value);
+  };
+
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const handleApply = () => {
+    // Put your filter application logic here
+    applyFilters();
+  };
+
   return (
     <>
       <Navbar
@@ -55,34 +65,15 @@ function PokemonNavbar() {
       </Navbar>
       <Drawer isOpen={isOpen} placement={'left'} onOpenChange={onOpenChange}>
         <DrawerContent className="dark bg-background">
-          {(onClose) => (
-            <>
-              <DrawerHeader className="flex flex-col gap-1">
-                Filters
-              </DrawerHeader>
-              <DrawerBody>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Nullam pulvinar risus non risus hendrerit venenatis.
-                  Pellentesque sit amet hendrerit risus, sed porttitor quam.
-                </p>
-                <p>
-                  Magna exercitation reprehenderit magna aute tempor cupidatat
-                  consequat elit dolor adipisicing. Mollit dolor eiusmod sunt ex
-                  incididunt cillum quis. Velit duis sit officia eiusmod Lorem
-                  aliqua enim laboris do dolor eiusmod.
-                </p>
-              </DrawerBody>
-              <DrawerFooter>
-                <Button color="danger" variant="light" onPress={onClose}>
-                  Close
-                </Button>
-                <Button color="primary" onPress={onClose}>
-                  Optimize
-                </Button>
-              </DrawerFooter>
-            </>
-          )}
+          <>
+            <DrawerHeader className="flex flex-col gap-1">Filters</DrawerHeader>
+            <DrawerBody>
+              <Filters
+                updateFilters={handleFilterChange}
+                applyFilters={handleApply}
+              />
+            </DrawerBody>
+          </>
         </DrawerContent>
       </Drawer>
     </>
