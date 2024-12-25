@@ -28,7 +28,7 @@ function PokemonNavbar({ updateFilters, applyFilters }: FiltersProps) {
     // Put your filter application logic here
     applyFilters();
   };
-
+  console.log('height', height);
   return (
     <>
       <Navbar

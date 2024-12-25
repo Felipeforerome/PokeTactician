@@ -58,7 +58,6 @@ function App() {
             isSidebarVisible ? 'ml-64' : ''
           }`}
         >
-          <br />
           <Router>
             <Routes>
               <Route

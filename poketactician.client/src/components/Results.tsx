@@ -40,9 +40,17 @@ function Results({ pokemons }: ResultsProps) {
     );
   return (
     <div>
-      <h1 id="tableLabel">Suggested Team</h1>
-      <br />
-      {contents}
+      <div className="h-screen flex flex-col">
+        <h1
+          id="tableLabel"
+          className="pt-5 pb-20 sm:pb-0 sm:pt-20 text-3xl text-center"
+        >
+          Suggested Team
+        </h1>
+        <div className="flex-grow flex items-center -mt-[55px] sm:-mt-[85px]">
+          <div>{contents}</div>
+        </div>
+      </div>
       <AnimatePresence>
         {id && pokemon && (
           <>
