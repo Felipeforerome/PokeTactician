@@ -5,8 +5,6 @@ import Results from './components/Results';
 import PokemonNavbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
 import { Pokemon } from './types';
-import { AnimatePresence } from 'framer-motion';
-
 function App() {
   const [pokemons, setPokemons] = useState<Pokemon[]>();
   const [filtersStore, setFilters] = useState<Record<string, any>>({
@@ -14,6 +12,9 @@ function App() {
     filter2: false,
     filter3: false,
   });
+  const [isSidebarVisible, setIsSidebarVisible] = useState(
+    window.innerWidth >= 640,
+  );
 
   function handleFilterChange(id: string, value: any) {
     setFilters((prevFilters) => ({ ...prevFilters, [id]: value }));
@@ -28,6 +29,15 @@ function App() {
     populatePokemonData();
   }, []);
 
+  useEffect(() => {
+    const handleResize = () => {
+      setIsSidebarVisible(window.innerWidth >= 640);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
     <>
       <PokemonNavbar
@@ -35,15 +45,17 @@ function App() {
         applyFilters={applyFilters}
       />
       <div className="container pt-12 sm:pt-0 flex h-screen">
-        <div className="hidden sm:block">
-          <Sidebar
-            updateFilters={handleFilterChange}
-            applyFilters={applyFilters}
-          />
-        </div>
+        {isSidebarVisible && (
+          <div className="hidden sm:block">
+            <Sidebar
+              updateFilters={handleFilterChange}
+              applyFilters={applyFilters}
+            />
+          </div>
+        )}
         <div
-          className={`content flex-grow overflow-auto ${
-            window.innerWidth >= 768 ? 'ml-64' : ''
+          className={`content flex-grow overflow-visible ${
+            isSidebarVisible ? 'ml-64' : ''
           }`}
         >
           <br />
