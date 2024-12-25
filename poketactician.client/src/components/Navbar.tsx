@@ -64,7 +64,7 @@ function PokemonNavbar({ updateFilters, applyFilters }: FiltersProps) {
         </NavbarContent>
       </Navbar>
       <Drawer isOpen={isOpen} placement={'left'} onOpenChange={onOpenChange}>
-        <DrawerContent className="dark bg-background">
+        <DrawerContent className="bg-background">
           <>
             <DrawerHeader className="flex flex-col gap-1">Filters</DrawerHeader>
             <DrawerBody>
