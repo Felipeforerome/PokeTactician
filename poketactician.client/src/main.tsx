@@ -5,11 +5,9 @@ import App from './App.tsx';
 import './index.css';
 
 createRoot(document.getElementById('root')!).render(
-  <main className="dark text-foreground bg-background">
-    <StrictMode>
-      <NextUIProvider>
-        <App />
-      </NextUIProvider>
-    </StrictMode>
-  </main>,
+  <StrictMode>
+    <NextUIProvider>
+      <App />
+    </NextUIProvider>
+  </StrictMode>,
 );
