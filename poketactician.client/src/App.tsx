@@ -5,13 +5,10 @@ import Results from './components/Results';
 import PokemonNavbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
 import { Pokemon } from './types';
+
 function App() {
   const [pokemons, setPokemons] = useState<Pokemon[]>();
-  const [filtersStore, setFilters] = useState<Record<string, any>>({
-    filter1: false,
-    filter2: false,
-    filter3: false,
-  });
+  const [filtersStore, setFilters] = useState<Record<string, any>>({});
   const [isSidebarVisible, setIsSidebarVisible] = useState(
     window.innerWidth >= 640,
   );
@@ -22,7 +19,19 @@ function App() {
 
   const applyFilters = () => {
     // Put your filter application logic here
-    console.log('Applying Filters:', filtersStore);
+    const filterArray: [string, any][] = [];
+    for (const key in filtersStore) {
+      if (Array.isArray(filtersStore[key])) {
+        filtersStore[key].forEach((item: any) => {
+          filterArray.push([key, item]);
+        });
+      } else {
+        console.log(filtersStore[key]);
+        filterArray.push([key, filtersStore[key]]);
+      }
+    }
+    const filterParams = new URLSearchParams(filterArray);
+    populatePokemonData(filterParams.toString());
   };
 
   useEffect(() => {
@@ -84,8 +93,8 @@ function App() {
     </>
   );
 
-  async function populatePokemonData() {
-    const response = await fetch('/api/pokemons?generations=3');
+  async function populatePokemonData(filterString: string = '') {
+    const response = await fetch(`/api/pokemons?${filterString}`);
     const data = await response.json();
     setPokemons(data);
   }

@@ -29,7 +29,7 @@ namespace PokeTactician.Controllers
             [FromQuery] bool? battleOnly = null,
             [FromQuery] bool? mega = null,
             [FromQuery] bool? totem = null,
-            [FromQuery] List<int>? gameIds = null,
+            [FromQuery] List<int>? games = null,
             [FromQuery] List<int>? generations = null
             )
         {
@@ -78,9 +78,9 @@ namespace PokeTactician.Controllers
                     predicate = predicate.And(p => !p.Name.Contains("totem"));
                 }
             }
-            if (gameIds != null && gameIds.Any())
+            if (games != null && games.Any())
             {
-                predicate = predicate.And(p => p.Games.Any(g => gameIds.Contains(g.Id)));
+                predicate = predicate.And(p => p.Games.Any(g => games.Contains(g.Id)));
             }
             if (generations != null && generations.Any())
             {

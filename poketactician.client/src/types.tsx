@@ -10,3 +10,18 @@ export interface Pokemon {
   type1: string;
   type2: string;
 }
+
+export interface Game {
+  id: number;
+  name: string;
+}
+
+export interface Generation {
+  id: number;
+  name: string;
+}
+
+export interface PokemonType {
+  id: number;
+  name: string;
+}
