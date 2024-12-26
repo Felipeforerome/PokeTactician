@@ -35,10 +35,6 @@ function App() {
   };
 
   useEffect(() => {
-    populatePokemonData();
-  }, []);
-
-  useEffect(() => {
     const handleResize = () => {
       setIsSidebarVisible(window.innerWidth >= 640);
     };
@@ -94,6 +90,7 @@ function App() {
   );
 
   async function populatePokemonData(filterString: string = '') {
+    console.log(filterString);
     const response = await fetch(`/api/pokemons?${filterString}`);
     const data = await response.json();
     setPokemons(data);
