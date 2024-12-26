@@ -57,7 +57,9 @@ namespace PokeTactician.Controllers
             }
             if (legendary.HasValue)
             {
-                predicate = predicate.And(p => p.Legendary == legendary.Value && p.Mythical == false);
+                if (!legendary.Value){
+                    predicate = predicate.And(p => p.Legendary == legendary.Value && p.Mythical == false);
+                }
             }
             if (battleOnly.HasValue)
             {
@@ -125,7 +127,7 @@ namespace PokeTactician.Controllers
                 .AsQueryable()
                 .Where(predicate)
             // TODO Remove when there is a Team return endpoint
-            .Take(6);
+            .Take(151);
 
             var pokemons = await query.ToListAsync();
             var pokemonDtos = _mapper.Map<List<PokemonDtoOut>>(pokemons);
