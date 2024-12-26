@@ -8,7 +8,9 @@ import { Pokemon } from './types';
 
 function App() {
   const [pokemons, setPokemons] = useState<Pokemon[]>();
-  const [filtersStore, setFilters] = useState<Record<string, any>>({});
+  const [filtersStore, setFilters] = useState<Record<string, any>>({
+    legendary: false,
+  });
   const [isSidebarVisible, setIsSidebarVisible] = useState(
     window.innerWidth >= 640,
   );
@@ -18,7 +20,7 @@ function App() {
   }
 
   const applyFilters = () => {
-    // Put your filter application logic here
+    setPokemons(undefined);
     const filterArray: [string, any][] = [];
     for (const key in filtersStore) {
       if (Array.isArray(filtersStore[key])) {
