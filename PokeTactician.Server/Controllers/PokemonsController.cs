@@ -127,11 +127,23 @@ namespace PokeTactician.Controllers
                 .AsQueryable()
                 .Where(predicate)
             // TODO Remove when there is a Team return endpoint
-            .Take(151);
+            .Take(6);
 
             var pokemons = await query.ToListAsync();
             var pokemonDtos = _mapper.Map<List<PokemonDtoOut>>(pokemons);
 
+            return pokemonDtos;
+        }
+
+        // GET: api/Pokemons/namesList
+        [HttpGet("namesList")]
+        public async Task<ActionResult<IEnumerable<PokemonDtoName>>> GetPokemonNamesList()
+        {
+            var pokemons = await _context.Pokemons
+                .Where(p => p.Mega == false)
+                .Where(p => p.BattleOnly == false).ToListAsync();
+
+            var pokemonDtos = _mapper.Map<List<PokemonDtoName>>(pokemons);
             return pokemonDtos;
         }
 

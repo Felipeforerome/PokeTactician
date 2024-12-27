@@ -8,6 +8,7 @@ namespace PokeTactician.Mappings
     {
         public MappingProfile()
         {
+            CreateMap<Pokemon, PokemonDtoName>();
             CreateMap<PokemonDtoIn, Pokemon>();
             CreateMap<Pokemon, PokemonDtoOut>()
                 .ForMember(dest => dest.Type1, opt => opt.MapFrom(src => src.Type1.Name))
