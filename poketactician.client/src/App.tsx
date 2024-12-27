@@ -5,6 +5,7 @@ import Results from './components/Results';
 import PokemonNavbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
 import { Pokemon } from './types';
+import { PreselectTeam } from './components/PreselectTeam';
 
 function App() {
   const [pokemons, setPokemons] = useState<Pokemon[]>();
@@ -71,6 +72,7 @@ function App() {
         >
           <Router>
             <Routes>
+              <Route path="/" element={<PreselectTeam />} />
               <Route
                 path="/results"
                 element={
