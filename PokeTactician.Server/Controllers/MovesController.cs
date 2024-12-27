@@ -54,20 +54,5 @@ namespace PokeTactician.Controllers
 
             return moveDtoOut;
         }
-
-        // GET: api/Moves/5/pokemon
-        [HttpGet("{id}/pokemon")]
-        public async Task<ActionResult<IEnumerable<MoveDtoName>>> GetPokemonMoves(int id)
-        {
-            var moves = await _context.Moves
-                .Include(p => p.Type)
-                .Include(p => p.Pokemon)
-                .Where(m => m.Pokemon.Any(p => p.Id == id))
-                .ToListAsync();
-
-            var moveDtoOut = _mapper.Map<List<MoveDtoName>>(moves);
-
-            return moveDtoOut;
-        }
     }
 }

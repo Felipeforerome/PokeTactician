@@ -168,5 +168,24 @@ namespace PokeTactician.Controllers
 
             return pokemonDto;
         }
+
+        // GET: api/Pokemons/5/moves
+        [HttpGet("{id}/moves")]
+        public async Task<ActionResult<IEnumerable<MoveDtoName>>> GetPokemonMoves(int id)
+        {
+            var pokemon = await _context.Pokemons
+                .Include(p => p.KnowableMoves)
+                .FirstOrDefaultAsync(p => p.Id == id);
+
+            if (pokemon == null)
+            {
+                return NotFound();
+            }
+            var moves = pokemon.KnowableMoves;
+
+            var moveDtoOut = _mapper.Map<List<MoveDtoName>>(moves);
+
+            return moveDtoOut;
+        }
     }
 }
