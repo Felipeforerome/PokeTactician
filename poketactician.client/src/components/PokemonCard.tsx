@@ -5,7 +5,13 @@ import { Link } from 'react-router-dom';
 import { formatString, pokemonTypeColors } from '../utils';
 import { Pokemon } from '../types';
 
-const PokemonCard: React.FC<Pokemon> = ({ id, name, type1, type2 }) => {
+const PokemonCard: React.FC<Pokemon> = ({
+  id,
+  name,
+  type1,
+  type2,
+  moves = [],
+}) => {
   const type1Color = pokemonTypeColors[type1];
   const type2Color = type2 ? pokemonTypeColors[type2] : type1Color;
   const bgGradient = `linear-gradient(to right, ${type1Color}, ${type2Color})`;
@@ -44,10 +50,26 @@ const PokemonCard: React.FC<Pokemon> = ({ id, name, type1, type2 }) => {
                           {formatString(type1)}{' '}
                           {type2 && `- ${formatString(type2)}`}
                         </p>
-                        <p className="text-small text-foreground/80">Move 1</p>
-                        <p className="text-small text-foreground/80">Move 2</p>
-                        <p className="text-small text-foreground/80">Move 3</p>
-                        <p className="text-small text-foreground/80">Move 4</p>
+                        <p className="text-small text-foreground/80">
+                          {moves[0] === undefined
+                            ? ' '
+                            : formatString(moves[0].name)}
+                        </p>
+                        <p className="text-small text-foreground/80">
+                          {moves[1] === undefined
+                            ? ' '
+                            : formatString(moves[1].name)}
+                        </p>
+                        <p className="text-small text-foreground/80">
+                          {moves[2] === undefined
+                            ? ' '
+                            : formatString(moves[2].name)}
+                        </p>
+                        <p className="text-small text-foreground/80">
+                          {moves[3] === undefined
+                            ? ' '
+                            : formatString(moves[3].name)}
+                        </p>
                       </div>
                     </motion.div>
                   </div>

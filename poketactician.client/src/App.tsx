@@ -29,7 +29,6 @@ function App() {
           filterArray.push([key, item]);
         });
       } else {
-        console.log(filtersStore[key]);
         filterArray.push([key, filtersStore[key]]);
       }
     }

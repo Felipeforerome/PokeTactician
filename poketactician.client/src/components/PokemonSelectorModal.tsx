@@ -79,7 +79,6 @@ function PokemonSelectorModal({
       if (moveIndex === updatedMoves.length - 1) {
         updatedMoves.pop();
         let lastMove = updatedMoves.at(-1);
-        console.log(lastMove);
         while (lastMove === 'null') {
           updatedMoves.pop();
           lastMove = updatedMoves.at(-1);
@@ -87,7 +86,6 @@ function PokemonSelectorModal({
       } else {
         updatedMoves[moveIndex] = 'null';
       }
-      console.log(updatedMoves.length);
       setSelectedMoves(updatedMoves);
     }
   }

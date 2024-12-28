@@ -7,9 +7,14 @@ import PokemonSelector from './PokemonSelector';
 export function PreselectTeam() {
   const [team, setTeam] = useState<Pokemon[]>([]);
 
-  async function handleAddtoTeam(pokemon: Array<number>) {
-    const pokemonMember = await getPokemon(pokemon[0]);
-
+  async function handleAddtoTeam(pokemonParam: any) {
+    const pokemon = pokemonParam[0];
+    let pokemonMember = await getPokemon(pokemon[0]);
+    pokemonMember.moves = [];
+    for (let i = 1; i < pokemon.length; i++) {
+      const pokemonMove = await getMove(pokemon[i]);
+      pokemonMember.moves = [...pokemonMember.moves, pokemonMove];
+    }
     setTeam([...team, pokemonMember]);
   }
 
@@ -50,7 +55,12 @@ export function PreselectTeam() {
 
   async function getPokemon(id: number) {
     const response = await fetch(`/api/pokemons/${id}`);
+    let data = await response.json();
+    return data;
+  }
+  async function getMove(id: number) {
+    const response = await fetch(`/api/moves/${id}`);
     const data = await response.json();
-    return data as Pokemon;
+    return data;
   }
 }

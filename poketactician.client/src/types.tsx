@@ -9,6 +9,7 @@ export interface Pokemon {
   spe: number;
   type1: string;
   type2: string;
+  moves: PokemonMove[];
 }
 
 export interface PokemonName {
