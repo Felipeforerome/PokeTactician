@@ -1,11 +1,12 @@
 import { Card, CardBody, Image, useDisclosure } from '@nextui-org/react';
-import { useState } from 'react';
-import { Pokemon } from '../types';
 import { motion } from 'framer-motion';
 import PokemonSelectorModal from './PokemonSelectorModal';
 
-function PokemonSelector() {
-  const [selectedPokemon, setSelectedPokemon] = useState<Pokemon | null>(null);
+interface PokemonSelectorProps {
+  addPokemon: (pokemon: any) => void;
+}
+
+function PokemonSelector({ addPokemon }: PokemonSelectorProps) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   return (
@@ -36,7 +37,11 @@ function PokemonSelector() {
           </CardBody>
         </Card>
       </motion.div>
-      <PokemonSelectorModal isOpen={isOpen} onOpenChange={onOpenChange} />
+      <PokemonSelectorModal
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+        addPokemon={addPokemon}
+      />
     </>
   );
 }

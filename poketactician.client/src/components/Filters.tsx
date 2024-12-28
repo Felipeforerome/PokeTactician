@@ -103,7 +103,6 @@ function Filters({ updateFilters, applyFilters }: FiltersProps) {
 
     response = await fetch('api/type');
     data = await response.json();
-    console.log(data);
     setPokemonTypes(data);
 
     // Uncomment the following lines to fetch generations when it's implemented

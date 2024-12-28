@@ -94,7 +94,6 @@ function App() {
   );
 
   async function populatePokemonData(filterString: string = '') {
-    console.log(filterString);
     const response = await fetch(`/api/pokemons?${filterString}`);
     const data = await response.json();
     setPokemons(data);

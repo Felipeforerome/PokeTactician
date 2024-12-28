@@ -6,13 +6,13 @@ import PokemonSelector from './PokemonSelector';
 
 export function PreselectTeam() {
   const [team, setTeam] = useState<Pokemon[]>([]);
-  let gridClass = `grid grid-cols-1 md:grid-cols-${Math.min(
-    team.length,
-    2,
-  )} lg:grid-cols-${Math.min(
-    team.length,
-    3,
-  )} gap-4 overflow-visible justify-items-center`;
+
+  async function handleAddtoTeam(pokemon: Array<number>) {
+    const pokemonMember = await getPokemon(pokemon[0]);
+
+    setTeam([...team, pokemonMember]);
+  }
+
   return (
     <div>
       <div className="h-screen flex flex-col">
@@ -20,8 +20,16 @@ export function PreselectTeam() {
           Preselect your team
         </h2>
         <div className="flex-grow flex items-center -mt-[55px] md:-mt-[85px]">
-          <div className={gridClass}>
-            <PokemonSelector />
+          <div
+            className={`grid grid-cols-1 md:grid-cols-${Math.min(
+              team.length,
+              2,
+            )} lg:grid-cols-${Math.min(
+              team.length,
+              3,
+            )} gap-4 overflow-visible justify-items-center`}
+          >
+            <PokemonSelector addPokemon={handleAddtoTeam} />
             <AnimatePresence>
               {team.map((pokemon, index) => (
                 <PokemonCard key={index} {...pokemon} />
@@ -39,4 +47,10 @@ export function PreselectTeam() {
       </div> */}
     </div>
   );
+
+  async function getPokemon(id: number) {
+    const response = await fetch(`/api/pokemons/${id}`);
+    const data = await response.json();
+    return data as Pokemon;
+  }
 }
