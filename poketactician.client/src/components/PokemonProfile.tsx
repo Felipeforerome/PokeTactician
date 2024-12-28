@@ -3,6 +3,7 @@ import { Image } from '@nextui-org/react';
 import { Link } from 'react-router-dom';
 import { Pokemon } from '../types';
 import { Radar } from 'react-chartjs-2';
+import { formatString } from '../utils';
 import {
   Chart as ChartJS,
   RadialLinearScale,
@@ -34,13 +35,6 @@ const PokemonProfile: React.FC<Pokemon> = ({
   spDeff,
   spe,
 }) => {
-  const formatString = (type: string) => {
-    return type
-      .split('-')
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-      .join(' ');
-  };
-
   const pokemonTypeColors: Record<string, string> = {
     Normal: '#C8C8A8',
     Fire: '#F8B890',

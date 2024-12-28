@@ -2,17 +2,10 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Card, CardBody, Image } from '@nextui-org/react';
 import { Link } from 'react-router-dom';
-
+import { formatString } from '../utils';
 import { Pokemon } from '../types';
 
 const PokemonCard: React.FC<Pokemon> = ({ id, name, type1, type2 }) => {
-  const formatString = (type: string) => {
-    return type
-      .split('-')
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-      .join(' ');
-  };
-
   const pokemonTypeColors: Record<string, string> = {
     Normal: '#C8C8A8',
     Fire: '#F8B890',
