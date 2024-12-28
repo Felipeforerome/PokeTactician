@@ -2,30 +2,10 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Card, CardBody, Image } from '@nextui-org/react';
 import { Link } from 'react-router-dom';
-import { formatString } from '../utils';
+import { formatString, pokemonTypeColors } from '../utils';
 import { Pokemon } from '../types';
 
 const PokemonCard: React.FC<Pokemon> = ({ id, name, type1, type2 }) => {
-  const pokemonTypeColors: Record<string, string> = {
-    Normal: '#C8C8A8',
-    Fire: '#F8B890',
-    Water: '#A5D8E8',
-    Electric: '#F5E98E',
-    Grass: '#B8E8B8',
-    Ice: '#B2E0E8',
-    Fighting: '#D89090',
-    Poison: '#D1A3D8',
-    Ground: '#E8D8A8',
-    Flying: '#C5C8F8',
-    Psychic: '#F8C8C8',
-    Bug: '#D0E890',
-    Rock: '#D8C8A8',
-    Ghost: '#B8A8D8',
-    Dragon: '#A5A5E8',
-    Dark: '#A8A890',
-    Steel: '#C8C8D8',
-    Fairy: '#F8D8E8',
-  };
   const type1Color = pokemonTypeColors[type1];
   const type2Color = type2 ? pokemonTypeColors[type2] : type1Color;
   const bgGradient = `linear-gradient(to right, ${type1Color}, ${type2Color})`;
