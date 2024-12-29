@@ -46,10 +46,22 @@ const PokemonCard: React.FC<Pokemon> = ({
                             {formatString(name)}
                           </h1>
                         </motion.div>
-                        <p className="text-small text-foreground/80">
-                          {formatString(type1)}{' '}
-                          {type2 && `- ${formatString(type2)}`}
-                        </p>
+                        <div className="flex justify-center mx-auto">
+                          <Image
+                            alt={type1}
+                            height={20}
+                            src={`/src/assets/types/${type1}.png`}
+                            width={20}
+                          />
+                          {type2 && (
+                            <Image
+                              alt={type2}
+                              height={20}
+                              src={`/src/assets/types/${type2}.png`}
+                              width={20}
+                            />
+                          )}
+                        </div>
                         <p className="text-small text-foreground/80">
                           {moves[0] === undefined
                             ? ' '
