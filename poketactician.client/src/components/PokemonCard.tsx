@@ -30,21 +30,27 @@ const PokemonCard: React.FC<Pokemon> = ({
                 <CardBody style={{ overflow: 'visible' }}>
                   <div className="grid grid-cols-2 gap-10">
                     <motion.div layoutId={`card-image-${id}`}>
-                      <Image
-                        alt={name}
+                      <div
                         className={`object-cover scale-[1.225] rounded-lg`}
-                        height={140}
-                        src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`}
-                        width="100%"
-                        style={{ background: bgGradient }}
-                      />
+                        style={{
+                          background: bgGradient,
+                          height: 140,
+                          width: 140,
+                        }}
+                      >
+                        <Image
+                          alt={name}
+                          height={140}
+                          src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`}
+                        />
+                      </div>
                     </motion.div>
                     <motion.div layoutId={`card-text-${id}`}>
-                      <div>
+                      <div className="pl-2">
                         <motion.div layoutId={`card-title-${id}`}>
-                          <h1 className="text-xl font-semibold text-foreground/90 mt-2">
+                          <h2 className="text-l font-semibold text-foreground/90 mt-2">
                             {formatString(name)}
-                          </h1>
+                          </h2>
                         </motion.div>
                         <div className="flex justify-center mx-auto">
                           <Image

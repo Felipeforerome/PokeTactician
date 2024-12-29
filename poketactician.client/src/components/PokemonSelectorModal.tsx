@@ -105,7 +105,7 @@ function PokemonSelectorModal({
 
   useEffect(() => {
     fetchPokemonNames();
-  });
+  }, []);
 
   return (
     <>
