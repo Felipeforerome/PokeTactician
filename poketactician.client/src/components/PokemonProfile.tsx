@@ -23,7 +23,7 @@ ChartJS.register(
   Legend,
 );
 
-const PokemonProfile: React.FC<Pokemon> = ({
+function PokemonProfile({
   id,
   name,
   type1,
@@ -34,7 +34,7 @@ const PokemonProfile: React.FC<Pokemon> = ({
   spAtt,
   spDeff,
   spe,
-}) => {
+}: Pokemon) {
   const type1Color = pokemonTypeColors[type1];
   const type2Color = type2 ? pokemonTypeColors[type2] : type1Color;
   const bgGradient = `linear-gradient(to right, ${type1Color}, ${type2Color})`;
@@ -139,6 +139,6 @@ const PokemonProfile: React.FC<Pokemon> = ({
       </Link>
     </motion.div>
   );
-};
+}
 
 export default PokemonProfile;
