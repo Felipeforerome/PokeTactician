@@ -1,17 +1,17 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { Card, CardBody, Image } from '@nextui-org/react';
 import { Link } from 'react-router-dom';
 import { formatString, pokemonTypeColors } from '../utils';
 import { Pokemon } from '../types';
 
-const PokemonCard: React.FC<Pokemon> = ({
+function PokemonCard({
   id,
   name,
   type1,
   type2,
   moves = [],
-}) => {
+  index,
+}: Pokemon & { index: number }) {
   const type1Color = pokemonTypeColors[type1];
   const type2Color = type2 ? pokemonTypeColors[type2] : type1Color;
   const bgGradient = `linear-gradient(to right, ${type1Color}, ${type2Color})`;
@@ -19,17 +19,17 @@ const PokemonCard: React.FC<Pokemon> = ({
     <>
       <motion.div whileHover={{ scale: 1.1 }}>
         <Link to={`/results/${id}`}>
-          <motion.div layoutId={`card-container-${id}`}>
+          <motion.div layoutId={`card-container-${index}`}>
             <Card
               isBlurred
               className="border-none bg-background/60 dark:bg-default-100/50 max-w-[300px]"
               shadow="sm"
               style={{ overflow: 'visible' }}
             >
-              <motion.div layoutId={`card-${id}`}>
+              <motion.div layoutId={`card-${index}`}>
                 <CardBody style={{ overflow: 'visible' }}>
                   <div className="grid grid-cols-2 gap-10">
-                    <motion.div layoutId={`card-image-${id}`}>
+                    <motion.div layoutId={`card-image-${index}`}>
                       <div
                         className={`object-cover scale-[1.225] rounded-lg`}
                         style={{
@@ -45,9 +45,9 @@ const PokemonCard: React.FC<Pokemon> = ({
                         />
                       </div>
                     </motion.div>
-                    <motion.div layoutId={`card-text-${id}`}>
+                    <motion.div layoutId={`card-text-${index}`}>
                       <div className="pl-2">
-                        <motion.div layoutId={`card-title-${id}`}>
+                        <motion.div layoutId={`card-title-${index}`}>
                           <h2 className="text-l font-semibold text-foreground/90 mt-2">
                             {formatString(name)}
                           </h2>
@@ -99,6 +99,6 @@ const PokemonCard: React.FC<Pokemon> = ({
       </motion.div>
     </>
   );
-};
+}
 
 export default PokemonCard;

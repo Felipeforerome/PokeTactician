@@ -6,11 +6,13 @@ import PokemonSelector from './PokemonSelector';
 
 export function PreselectTeam() {
   const [team, setTeam] = useState<Pokemon[]>([]);
+
   let gridClass = `grid grid-cols-1 ${
     team.length > 0 ? 'md:grid-cols-2' : 'md:grid-cols-1'
   } ${
     team.length > 0 ? 'xl:grid-cols-3' : 'xl:grid-cols-1'
   } gap-4 overflow-visible justify-items-center`;
+
   async function handleAddtoTeam(pokemonParam: any) {
     const pokemon = pokemonParam[0];
     let pokemonMember = await getPokemon(pokemon[0]);
@@ -32,7 +34,7 @@ export function PreselectTeam() {
           <div className={gridClass}>
             <AnimatePresence>
               {team.map((pokemon, index) => (
-                <PokemonCard key={index} {...pokemon} />
+                <PokemonCard index={index + 1} {...pokemon} />
               ))}
               {team.length < 6 ? (
                 <PokemonSelector addPokemon={handleAddtoTeam} />
