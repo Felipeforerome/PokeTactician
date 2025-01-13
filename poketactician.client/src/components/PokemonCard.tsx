@@ -11,14 +11,15 @@ function PokemonCard({
   type2,
   moves = [],
   index,
-}: Pokemon & { index: number }) {
+  baseUrl,
+}: Pokemon & { index: number } & { baseUrl: string }) {
   const type1Color = pokemonTypeColors[type1];
   const type2Color = type2 ? pokemonTypeColors[type2] : type1Color;
   const bgGradient = `linear-gradient(to right, ${type1Color}, ${type2Color})`;
   return (
     <>
       <motion.div whileHover={{ scale: 1.1 }}>
-        <Link to={`/results/${id}`}>
+        <Link to={`/${baseUrl}${index}`}>
           <motion.div layoutId={`card-container-${index}`}>
             <Card
               isBlurred

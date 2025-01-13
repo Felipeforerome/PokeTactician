@@ -1,12 +1,19 @@
-import { useState } from 'react';
 import { Pokemon } from '../types';
 import PokemonCard from './PokemonCard';
-import { AnimatePresence } from 'framer-motion';
+import { useParams } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import PokemonSelector from './PokemonSelector';
+import PokemonProfile from './PokemonProfile';
+import { Link } from 'react-router-dom';
 
-export function PreselectTeam() {
-  const [team, setTeam] = useState<Pokemon[]>([]);
+export interface PreSelectProps {
+  team: Pokemon[] | [];
+  setTeam: (team: Pokemon[]) => void;
+}
 
+export function PreselectTeam({ team, setTeam }: PreSelectProps) {
+  const { id } = useParams<{ id: string }>();
+  const pokemon = id ? team[parseInt(id) - 1] : undefined;
   let gridClass = `grid grid-cols-1 ${
     team.length > 0 ? 'md:grid-cols-2' : 'md:grid-cols-1'
   } ${
@@ -34,7 +41,7 @@ export function PreselectTeam() {
           <div className={gridClass}>
             <AnimatePresence>
               {team.map((pokemon, index) => (
-                <PokemonCard index={index + 1} {...pokemon} />
+                <PokemonCard index={index + 1} baseUrl="" {...pokemon} />
               ))}
               {team.length < 6 ? (
                 <PokemonSelector addPokemon={handleAddtoTeam} />
@@ -54,13 +61,39 @@ export function PreselectTeam() {
           ? 'You are at the sm breakpoint'
           : 'You are at the base breakpoint'}
       </p>
-      {/* <div>
-        {team.map((pokemon) => (
-          <div key={pokemon.id} onClick={() => handleClick(pokemon)}>
-            {pokemon.name}
-          </div>
-        ))}
-      </div> */}
+      <AnimatePresence>
+        {id && pokemon && (
+          <>
+            <Link to={`/`}>
+              <motion.div
+                initial={{ zIndex: -1, opacity: 0 }}
+                animate={{ zIndex: 10, opacity: 1 }}
+                exit={{ zIndex: -1, opacity: 0 }}
+                transition={{ duration: 0.2, delay: 0.1 }}
+                layoutId={`card-background-${id}`}
+                className="fixed top-0 left-0 bg-background/60 dark:bg-default-100/50 w-full h-full z-3 backdrop-blur-md"
+              ></motion.div>
+            </Link>
+          </>
+        )}
+        {id && pokemon && (
+          <PokemonProfile
+            key={pokemon.id}
+            id={pokemon.id}
+            name={pokemon.name}
+            type1={pokemon.type1}
+            type2={pokemon.type2}
+            hp={pokemon.hp}
+            att={pokemon.att}
+            deff={pokemon.deff}
+            spAtt={pokemon.spAtt}
+            spDeff={pokemon.spDeff}
+            spe={pokemon.spe}
+            index={parseInt(id)}
+            baseUrl=""
+          />
+        )}
+      </AnimatePresence>
     </div>
   );
 

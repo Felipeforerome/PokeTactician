@@ -23,7 +23,7 @@ interface ResultsProps {
 
 function Results({ pokemons }: ResultsProps) {
   const { id } = useParams<{ id: string }>();
-  const pokemon = id ? pokemons.find((p) => p.id === parseInt(id)) : undefined;
+  const pokemon = id ? pokemons[parseInt(id) - 1] : undefined;
   const contents =
     pokemons === undefined ? (
       <p>
@@ -79,6 +79,8 @@ function Results({ pokemons }: ResultsProps) {
             spAtt={pokemon.spAtt}
             spDeff={pokemon.spDeff}
             spe={pokemon.spe}
+            index={parseInt(id)}
+            baseUrl="results/"
           />
         )}
       </AnimatePresence>

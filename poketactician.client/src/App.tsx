@@ -71,7 +71,24 @@ function App() {
         >
           <Router>
             <Routes>
-              <Route path="/" element={<PreselectTeam />} />
+              <Route
+                path="/"
+                element={
+                  <PreselectTeam
+                    team={pokemons != undefined ? pokemons : []}
+                    setTeam={setPokemons}
+                  />
+                }
+              />
+              <Route
+                path="/:id"
+                element={
+                  <PreselectTeam
+                    team={pokemons != undefined ? pokemons : []}
+                    setTeam={setPokemons}
+                  />
+                }
+              />
               <Route
                 path="/results"
                 element={

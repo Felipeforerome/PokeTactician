@@ -34,7 +34,9 @@ function PokemonProfile({
   spAtt,
   spDeff,
   spe,
-}: Pokemon) {
+  index,
+  baseUrl,
+}: Pokemon & { index: number } & { baseUrl: string }) {
   const type1Color = pokemonTypeColors[type1];
   const type2Color = type2 ? pokemonTypeColors[type2] : type1Color;
   const bgGradient = `linear-gradient(to right, ${type1Color}, ${type2Color})`;
@@ -84,15 +86,15 @@ function PokemonProfile({
       style={{ pointerEvents: 'auto' }}
       className="z-10 fixed overflow-y-auto inset-0 md:flex items-center justify-center w-full max-w-3xl mx-auto top-[5%]"
     >
-      <Link to="/results">
+      <Link to={`/${baseUrl}`}>
         <motion.div
-          layoutId={`card-container-${id}`}
+          layoutId={`card-container-${index}`}
           className="bg-black rounded-lg"
           style={{ overflowY: 'scroll' }}
         >
-          <motion.div layoutId={`card-${id}`}>
+          <motion.div layoutId={`card-${index}`}>
             <br />
-            <motion.div layoutId={`card-title-${id}`}>
+            <motion.div layoutId={`card-title-${index}`}>
               <h1 className="text-2xl font-semibold text-foreground/90 mt-2">
                 {formatString(name)}
               </h1>
@@ -102,7 +104,7 @@ function PokemonProfile({
             </motion.div>
             <div className="grid sm:grid-cols-2 grid-cols-1">
               <motion.div
-                layoutId={`card-image-${id}`}
+                layoutId={`card-image-${index}`}
                 className="flex justify-center items-center"
               >
                 <Image
@@ -116,7 +118,7 @@ function PokemonProfile({
               <motion.div className="stats-radar">
                 <Radar data={data} options={options} />
               </motion.div>
-              <motion.div layoutId={`card-text-${id}`}>
+              <motion.div layoutId={`card-text-${index}`}>
                 <div>
                   <p className="text-small text-foreground/80">Move 1</p>
                   <p className="text-small text-foreground/80">Move 2</p>
