@@ -1,6 +1,6 @@
 import PokemonProfile from './PokemonProfile';
 import { useParams } from 'react-router-dom';
-import PokemonTeam from './PokemonTeam';
+import PokemonTeamOld from './PokemonTeamOld';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
@@ -36,7 +36,7 @@ function Results({ pokemons }: ResultsProps) {
         </em>
       </p>
     ) : (
-      <PokemonTeam pokemons={pokemons} />
+      <PokemonTeamOld pokemons={pokemons} />
     );
   return (
     <div>

@@ -6,7 +6,7 @@ interface PokemonTeamProps {
   pokemons: Pokemon[];
 }
 
-function PokemonTeam({ pokemons }: PokemonTeamProps) {
+function PokemonTeamOld({ pokemons }: PokemonTeamProps) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 overflow-visible">
       <AnimatePresence>
@@ -23,4 +23,4 @@ function PokemonTeam({ pokemons }: PokemonTeamProps) {
   );
 }
 
-export default PokemonTeam;
+export default PokemonTeamOld;
