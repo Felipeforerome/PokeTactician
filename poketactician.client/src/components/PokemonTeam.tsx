@@ -1,3 +1,4 @@
+import React from 'react';
 import { Pokemon } from '../types';
 import PokemonCard from './PokemonCard';
 import { useParams } from 'react-router-dom';
@@ -9,9 +10,10 @@ import { Link } from 'react-router-dom';
 export interface PreSelectProps {
   team: Pokemon[] | [];
   setTeam: (team: Pokemon[]) => void;
+  baseUrl: string;
 }
 
-export function PreselectTeam({ team, setTeam }: PreSelectProps) {
+export function PokemonTeam({ team, setTeam, baseUrl }: PreSelectProps) {
   const { id } = useParams<{ id: string }>();
   const pokemon = id ? team[parseInt(id) - 1] : undefined;
   let gridClass = `grid grid-cols-1 ${
@@ -43,7 +45,7 @@ export function PreselectTeam({ team, setTeam }: PreSelectProps) {
               {team.map((pokemon, index) => (
                 <PokemonCard index={index + 1} baseUrl="" {...pokemon} />
               ))}
-              {team.length < 6 ? (
+              {team.length < 6 && baseUrl != 'results' ? (
                 <PokemonSelector addPokemon={handleAddtoTeam} />
               ) : null}
             </AnimatePresence>
@@ -90,7 +92,7 @@ export function PreselectTeam({ team, setTeam }: PreSelectProps) {
             spDeff={pokemon.spDeff}
             spe={pokemon.spe}
             index={parseInt(id)}
-            baseUrl=""
+            baseUrl={baseUrl}
           />
         )}
       </AnimatePresence>

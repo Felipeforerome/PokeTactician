@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Results from './components/Results';
 import PokemonNavbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
 import { Pokemon } from './types';
-import { PreselectTeam } from './components/PreselectTeam';
+import { PokemonTeam } from './components/PokemonTeam';
 
 function App() {
   const [pokemons, setPokemons] = useState<Pokemon[]>();
@@ -74,31 +73,41 @@ function App() {
               <Route
                 path="/"
                 element={
-                  <PreselectTeam
+                  <PokemonTeam
                     team={pokemons != undefined ? pokemons : []}
                     setTeam={setPokemons}
+                    baseUrl=""
                   />
                 }
               />
               <Route
                 path="/:id"
                 element={
-                  <PreselectTeam
+                  <PokemonTeam
                     team={pokemons != undefined ? pokemons : []}
                     setTeam={setPokemons}
+                    baseUrl=""
                   />
                 }
               />
               <Route
                 path="/results"
                 element={
-                  pokemons ? <Results pokemons={pokemons} /> : <p>Loading...</p>
+                  <PokemonTeam
+                    team={pokemons != undefined ? pokemons : []}
+                    setTeam={setPokemons}
+                    baseUrl="results"
+                  />
                 }
               />
               <Route
                 path="/results/:id"
                 element={
-                  pokemons ? <Results pokemons={pokemons} /> : <p>Loading...</p>
+                  <PokemonTeam
+                    team={pokemons != undefined ? pokemons : []}
+                    setTeam={setPokemons}
+                    baseUrl="results"
+                  />
                 }
               />
             </Routes>
