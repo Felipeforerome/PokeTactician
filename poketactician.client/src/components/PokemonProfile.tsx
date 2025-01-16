@@ -34,6 +34,7 @@ function PokemonProfile({
   spAtt,
   spDeff,
   spe,
+  moves,
   index,
   baseUrl,
 }: Pokemon & { index: number } & { baseUrl: string }) {
@@ -120,13 +121,24 @@ function PokemonProfile({
               </motion.div>
               <motion.div layoutId={`card-text-${index}`}>
                 <div>
-                  <p className="text-small text-foreground/80">Move 1</p>
-                  <p className="text-small text-foreground/80">Move 2</p>
-                  <p className="text-small text-foreground/80">Move 3</p>
-                  <p className="text-small text-foreground/80">Move 4</p>
+                  <br />
+                  <p className="font-bold text-foreground/80">Moves</p>
+                  <p className="text-small text-foreground/80">
+                    {moves[0] ? formatString(moves[0].name) : ''}
+                  </p>
+                  <p className="text-small text-foreground/80">
+                    {moves[1] ? formatString(moves[1].name) : ''}
+                  </p>
+                  <p className="text-small text-foreground/80">
+                    {moves[2] ? formatString(moves[2].name) : ''}
+                  </p>
+                  <p className="text-small text-foreground/80">
+                    {moves[3] ? formatString(moves[3].name) : ''}
+                  </p>
                 </div>
               </motion.div>
               <motion.div className="content-container">
+                <br />
                 <p>
                   Lorem ipsum odor amet, consectetuer adipiscing elit. Turpis
                   vitae magna nisl cras, ridiculus augue. Orci varius ornare

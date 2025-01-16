@@ -1,4 +1,3 @@
-import React from 'react';
 import { Pokemon } from '../types';
 import PokemonCard from './PokemonCard';
 import { useParams } from 'react-router-dom';
@@ -91,6 +90,7 @@ export function PokemonTeam({ team, setTeam, baseUrl }: PreSelectProps) {
             spAtt={pokemon.spAtt}
             spDeff={pokemon.spDeff}
             spe={pokemon.spe}
+            moves={pokemon.moves}
             index={parseInt(id)}
             baseUrl={baseUrl}
           />
