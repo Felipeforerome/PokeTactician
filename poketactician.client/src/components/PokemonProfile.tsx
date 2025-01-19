@@ -41,7 +41,6 @@ function PokemonProfile({
   const type1Color = pokemonTypeColors[type1];
   const type2Color = type2 ? pokemonTypeColors[type2] : type1Color;
   const bgGradient = `linear-gradient(to right, ${type1Color}, ${type2Color})`;
-
   const data = {
     labels: ['HP', 'Attack', 'Defense', 'Sp. Attack', 'Sp. Defense', 'Speed'],
     datasets: [
@@ -54,7 +53,6 @@ function PokemonProfile({
       },
     ],
   };
-
   const options = {
     scales: {
       r: {
@@ -124,16 +122,24 @@ function PokemonProfile({
                   <br />
                   <p className="font-bold text-foreground/80">Moves</p>
                   <p className="text-small text-foreground/80">
-                    {moves[0] ? formatString(moves[0].name) : ''}
+                    {moves != undefined && moves[0]
+                      ? formatString(moves[0].name)
+                      : ''}
                   </p>
                   <p className="text-small text-foreground/80">
-                    {moves[1] ? formatString(moves[1].name) : ''}
+                    {moves != undefined && moves[1]
+                      ? formatString(moves[1].name)
+                      : ''}
                   </p>
                   <p className="text-small text-foreground/80">
-                    {moves[2] ? formatString(moves[2].name) : ''}
+                    {moves != undefined && moves[2]
+                      ? formatString(moves[2].name)
+                      : ''}
                   </p>
                   <p className="text-small text-foreground/80">
-                    {moves[3] ? formatString(moves[3].name) : ''}
+                    {moves != undefined && moves[3]
+                      ? formatString(moves[3].name)
+                      : ''}
                   </p>
                 </div>
               </motion.div>

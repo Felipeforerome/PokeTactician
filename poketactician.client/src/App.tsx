@@ -96,7 +96,7 @@ function App() {
                   <PokemonTeam
                     team={pokemons != undefined ? pokemons : []}
                     setTeam={setPokemons}
-                    baseUrl="results"
+                    baseUrl="results/"
                   />
                 }
               />
@@ -106,7 +106,7 @@ function App() {
                   <PokemonTeam
                     team={pokemons != undefined ? pokemons : []}
                     setTeam={setPokemons}
-                    baseUrl="results"
+                    baseUrl="results/"
                   />
                 }
               />

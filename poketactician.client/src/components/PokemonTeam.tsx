@@ -42,9 +42,9 @@ export function PokemonTeam({ team, setTeam, baseUrl }: PreSelectProps) {
           <div className={gridClass}>
             <AnimatePresence>
               {team.map((pokemon, index) => (
-                <PokemonCard index={index + 1} baseUrl="" {...pokemon} />
+                <PokemonCard index={index + 1} baseUrl={baseUrl} {...pokemon} />
               ))}
-              {team.length < 6 && baseUrl != 'results' ? (
+              {team.length < 6 && baseUrl != 'results/' ? (
                 <PokemonSelector addPokemon={handleAddtoTeam} />
               ) : null}
             </AnimatePresence>
