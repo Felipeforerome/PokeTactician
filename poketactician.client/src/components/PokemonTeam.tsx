@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import PokemonSelector from './PokemonSelector';
 import PokemonProfile from './PokemonProfile';
 import { Link } from 'react-router-dom';
+import { useState, useRef, useEffect } from 'react';
 
 export interface PreSelectProps {
   team: Pokemon[] | [];
@@ -15,11 +16,34 @@ export interface PreSelectProps {
 export function PokemonTeam({ team, setTeam, baseUrl }: PreSelectProps) {
   const { id } = useParams<{ id: string }>();
   const pokemon = id ? team[parseInt(id) - 1] : undefined;
+  const [isFlipped, setIsFlipped] = useState<boolean>(true);
+  const [maxWidth, setMaxWidth] = useState<number>(0);
+  const frontRef = useRef<HTMLDivElement>(null);
+  const backRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const calculateMaxWidth = () => {
+      const frontWidth = frontRef.current ? frontRef.current.offsetWidth : 0;
+      const backWidth = backRef.current ? backRef.current.offsetWidth : 0;
+      setMaxWidth(Math.max(frontWidth, backWidth));
+    };
+    calculateMaxWidth();
+    window.addEventListener('resize', calculateMaxWidth);
+
+    return () => {
+      window.removeEventListener('resize', calculateMaxWidth);
+    };
+  }, [isFlipped]);
+
   let gridClass = `grid grid-cols-1 ${
     team.length > 0 ? 'md:grid-cols-2' : 'md:grid-cols-1'
   } ${
     team.length > 0 ? 'xl:grid-cols-3' : 'xl:grid-cols-1'
   } gap-4 overflow-visible justify-items-center`;
+
+  function handleClick() {
+    setIsFlipped(!isFlipped);
+  }
 
   async function handleAddtoTeam(pokemonParam: any) {
     const pokemon = pokemonParam[0];
@@ -35,33 +59,59 @@ export function PokemonTeam({ team, setTeam, baseUrl }: PreSelectProps) {
   return (
     <div>
       <div className="h-screen flex flex-col">
-        <h2 className="pt-5 pb-20 md:pb-0 sm:pt-20 text-3xl text-center">
+        <br />
+        <button onClick={handleClick} className="ml-2">
+          Flip Card
+        </button>
+        <h2
+          onClick={handleClick}
+          className="pt-5 pb-20 md:pb-0 sm:pt-20 text-3xl text-center"
+        >
           Preselect your team
         </h2>
-        <div className="flex-grow flex items-center -mt-[55px] md:-mt-[85px]">
-          <div className={gridClass}>
-            <AnimatePresence>
-              {team.map((pokemon, index) => (
-                <PokemonCard index={index + 1} baseUrl={baseUrl} {...pokemon} />
-              ))}
-              {team.length < 6 && baseUrl != 'results/' ? (
-                <PokemonSelector addPokemon={handleAddtoTeam} />
-              ) : null}
-            </AnimatePresence>
-          </div>
-        </div>
+        <AnimatePresence>
+          {!isFlipped ? (
+            <motion.div
+              key={'front'}
+              ref={frontRef}
+              initial={{ rotateY: 180, opacity: 0 }}
+              animate={{ rotateY: 0, opacity: 1 }}
+              exit={{ rotateY: 180, opacity: 0 }}
+              transition={{ duration: 0.6 }}
+              className="flex-grow flex items-center -mt-[55px] md:-mt-[85px]"
+            >
+              <div className={gridClass}>
+                <AnimatePresence>
+                  {team.map((pokemon, index) => (
+                    <PokemonCard
+                      key={index}
+                      index={index + 1}
+                      baseUrl={baseUrl}
+                      {...pokemon}
+                    />
+                  ))}
+                  {team.length < 6 && baseUrl !== 'results/' ? (
+                    <PokemonSelector addPokemon={handleAddtoTeam} />
+                  ) : null}
+                </AnimatePresence>
+              </div>
+            </motion.div>
+          ) : (
+            <motion.div
+              key={'back'}
+              ref={backRef}
+              style={{ width: maxWidth }}
+              initial={{ rotateY: 180, opacity: 0 }}
+              animate={{ rotateY: 0, opacity: 1 }}
+              exit={{ rotateY: 180, opacity: 0 }}
+              transition={{ duration: 0.6 }}
+              className="flex-grow flex items-center -mt-[55px] md:-mt-[85px]"
+            >
+              <h1>Other Side</h1>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
-      <p className="text-center mt-4">
-        {window.innerWidth >= 1280
-          ? 'You are at the xl breakpoint'
-          : window.innerWidth >= 1024
-          ? 'You are at the lg breakpoint'
-          : window.innerWidth >= 768
-          ? 'You are at the md breakpoint'
-          : window.innerWidth >= 640
-          ? 'You are at the sm breakpoint'
-          : 'You are at the base breakpoint'}
-      </p>
       <AnimatePresence>
         {id && pokemon && (
           <>
