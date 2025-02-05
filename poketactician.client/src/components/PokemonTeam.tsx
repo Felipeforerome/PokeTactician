@@ -16,7 +16,7 @@ export interface PreSelectProps {
 export function PokemonTeam({ team, setTeam, baseUrl }: PreSelectProps) {
   const { id } = useParams<{ id: string }>();
   const pokemon = id ? team[parseInt(id) - 1] : undefined;
-  const [isFlipped, setIsFlipped] = useState<boolean>(true);
+  const [isFlipped, setIsFlipped] = useState<boolean>(false);
   const [maxWidth, setMaxWidth] = useState<number>(0);
   const frontRef = useRef<HTMLDivElement>(null);
   const backRef = useRef<HTMLDivElement>(null);
@@ -59,26 +59,33 @@ export function PokemonTeam({ team, setTeam, baseUrl }: PreSelectProps) {
   return (
     <div>
       <div className="h-screen flex flex-col">
-        <br />
-        <button onClick={handleClick} className="ml-2">
-          Flip Card
-        </button>
-        <h2
-          onClick={handleClick}
-          className="pt-5 pb-20 md:pb-0 sm:pt-20 text-3xl text-center"
-        >
-          Preselect your team
-        </h2>
-        <AnimatePresence>
+        <div>
+          <h2 className="pt-5 pb-20 md:pb-0 sm:pt-20 text-3xl text-center">
+            Preselect your team
+            {team.length > 0 ? (
+              <button onClick={handleClick} className="m-2 z-10 md:hidden">
+                {isFlipped ? 'Team' : 'Dashboard'}
+              </button>
+            ) : null}
+          </h2>
+          <div className="w-full flex justify-end hidden md:flex">
+            {team.length > 0 ? (
+              <button onClick={handleClick} className="m-2 z-10">
+                {isFlipped ? 'Team' : 'Dashboard'}
+              </button>
+            ) : null}
+          </div>
+        </div>
+        <AnimatePresence mode="wait">
           {!isFlipped ? (
             <motion.div
               key={'front'}
               ref={frontRef}
-              initial={{ rotateY: 180, opacity: 0 }}
+              initial={{ rotateY: -90, opacity: 0 }}
               animate={{ rotateY: 0, opacity: 1 }}
-              exit={{ rotateY: 180, opacity: 0 }}
-              transition={{ duration: 0.6 }}
-              className="flex-grow flex items-center -mt-[55px] md:-mt-[85px]"
+              exit={{ rotateY: 90, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="flex-grow md:flex items-center -mt-[55px] md:-mt-[85px]"
             >
               <div className={gridClass}>
                 <AnimatePresence>
@@ -101,13 +108,15 @@ export function PokemonTeam({ team, setTeam, baseUrl }: PreSelectProps) {
               key={'back'}
               ref={backRef}
               style={{ width: maxWidth }}
-              initial={{ rotateY: 180, opacity: 0 }}
+              initial={{ rotateY: -90, opacity: 0 }}
               animate={{ rotateY: 0, opacity: 1 }}
-              exit={{ rotateY: 180, opacity: 0 }}
-              transition={{ duration: 0.6 }}
-              className="flex-grow flex items-center -mt-[55px] md:-mt-[85px]"
+              exit={{ rotateY: 90, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="flex-grow items-center -mt-[55px] md:-mt-[85px]"
             >
-              <h1>Other Side</h1>
+              <div className="flex justify-center items-center h-full">
+                <h1>Other Side</h1>
+              </div>
             </motion.div>
           )}
         </AnimatePresence>
