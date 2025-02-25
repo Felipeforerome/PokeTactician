@@ -6,8 +6,9 @@ import PokemonSelector from './PokemonSelector';
 import PokemonProfile from './PokemonProfile';
 import { Link } from 'react-router-dom';
 import { useState, useRef, useEffect } from 'react';
+import { TeamDashboard } from './TeamDashboard';
 
-export interface PreSelectProps {
+interface PreSelectProps {
   team: Pokemon[] | [];
   setTeam: (team: Pokemon[]) => void;
   baseUrl: string;
@@ -61,12 +62,12 @@ export function PokemonTeam({ team, setTeam, baseUrl }: PreSelectProps) {
       <div className="h-screen flex flex-col">
         <div>
           <h2 className="pt-5 pb-20 md:pb-0 sm:pt-20 text-3xl text-center">
-            Preselect your team
             {team.length > 0 ? (
               <button onClick={handleClick} className="m-2 z-10 md:hidden">
                 {isFlipped ? 'Team' : 'Dashboard'}
               </button>
             ) : null}
+            {isFlipped ? 'Dashboard' : 'Your Team'}
           </h2>
           <div className="w-full flex justify-end hidden md:flex">
             {team.length > 0 ? (
@@ -114,9 +115,7 @@ export function PokemonTeam({ team, setTeam, baseUrl }: PreSelectProps) {
               transition={{ duration: 0.3 }}
               className="flex-grow items-center -mt-[55px] md:-mt-[85px]"
             >
-              <div className="flex justify-center items-center h-full">
-                <h1>Other Side</h1>
-              </div>
+              <TeamDashboard team={team} />
             </motion.div>
           )}
         </AnimatePresence>
