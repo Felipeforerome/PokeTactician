@@ -3,6 +3,7 @@ import { Card, CardBody, Image } from '@nextui-org/react';
 import { Link } from 'react-router-dom';
 import { formatString, pokemonTypeColors } from '../utils';
 import { Pokemon } from '../types';
+import { TiPencil, TiTrash } from 'react-icons/ti';
 
 function PokemonCard({
   id,
@@ -19,84 +20,104 @@ function PokemonCard({
   return (
     <>
       <motion.div whileHover={{ scale: 1.1 }}>
-        <Link to={`/${baseUrl}${index}`}>
-          <motion.div layoutId={`card-container-${index}`}>
-            <Card
-              isBlurred
-              className="border-none bg-background/60 dark:bg-default-100/50 max-w-[300px]"
-              shadow="sm"
-              style={{ overflow: 'visible' }}
-            >
-              <motion.div layoutId={`card-${index}`}>
-                <CardBody style={{ overflow: 'visible' }}>
-                  <div className="grid grid-cols-2 gap-10">
-                    <motion.div layoutId={`card-image-${index}`}>
-                      <div
-                        className={`object-cover scale-[1.225] rounded-lg`}
-                        style={{
-                          background: bgGradient,
-                          height: 140,
-                          width: 140,
-                        }}
-                      >
+        <motion.div layoutId={`card-container-${index}`}>
+          <Card
+            isBlurred
+            className="border-none bg-background/60 dark:bg-default-100/50 max-w-[300px]"
+            shadow="sm"
+            style={{ overflow: 'visible' }}
+          >
+            <motion.div layoutId={`card-${index}`}>
+              <CardBody style={{ overflow: 'visible' }}>
+                <div className="grid grid-cols-2 gap-10">
+                  <motion.div layoutId={`card-image-${index}`}>
+                    <div
+                      className={`object-cover scale-[1.225] rounded-lg`}
+                      style={{
+                        background: bgGradient,
+                        height: 140,
+                        width: 140,
+                      }}
+                    >
+                      <Link to={`/${baseUrl}${index}`}>
                         <Image
                           alt={name}
                           height={140}
                           src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`}
                         />
-                      </div>
-                    </motion.div>
-                    <motion.div layoutId={`card-text-${index}`}>
-                      <div className="pl-2">
+                      </Link>
+                    </div>
+                  </motion.div>
+                  <motion.div layoutId={`card-text-${index}`}>
+                    <div className="pl-2">
+                      <Link to={`/${baseUrl}${index}`}>
                         <motion.div layoutId={`card-title-${index}`}>
-                          <h2 className="text-l font-semibold text-foreground/90 mt-2">
+                          <h2 className="text-l font-semibold text-foreground/90 mt-0">
                             {formatString(name)}
                           </h2>
                         </motion.div>
-                        <div className="flex justify-center mx-auto">
+                      </Link>
+                      <div className="flex justify-center mx-auto">
+                        <Image
+                          alt={type1}
+                          height={20}
+                          src={`/src/assets/types/${type1}.png`}
+                          width={20}
+                        />
+                        {type2 && (
                           <Image
-                            alt={type1}
+                            alt={type2}
                             height={20}
-                            src={`/src/assets/types/${type1}.png`}
+                            src={`/src/assets/types/${type2}.png`}
                             width={20}
                           />
-                          {type2 && (
-                            <Image
-                              alt={type2}
-                              height={20}
-                              src={`/src/assets/types/${type2}.png`}
-                              width={20}
-                            />
-                          )}
-                        </div>
-                        <p className="text-small text-foreground/80">
-                          {moves[0] === undefined
-                            ? ' '
-                            : formatString(moves[0].name)}
-                        </p>
-                        <p className="text-small text-foreground/80">
-                          {moves[1] === undefined
-                            ? ' '
-                            : formatString(moves[1].name)}
-                        </p>
-                        <p className="text-small text-foreground/80">
-                          {moves[2] === undefined
-                            ? ' '
-                            : formatString(moves[2].name)}
-                        </p>
-                        <p className="text-small text-foreground/80">
-                          {moves[3] === undefined
-                            ? ' '
-                            : formatString(moves[3].name)}
-                        </p>
+                        )}
                       </div>
-                    </motion.div>
-                  </div>
-                </CardBody>
-              </motion.div>
-            </Card>
-          </motion.div>
-        </Link>
+                      <p className="text-small text-foreground/80">
+                        {moves[0] === undefined
+                          ? ' '
+                          : formatString(moves[0].name)}
+                      </p>
+                      <p className="text-small text-foreground/80">
+                        {moves[1] === undefined
+                          ? ' '
+                          : formatString(moves[1].name)}
+                      </p>
+                      <p className="text-small text-foreground/80">
+                        {moves[2] === undefined
+                          ? ' '
+                          : formatString(moves[2].name)}
+                      </p>
+                      <p className="text-small text-foreground/80">
+                        {moves[3] === undefined
+                          ? ' '
+                          : formatString(moves[3].name)}
+                      </p>
+                      <div className="absolute bottom-1 right-2 transform flex space-x-2">
+                        <motion.div
+                          whileHover={{ scale: 2 }}
+                          onClick={() => {
+                            console.log('edit');
+                          }}
+                        >
+                          <TiPencil className="fill-white opacity-50" />
+                        </motion.div>
+                        <motion.div
+                          whileHover={{ scale: 2 }}
+                          onClick={() => {
+                            console.log('delete');
+                          }}
+                        >
+                          <TiTrash className="fill-white opacity-50" />
+                        </motion.div>
+                      </div>
+                    </div>
+                  </motion.div>
+                </div>
+              </CardBody>
+            </motion.div>
+          </Card>
+        </motion.div>
       </motion.div>
     </>
   );
