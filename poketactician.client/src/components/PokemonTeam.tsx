@@ -10,7 +10,7 @@ import { TeamDashboard } from './TeamDashboard';
 
 interface PreSelectProps {
   team: Pokemon[] | [];
-  setTeam: (team: Pokemon[]) => void;
+  setTeam: React.Dispatch<React.SetStateAction<Pokemon[] | undefined>>;
   baseUrl: string;
 }
 
@@ -22,6 +22,11 @@ export function PokemonTeam({ team, setTeam, baseUrl }: PreSelectProps) {
   const frontRef = useRef<HTMLDivElement>(null);
   const backRef = useRef<HTMLDivElement>(null);
 
+  const handleRemovePokemon = (id: number) => {
+    setTeam((prevTeam: Pokemon[] | undefined) =>
+      (prevTeam ?? []).filter((_, i) => i !== id),
+    );
+  };
   useEffect(() => {
     const calculateMaxWidth = () => {
       const frontWidth = frontRef.current ? frontRef.current.offsetWidth : 0;
@@ -95,6 +100,7 @@ export function PokemonTeam({ team, setTeam, baseUrl }: PreSelectProps) {
                       key={index}
                       index={index + 1}
                       baseUrl={baseUrl}
+                      removePokemon={handleRemovePokemon}
                       {...pokemon}
                     />
                   ))}

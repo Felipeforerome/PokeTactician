@@ -5,6 +5,12 @@ import { formatString, pokemonTypeColors } from '../utils';
 import { Pokemon } from '../types';
 import { TiPencil, TiTrash } from 'react-icons/ti';
 
+interface PokemonCardProps extends Pokemon {
+  index: number;
+  baseUrl: string;
+  removePokemon: (id: number) => void;
+}
+
 function PokemonCard({
   id,
   name,
@@ -13,7 +19,8 @@ function PokemonCard({
   moves = [],
   index,
   baseUrl,
-}: Pokemon & { index: number } & { baseUrl: string }) {
+  removePokemon,
+}: PokemonCardProps) {
   const type1Color = pokemonTypeColors[type1];
   const type2Color = type2 ? pokemonTypeColors[type2] : type1Color;
   const bgGradient = `linear-gradient(to right, ${type1Color}, ${type2Color})`;
@@ -97,16 +104,14 @@ function PokemonCard({
                         <motion.div
                           whileHover={{ scale: 2 }}
                           onClick={() => {
-                            console.log('edit');
+                            console.log(index + ' edit');
                           }}
                         >
                           <TiPencil className="fill-white opacity-50" />
                         </motion.div>
                         <motion.div
                           whileHover={{ scale: 2 }}
-                          onClick={() => {
-                            console.log('delete');
-                          }}
+                          onClick={() => removePokemon(index - 1)}
                         >
                           <TiTrash className="fill-white opacity-50" />
                         </motion.div>
