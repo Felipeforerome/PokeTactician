@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Card, CardBody, Image } from '@nextui-org/react';
+import { Card, CardBody, Image } from "@heroui/react";
 import { Link } from 'react-router-dom';
 import { formatString, pokemonTypeColors } from '../utils';
 import { Pokemon } from '../types';

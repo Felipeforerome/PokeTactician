@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Image } from '@nextui-org/react';
+import { Image } from "@heroui/react";
 import { Link } from 'react-router-dom';
 import { Pokemon } from '../types';
 import { Radar } from 'react-chartjs-2';

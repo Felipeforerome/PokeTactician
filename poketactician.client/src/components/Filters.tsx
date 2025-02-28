@@ -1,4 +1,4 @@
-import { Button, Select, SelectItem, Switch } from '@nextui-org/react';
+import { Button, Select, SelectItem, Switch } from "@heroui/react";
 import { useEffect, useState } from 'react';
 import { Game, Generation, PokemonType } from '../types';
 export interface FiltersProps {

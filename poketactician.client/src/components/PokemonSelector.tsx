@@ -1,4 +1,4 @@
-import { Card, CardBody, Image, useDisclosure } from '@nextui-org/react';
+import { Card, CardBody, Image, useDisclosure } from "@heroui/react";
 import { motion } from 'framer-motion';
 import PokemonSelectorModal from './PokemonSelectorModal';
 

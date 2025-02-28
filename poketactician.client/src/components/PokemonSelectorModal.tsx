@@ -8,7 +8,7 @@ import {
   Autocomplete,
   AutocompleteItem,
   Image,
-} from '@nextui-org/react';
+} from "@heroui/react";
 import { useState, useEffect } from 'react';
 import { PokemonName, PokemonMove } from '../types';
 import { formatString } from '../utils';

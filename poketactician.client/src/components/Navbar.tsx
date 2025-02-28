@@ -11,7 +11,7 @@ import {
   NavbarItem,
   Image,
   Link as NextUILink,
-} from '@nextui-org/react';
+} from "@heroui/react";
 import useMeasure from 'react-use-measure';
 import Filters from './Filters';
 import { FiltersProps } from './Filters';
