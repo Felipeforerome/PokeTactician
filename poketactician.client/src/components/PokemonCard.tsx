@@ -3,7 +3,7 @@ import { Card, CardBody, Image } from '@nextui-org/react';
 import { Link } from 'react-router-dom';
 import { formatString, pokemonTypeColors } from '../utils';
 import { Pokemon } from '../types';
-import { TiPencil, TiTrash } from 'react-icons/ti';
+import { TiTrash } from 'react-icons/ti';
 
 interface PokemonCardProps extends Pokemon {
   index: number;
@@ -101,6 +101,7 @@ function PokemonCard({
                           : formatString(moves[3].name)}
                       </p>
                       <div className="absolute bottom-1 right-2 transform flex space-x-2">
+                        {/* TODO Implement edit
                         <motion.div
                           whileHover={{ scale: 2 }}
                           onClick={() => {
@@ -108,7 +109,7 @@ function PokemonCard({
                           }}
                         >
                           <TiPencil className="fill-white opacity-50" />
-                        </motion.div>
+                        </motion.div> */}
                         <motion.div
                           whileHover={{ scale: 2 }}
                           onClick={() => removePokemon(index - 1)}
