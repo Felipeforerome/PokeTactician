@@ -11,12 +11,23 @@ import {
   NavbarItem,
   Image,
   Link as NextUILink,
-} from "@heroui/react";
+} from '@heroui/react';
 import useMeasure from 'react-use-measure';
 import Filters from './Filters';
 import { FiltersProps } from './Filters';
 
-function PokemonNavbar({ updateFilters, applyFilters }: FiltersProps) {
+interface SidebarProps extends FiltersProps {
+  applyFilters: () => void;
+  selectStrategy: (strategy: string) => void;
+  selectRoles: (roles: string[]) => void;
+}
+
+function PokemonNavbar({
+  updateFilters,
+  applyFilters,
+  selectStrategy,
+  selectRoles,
+}: SidebarProps) {
   let [ref, { height }] = useMeasure();
 
   const handleFilterChange = (id: string, value: any) => {
@@ -67,10 +78,7 @@ function PokemonNavbar({ updateFilters, applyFilters }: FiltersProps) {
           <>
             <DrawerHeader className="flex flex-col gap-1">Filters</DrawerHeader>
             <DrawerBody>
-              <Filters
-                updateFilters={handleFilterChange}
-                applyFilters={handleApply}
-              />
+              <Filters updateFilters={handleFilterChange} />
             </DrawerBody>
           </>
         </DrawerContent>

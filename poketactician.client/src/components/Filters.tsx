@@ -1,12 +1,12 @@
-import { Button, Select, SelectItem, Switch } from "@heroui/react";
+import { Select, SelectItem, Switch } from '@heroui/react';
 import { useEffect, useState } from 'react';
 import { Game, Generation, PokemonType } from '../types';
+
 export interface FiltersProps {
   updateFilters: (id: string, value: boolean) => void;
-  applyFilters: () => void;
 }
 
-function Filters({ updateFilters, applyFilters }: FiltersProps) {
+function Filters({ updateFilters }: FiltersProps) {
   const [games, setGames] = useState<Game[]>([]);
   const [generations, setGenerations] = useState<Generation[]>([]);
   const [pokemonTypes, setPokemonTypes] = useState<PokemonType[]>([]);
@@ -15,10 +15,10 @@ function Filters({ updateFilters, applyFilters }: FiltersProps) {
     updateFilters(id, value);
   };
 
-  const handleApply = () => {
-    // Put your filter application logic here
-    applyFilters();
-  };
+  // const handleApply = () => {
+  //   // Put your filter application logic here
+  //   applyFilters();
+  // };
   useEffect(() => {
     populateFilters();
     setGenerations(
@@ -90,9 +90,9 @@ function Filters({ updateFilters, applyFilters }: FiltersProps) {
       <Switch onValueChange={(value) => handleFilterChange('legendary', value)}>
         With Legendary
       </Switch>
-      <Button color="primary" onPress={handleApply}>
+      {/* <Button color="primary" onPress={handleApply}>
         Apply Filters
-      </Button>
+      </Button> */}
     </>
   );
 

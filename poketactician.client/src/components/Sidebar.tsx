@@ -2,14 +2,23 @@
 import Filters from './Filters';
 import { FiltersProps } from './Filters';
 import StrategyRoles from './StrategyRoles';
-import { useState } from 'react';
+import { Button } from '@heroui/react';
+interface SidebarProps extends FiltersProps {
+  applyFilters: () => void;
+  selectStrategy: (strategy: string) => void;
+  selectRoles: (roles: string[]) => void;
+}
 
-export default function Sidebar({ updateFilters, applyFilters }: FiltersProps) {
+export default function Sidebar({
+  updateFilters,
+  applyFilters,
+  selectStrategy,
+  selectRoles,
+}: SidebarProps) {
   const handleFilterChange = (id: string, value: any) => {
     updateFilters(id, value);
   };
-  const [strategy, setStrategy] = useState<string>('none');
-  const [roles, setRoles] = useState<string[]>([]);
+
   const handleApply = () => {
     // Put your filter application logic here
     applyFilters();
@@ -17,11 +26,15 @@ export default function Sidebar({ updateFilters, applyFilters }: FiltersProps) {
 
   return (
     <aside className="flex flex-col bg-background-500 justify-center w-[250px] min-w-[250px] h-[calc(100vh-64px)] p-4 text-white gap-4 fixed top-16 left-0">
-      <Filters updateFilters={handleFilterChange} applyFilters={handleApply} />
+      {/* TODO Move Apply Filters Button to here */}
+      <Filters updateFilters={handleFilterChange} />
       <StrategyRoles
-        handleStrategyChange={setStrategy}
-        handleRoleChange={setRoles}
+        handleStrategyChange={selectStrategy}
+        handleRoleChange={selectRoles}
       />
+      <Button color="primary" onPress={handleApply}>
+        Apply Filters
+      </Button>
     </aside>
   );
 }

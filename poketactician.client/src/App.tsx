@@ -11,6 +11,9 @@ function App() {
   const [filtersStore, setFilters] = useState<Record<string, any>>({
     legendary: false,
   });
+  // Usage of strategy and roles is not yet implemented since nothing is calling the optimizer yet
+  const [strategy, setStrategy] = useState<string>('none');
+  const [roles, setRoles] = useState<string[]>([]);
   const [isSidebarVisible, setIsSidebarVisible] = useState(
     window.innerWidth >= 640,
   );
@@ -53,6 +56,8 @@ function App() {
       <PokemonNavbar
         updateFilters={handleFilterChange}
         applyFilters={applyFilters}
+        selectStrategy={setStrategy}
+        selectRoles={setRoles}
       />
       <div className="container pt-12 sm:pt-0 flex h-screen">
         {isSidebarVisible && (
@@ -60,6 +65,8 @@ function App() {
             <Sidebar
               updateFilters={handleFilterChange}
               applyFilters={applyFilters}
+              selectStrategy={setStrategy}
+              selectRoles={setRoles}
             />
           </div>
         )}
