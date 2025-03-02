@@ -9,8 +9,8 @@ import {
   Checkbox,
   CheckboxGroup,
 } from '@heroui/react';
-import { roles } from '../data/roles';
-import { strategies } from '../data/strategies';
+import { useState, useEffect } from 'react';
+
 interface StrategyRolesProps {
   handleStrategyChange: (key: string) => void;
   handleRoleChange: (roles: string[]) => void;
@@ -20,7 +20,26 @@ export default function StrategyRoles({
   handleStrategyChange,
   handleRoleChange,
 }: StrategyRolesProps) {
+  const [strategies, setStrategies] = useState<
+    {
+      key: string;
+      text: string;
+    }[]
+  >([{ key: 'none', text: 'None' }]);
+
+  const [roles, setRoles] = useState<
+    {
+      text: string;
+      value: string;
+    }[]
+  >([{ value: 'none', text: 'None' }]);
+
   const defaultKey = new Set([strategies[0].key]);
+
+  useEffect(() => {
+    populateStrategyData();
+    populateRoleData();
+  });
 
   const onStrategySelect = (key: string) => {
     handleStrategyChange(key);
@@ -64,4 +83,14 @@ export default function StrategyRoles({
       </Popover>
     </div>
   );
+  async function populateStrategyData() {
+    const response = await fetch('/api/strategies');
+    const data = await response.json();
+    setStrategies(data);
+  }
+  async function populateRoleData() {
+    const response = await fetch('/api/roles');
+    const data = await response.json();
+    setRoles(data);
+  }
 }
