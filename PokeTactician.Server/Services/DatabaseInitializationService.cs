@@ -19,6 +19,23 @@ namespace PokeTactician.Services
             _logger = logger;
         }
 
+        private async Task LoadStrategiesAsync(string filePath)
+        {
+            using (var scope = _serviceProvider.CreateScope())
+            {
+                var context = scope.ServiceProvider.GetRequiredService<PokemonContext>();
+                var json = await File.ReadAllTextAsync(filePath);
+                var strategiesDtos = JsonConvert.DeserializeObject<List<StrategyDTO>>(json) ?? throw new InvalidDataException("The strategies data could not be loaded.");
+                foreach (var strategyDto in strategiesDtos)
+                {
+                    var strategy = _mapper.Map<StrategyDTO, Strategy>(strategyDto);
+                    context.Strategies.Add(strategy);
+                }
+                await context.SaveChangesAsync();
+                _logger.LogInformation("Strategiers loades Successfully.");
+            }
+        }
+
         private async Task LoadGamesAsync(string filePath)
         {
             using (var scope = _serviceProvider.CreateScope())
@@ -148,6 +165,7 @@ namespace PokeTactician.Services
 
                 try
                 {
+                    await LoadStrategiesAsync("Data/JSON/strategies.json");
                     await LoadGamesAsync("Data/JSON/games.json");
                     await LoadTypesAsync("Data/JSON/pokemon_types.json");
                     await LoadTypeEffectiveness("Data/JSON/type_effectiveness.json");

@@ -30,6 +30,8 @@ namespace PokeTactician.Mappings
                 .ForMember(dest => dest.Effectiveness, opt => opt.MapFrom(src => src.Defending != null ? src.Defending.ToDictionary(te => te.AttackingType.Name, te => te.Effectiveness) : new Dictionary<string, double>()));
             CreateMap<GameDto, Game>()
                 .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Game));
+            CreateMap<StrategyDTO, Strategy>();
+            CreateMap<Strategy, StrategyDTO>();
         }
     }
 }

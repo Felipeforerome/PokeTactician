@@ -27,6 +27,7 @@ public class DatabaseCleanupService : IHostedService
         {
             var context = scope.ServiceProvider.GetRequiredService<PokemonContext>();
 
+            await context.Database.ExecuteSqlRawAsync("DELETE from public.\"Strategies\"", cancellationToken);
             await context.Database.ExecuteSqlRawAsync("DELETE from public.\"GamePokemon\"", cancellationToken);
             await context.Database.ExecuteSqlRawAsync("DELETE from public.\"MovePokemon\"", cancellationToken);
             await context.Database.ExecuteSqlRawAsync("DELETE from public.\"Games\"", cancellationToken);

@@ -1,0 +1,6 @@
+[
+  { "key": "none", "text": "None" },
+  { "key": "general", "text": "Generalist" },
+  { "key": "defense", "text": "Defensive" },
+  { "key": "offense", "text": "Offensive" }
+]
