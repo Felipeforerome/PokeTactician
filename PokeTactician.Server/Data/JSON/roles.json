@@ -1,0 +1,23 @@
+[
+  { "text": "Cleric", "value": "is_cleric" },
+  { "text": "Dual Screener", "value": "is_dual_screener" },
+  { "text": "Phazer", "value": "is_phazer" },
+  { "text": "Stallbreaker", "value": "is_stallbreaker" },
+  { "text": "Offensive Pivot", "value": "is_offensive_pivot" },
+  { "text": "Physical Sweeper", "value": "is_physical_sweeper" },
+  { "text": "Special Sweeper", "value": "is_special_sweeper" },
+  { "text": "Spinner", "value": "is_spinner" },
+  { "text": "Revenge Killer", "value": "is_revenge_killer" },
+  { "text": "Hazard Setter", "value": "is_hazard_setter" },
+  { "text": "Spin Blocker", "value": "is_spin_blocker" },
+  { "text": "Stat Absorber Sleep", "value": "is_stat_absorber_sleep" },
+  { "text": "Stat Absorber Poison", "value": "is_stat_absorber_poison" },
+  { "text": "Stat Absorber Burn", "value": "is_stat_absorber_burn" },
+  { "text": "Stat Absorber Freeze", "value": "is_stat_absorber_freeze" },
+  { "text": "Stat Absorber Paralysis", "value": "is_stat_absorber_paralysis" },
+  { "text": "Suicide Lead", "value": "is_suicide_lead" },
+  { "text": "Tank", "value": "is_tank" },
+  { "text": "Trapper", "value": "is_trapper" },
+  { "text": "Reliable Recovery", "value": "is_reliable_recovery" },
+  { "text": "Wall", "value": "is_wall" }
+]

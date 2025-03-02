@@ -14,7 +14,8 @@ namespace PokeTactician.Models
         public DbSet<PokemonType> Types { get; set; } = null!;
         public DbSet<TypeEffectiveness> TypeEffectivenesses { get; set; } = null!;
         public DbSet<Game> Games { get; set; } = null!;
-        public DbSet<Strategy> Strategies {get; set;} = null!;
+        public DbSet<Strategy> Strategies { get; set; } = null!;
+        public DbSet<Role> Roles { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

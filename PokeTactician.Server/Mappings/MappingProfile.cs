@@ -32,6 +32,8 @@ namespace PokeTactician.Mappings
                 .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Game));
             CreateMap<StrategyDTO, Strategy>();
             CreateMap<Strategy, StrategyDTO>();
+            CreateMap<RoleDTO, Role>();
+            CreateMap<Role, RoleDTO>();
         }
     }
 }
