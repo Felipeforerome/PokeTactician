@@ -34,6 +34,8 @@ namespace PokeTactician.Mappings
             CreateMap<Strategy, StrategyDTO>();
             CreateMap<RoleDTO, Role>();
             CreateMap<Role, RoleDTO>();
+            CreateMap<ObjectiveFunctionDTO, ObjectiveFunction>();
+            CreateMap<ObjectiveFunction, ObjectiveFunctionDTO>();
         }
     }
 }

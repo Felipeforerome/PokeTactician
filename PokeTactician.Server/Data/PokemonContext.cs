@@ -16,6 +16,7 @@ namespace PokeTactician.Models
         public DbSet<Game> Games { get; set; } = null!;
         public DbSet<Strategy> Strategies { get; set; } = null!;
         public DbSet<Role> Roles { get; set; } = null!;
+        public DbSet<ObjectiveFunction> ObjectiveFunctions { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

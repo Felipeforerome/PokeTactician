@@ -1,0 +1,10 @@
+[
+  {
+    "name": "Attack",
+    "value": "attack"
+  },
+  {
+    "name": "Team Coverage",
+    "value": "team_coverage"
+  }
+]
