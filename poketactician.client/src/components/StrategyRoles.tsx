@@ -39,7 +39,7 @@ export default function StrategyRoles({
   useEffect(() => {
     populateStrategyData();
     populateRoleData();
-  });
+  }, []);
 
   const onStrategySelect = (key: string) => {
     handleStrategyChange(key);
