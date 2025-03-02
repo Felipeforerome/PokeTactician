@@ -36,3 +36,8 @@ export interface PokemonType {
   id: number;
   name: string;
 }
+
+export interface ObjectiveFunction {
+  name: string;
+  value: string;
+}

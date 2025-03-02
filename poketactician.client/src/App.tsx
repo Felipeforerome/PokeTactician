@@ -14,6 +14,7 @@ function App() {
   // Usage of strategy and roles is not yet implemented since nothing is calling the optimizer yet
   const [strategy, setStrategy] = useState<string>('none');
   const [roles, setRoles] = useState<string[]>([]);
+  const [objectiveFunctions, setObjectiveFunctions] = useState<string[]>([]);
   const [isSidebarVisible, setIsSidebarVisible] = useState(
     window.innerWidth >= 640,
   );
@@ -67,6 +68,7 @@ function App() {
               applyFilters={applyFilters}
               selectStrategy={setStrategy}
               selectRoles={setRoles}
+              selectObjectiveFunctions={setObjectiveFunctions}
             />
           </div>
         )}
