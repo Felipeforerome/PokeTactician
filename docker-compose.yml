@@ -8,14 +8,18 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: PokeTactician
     ports:
-      - "5432:5432"
+      - '5432:5432'
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
   app:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - PAT=${PAT}
     ports:
-      - "8080:8080"
+      - '8080:8080'
     env_file:
       - .env
     environment:

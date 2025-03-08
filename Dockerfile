@@ -31,17 +31,35 @@ RUN dotnet publish "./PokeTactician.Server.csproj" -c $BUILD_CONFIGURATION -o /a
 # This stage is used in production or when running from VS in regular mode (Default when not using the Debug configuration)
 FROM base AS final
 WORKDIR /app
+ARG PAT
+ENV PAT=$PAT
 
 USER root
 
 # Install Julia for ARM64
+# RUN apt-get update && \
+#     apt-get install -y wget && \
+#     wget https://julialang-s3.julialang.org/bin/linux/aarch64/1.9/julia-1.9.3-linux-aarch64.tar.gz && \
+#     tar -xvzf julia-1.9.3-linux-aarch64.tar.gz && \
+#     mv julia-1.9.3 /opt/julia && \
+#     ln -s /opt/julia/bin/julia /usr/local/bin/julia && \
+#     rm julia-1.9.3-linux-aarch64.tar.gz
+
+# Install Python 3.12 with available packages
 RUN apt-get update && \
-    apt-get install -y wget && \
-    wget https://julialang-s3.julialang.org/bin/linux/aarch64/1.9/julia-1.9.3-linux-aarch64.tar.gz && \
-    tar -xvzf julia-1.9.3-linux-aarch64.tar.gz && \
-    mv julia-1.9.3 /opt/julia && \
-    ln -s /opt/julia/bin/julia /usr/local/bin/julia && \
-    rm julia-1.9.3-linux-aarch64.tar.gz
+    apt-get install -y ca-certificates gnupg wget git && \
+    echo "deb http://ppa.launchpadcontent.net/deadsnakes/ppa/ubuntu jammy main" > /etc/apt/sources.list.d/deadsnakes-ppa.list && \
+    apt-key adv --keyserver keyserver.ubuntu.com --recv-keys F23C5A6CF475977595C89F51BA6932366A755776 && \
+    apt-get update && \
+    apt-get install -y python3.12 python3.12-venv python3.12-dev && \
+    wget https://bootstrap.pypa.io/get-pip.py && \
+    python3.12 get-pip.py && \
+    rm get-pip.py && \
+    python3.12 -m pip install setuptools
+
+
+# Install a Python package (example: requests)
+RUN python3.12 -m pip install git+https://${PAT}@github.com/Felipeforerome/PokeTactician-Engine.git
 
 USER $APP_UID
 
@@ -51,7 +69,7 @@ COPY PokeTactician.Server/Scripts/ /app/Scripts/
 # Install Julia packages
 # TODO Replace package installation with a Manifest.toml file
 # https://pkgdocs.julialang.org/v1/
-RUN julia -e 'using Pkg; Pkg.add("JSON")'
+# RUN julia -e 'using Pkg; Pkg.add("JSON")'
 
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "PokeTactician.Server.dll"]
