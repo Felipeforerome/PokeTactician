@@ -38,10 +38,6 @@ function PokemonNavbar({
   };
 
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  const handleApply = () => {
-    // Put your filter application logic here
-    applyFilters();
-  };
   return (
     <>
       <Navbar
