@@ -37,7 +37,6 @@ export function GenericMultiSelector<T extends SelectableItem>({
   useEffect(() => {
     if (initialItems) {
       setItems(initialItems); // Update items when initialItems prop changes
-      console.log(title, ' items:', items);
     }
   }, [initialItems]);
 
