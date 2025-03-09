@@ -1,16 +1,18 @@
-import { Select, SelectItem } from '@heroui/react';
 import { useEffect, useState } from 'react';
 import { ObjectiveFunction } from '../types';
+import { GenericMultiSelector } from './GenericMultiSelector';
 
 interface ObjectiveSelectorProps {
   handleObjFunChange: (objectiveFunctions: string[]) => void;
+  isMobile: boolean;
 }
 
 export function ObjectiveSelector({
   handleObjFunChange,
+  isMobile,
 }: ObjectiveSelectorProps) {
   const [objectiveFunctions, setObjectiveFunctions] = useState<
-    ObjectiveFunction[]
+    ObjectiveFunction[] // Objective function already has the same structure as SelectableItem
   >([]);
 
   useEffect(() => {
@@ -18,26 +20,14 @@ export function ObjectiveSelector({
   }, []);
 
   return (
-    <Select
-      className="max-w-xs"
-      items={objectiveFunctions}
-      label="Select objective functions"
-      placeholder="Select objective functions"
-      selectionMode="multiple"
-      scrollShadowProps={{
-        isEnabled: false,
-      }}
-      onSelectionChange={(value) => {
-        console.log(value);
-        handleObjFunChange(Array.from(value) as string[]);
-      }}
-    >
-      {(objectiveFunction) => (
-        <SelectItem className="" key={objectiveFunction.value}>
-          {objectiveFunction.name}
-        </SelectItem>
-      )}
-    </Select>
+    <>
+      <GenericMultiSelector
+        title="Objective Functions"
+        items={objectiveFunctions}
+        onSelectionChange={handleObjFunChange}
+        isMobile={isMobile}
+      />
+    </>
   );
   async function populateObjFuncData() {
     const response = await fetch('/api/objectivefunction');

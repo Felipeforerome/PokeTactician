@@ -18,23 +18,27 @@ export default function Sidebar({
   selectStrategy,
   selectRoles,
   selectObjectiveFunctions,
+  isMobile,
 }: SidebarProps) {
   const handleFilterChange = (id: string, value: any) => {
     updateFilters(id, value);
   };
 
   const handleApply = () => {
-    // Put your filter application logic here
     applyFilters();
   };
 
   return (
-    <aside className="flex flex-col bg-background-500 justify-center w-[250px] min-w-[250px] h-[calc(100vh-64px)] p-4 text-white gap-4 fixed top-16 left-0">
-      <ObjectiveSelector handleObjFunChange={selectObjectiveFunctions} />
-      <Filters updateFilters={handleFilterChange} />
+    <aside className="flex flex-col bg-background-500 justify-center min-w-[250px] h-[calc(100vh-64px)] p-4 text-white gap-4 fixed top-16 left-0">
+      <Filters updateFilters={handleFilterChange} isMobile={isMobile} />
+      <ObjectiveSelector
+        handleObjFunChange={selectObjectiveFunctions}
+        isMobile={isMobile}
+      />
       <StrategyRoles
         handleStrategyChange={selectStrategy}
         handleRoleChange={selectRoles}
+        isMobile={isMobile}
       />
       <Button color="primary" onPress={handleApply}>
         Apply Filters

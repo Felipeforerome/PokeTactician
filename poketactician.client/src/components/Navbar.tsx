@@ -13,13 +13,15 @@ import {
   Link as NextUILink,
 } from '@heroui/react';
 import useMeasure from 'react-use-measure';
-import Filters from './Filters';
 import { FiltersProps } from './Filters';
+import { TiThMenu } from 'react-icons/ti';
+import Sidebar from './Sidebar';
 
 interface SidebarProps extends FiltersProps {
   applyFilters: () => void;
   selectStrategy: (strategy: string) => void;
   selectRoles: (roles: string[]) => void;
+  selectObjectiveFunctions: (objectiveFunctions: string[]) => void;
 }
 
 function PokemonNavbar({
@@ -27,6 +29,7 @@ function PokemonNavbar({
   applyFilters,
   selectStrategy,
   selectRoles,
+  selectObjectiveFunctions,
 }: SidebarProps) {
   let [ref, { height }] = useMeasure();
 
@@ -49,7 +52,7 @@ function PokemonNavbar({
         <NavbarBrand>
           <div className="block sm:hidden">
             <Button isIconOnly variant="light" onPress={onOpen}>
-              F
+              <TiThMenu className="fill-white opacity-50" />
             </Button>
           </div>
           <NextUILink href="/">
@@ -76,9 +79,16 @@ function PokemonNavbar({
       <Drawer isOpen={isOpen} placement={'left'} onOpenChange={onOpenChange}>
         <DrawerContent className="bg-background">
           <>
-            <DrawerHeader className="flex flex-col gap-1">Filters</DrawerHeader>
+            <DrawerHeader className="flex-col gap-1">Filters</DrawerHeader>
             <DrawerBody>
-              <Filters updateFilters={handleFilterChange} />
+              <Sidebar
+                updateFilters={handleFilterChange}
+                applyFilters={applyFilters}
+                selectStrategy={selectStrategy}
+                selectRoles={selectRoles}
+                selectObjectiveFunctions={selectObjectiveFunctions}
+                isMobile={true}
+              />
             </DrawerBody>
           </>
         </DrawerContent>

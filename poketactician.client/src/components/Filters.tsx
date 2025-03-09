@@ -1,15 +1,21 @@
-import { Select, SelectItem, Switch } from '@heroui/react';
+import { Switch } from '@heroui/react';
 import { useEffect, useState } from 'react';
-import { Game, Generation, PokemonType } from '../types';
+import { Game, Generation, PokemonType, SelectableItem } from '../types';
+import { GenericMultiSelector } from './GenericMultiSelector';
 
 export interface FiltersProps {
   updateFilters: (id: string, value: boolean) => void;
+  isMobile: boolean;
 }
 
-function Filters({ updateFilters }: FiltersProps) {
-  const [games, setGames] = useState<Game[]>([]);
-  const [generations, setGenerations] = useState<Generation[]>([]);
-  const [pokemonTypes, setPokemonTypes] = useState<PokemonType[]>([]);
+function Filters({ updateFilters, isMobile }: FiltersProps) {
+  const [games, setGames] = useState<(Game & SelectableItem)[]>([]);
+  const [generations, setGenerations] = useState<
+    (Generation & SelectableItem)[]
+  >([]);
+  const [pokemonTypes, setPokemonTypes] = useState<
+    (PokemonType & SelectableItem)[]
+  >([]);
 
   const handleFilterChange = (id: string, value: any) => {
     updateFilters(id, value);
@@ -25,63 +31,36 @@ function Filters({ updateFilters }: FiltersProps) {
       Array.from({ length: 9 }, (_, i) => ({
         id: i + 1,
         name: `Generation ${i + 1}`,
+        value: (i + 1).toString(),
       })),
     );
   }, []);
 
   return (
     <>
-      <Select
-        className="max-w-xs"
+      <GenericMultiSelector
+        title="Games"
         items={games}
-        label="Select games"
-        placeholder="Select a game"
-        selectionMode="multiple"
-        scrollShadowProps={{
-          isEnabled: false,
-        }}
-        onSelectionChange={(value) =>
-          handleFilterChange('games', Array.from(value))
-        }
-      >
-        {(game) => <SelectItem className="">{game.name}</SelectItem>}
-      </Select>
+        onSelectionChange={(values) => handleFilterChange('games', values)}
+        isMobile={isMobile}
+      />
 
-      <Select
-        className="max-w-xs"
+      <GenericMultiSelector
+        title="Generations"
         items={generations}
-        label="Select generations"
-        placeholder="Select a generation"
-        selectionMode="multiple"
-        scrollShadowProps={{
-          isEnabled: false,
-        }}
-        onSelectionChange={(value) =>
-          handleFilterChange('generations', Array.from(value))
+        onSelectionChange={(values) =>
+          handleFilterChange('generations', values)
         }
-      >
-        {(generation) => (
-          <SelectItem className="">{generation.name}</SelectItem>
-        )}
-      </Select>
+        isMobile={isMobile}
+      />
 
-      <Select
-        className="max-w-xs"
+      <GenericMultiSelector
+        title="Types"
         items={pokemonTypes}
-        label="Select types"
-        placeholder="Select a type"
-        selectionMode="multiple"
-        scrollShadowProps={{
-          isEnabled: false,
-        }}
-        onSelectionChange={(value) =>
-          handleFilterChange('typeId', Array.from(value))
-        }
-      >
-        {(pokemonType) => (
-          <SelectItem className="">{pokemonType.name}</SelectItem>
-        )}
-      </Select>
+        onSelectionChange={(values) => handleFilterChange('typeId', values)}
+        isMobile={isMobile}
+      />
+
       <Switch
         onValueChange={(value) => handleFilterChange('exclusiveType', value)}
       >
@@ -90,20 +69,24 @@ function Filters({ updateFilters }: FiltersProps) {
       <Switch onValueChange={(value) => handleFilterChange('legendary', value)}>
         With Legendary
       </Switch>
-      {/* <Button color="primary" onPress={handleApply}>
-        Apply Filters
-      </Button> */}
     </>
   );
 
   async function populateFilters() {
+    // Fetch and format games
     let response = await fetch('api/games');
     let data = await response.json();
-    setGames(data);
-
+    setGames(
+      data.map((game: Game) => ({
+        ...game,
+        value: game.id?.toString() || game.name, // Use id as value if available, otherwise name
+      })),
+    );
     response = await fetch('api/type');
     data = await response.json();
-    setPokemonTypes(data);
+    setPokemonTypes(
+      data.map((type: PokemonType) => ({ ...type, value: type.id.toString() })),
+    );
 
     // Uncomment the following lines to fetch generations when it's implemented
     // response = await fetch('api/generations');

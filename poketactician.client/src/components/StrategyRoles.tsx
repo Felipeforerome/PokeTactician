@@ -1,40 +1,26 @@
-import {
-  Listbox,
-  ListboxItem,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  Button,
-  Selection,
-  Checkbox,
-  CheckboxGroup,
-} from '@heroui/react';
 import { useState, useEffect } from 'react';
+import { GenericMultiSelector } from './GenericMultiSelector';
+import { GenericSingleSelector } from './GenericSingleSelector';
+import { Strategy, Role, SelectableItem } from '../types';
 
 interface StrategyRolesProps {
   handleStrategyChange: (key: string) => void;
   handleRoleChange: (roles: string[]) => void;
+  isMobile: boolean;
 }
 
 export default function StrategyRoles({
   handleStrategyChange,
   handleRoleChange,
+  isMobile,
 }: StrategyRolesProps) {
-  const [strategies, setStrategies] = useState<
-    {
-      key: string;
-      text: string;
-    }[]
-  >([{ key: 'none', text: 'None' }]);
+  const [strategies, setStrategies] = useState<SelectableItem[]>([
+    { value: 'none', name: 'None' },
+  ]);
 
-  const [roles, setRoles] = useState<
-    {
-      text: string;
-      value: string;
-    }[]
-  >([{ value: 'none', text: 'None' }]);
-
-  const defaultKey = new Set([strategies[0].key]);
+  const [roles, setRoles] = useState<SelectableItem[]>([
+    { value: 'none', name: 'None' },
+  ]);
 
   useEffect(() => {
     populateStrategyData();
@@ -46,51 +32,41 @@ export default function StrategyRoles({
   };
   return (
     <div>
-      <Popover placement="right">
-        <PopoverTrigger>
-          <Button fullWidth>Strategy</Button>
-        </PopoverTrigger>
-        <PopoverContent>
-          <Listbox
-            disallowEmptySelection
-            defaultSelectedKeys={defaultKey}
-            selectionMode="single"
-            aria-label="Strategies"
-            onSelectionChange={(key: Selection) =>
-              onStrategySelect(Array.from(key)[0] as string)
-            }
-          >
-            {strategies.map((strat) => (
-              <ListboxItem key={strat.key}>{strat.text}</ListboxItem>
-            ))}
-          </Listbox>
-        </PopoverContent>
-      </Popover>
+      <GenericSingleSelector
+        title="Strategies"
+        items={strategies}
+        initialSelection={strategies[0].value ? [strategies[0].value] : []}
+        onSelectionChange={(values) => onStrategySelect(values[0])}
+        isMobile={isMobile}
+      />
       <div className="p-1.5"></div>
-      <Popover placement="right-end">
-        <PopoverTrigger>
-          <Button fullWidth>Roles</Button>
-        </PopoverTrigger>
-        <PopoverContent>
-          <CheckboxGroup className="p-2" onValueChange={handleRoleChange}>
-            {roles.map((role) => (
-              <Checkbox key={role.value} value={role.value}>
-                {role.text}
-              </Checkbox>
-            ))}
-          </CheckboxGroup>
-        </PopoverContent>
-      </Popover>
+      <GenericMultiSelector
+        title="Roles"
+        items={roles}
+        onSelectionChange={handleRoleChange}
+        isMobile={isMobile}
+      />
     </div>
   );
   async function populateStrategyData() {
     const response = await fetch('/api/strategies');
     const data = await response.json();
-    setStrategies(data);
+    setStrategies(
+      data.map((strategy: Strategy) => ({
+        value: strategy.key,
+        name: strategy.text,
+      })),
+    );
   }
+
   async function populateRoleData() {
     const response = await fetch('/api/roles');
     const data = await response.json();
-    setRoles(data);
+    setRoles(
+      data.map((role: Role) => ({
+        value: role.value,
+        name: role.text,
+      })),
+    );
   }
 }

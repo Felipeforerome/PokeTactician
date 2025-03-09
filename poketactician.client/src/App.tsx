@@ -59,6 +59,8 @@ function App() {
         applyFilters={applyFilters}
         selectStrategy={setStrategy}
         selectRoles={setRoles}
+        selectObjectiveFunctions={setObjectiveFunctions}
+        isMobile={true}
       />
       <div className="container pt-12 sm:pt-0 flex h-screen">
         {isSidebarVisible && (
@@ -69,6 +71,7 @@ function App() {
               selectStrategy={setStrategy}
               selectRoles={setRoles}
               selectObjectiveFunctions={setObjectiveFunctions}
+              isMobile={false}
             />
           </div>
         )}
