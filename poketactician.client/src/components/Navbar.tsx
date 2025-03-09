@@ -73,9 +73,9 @@ function PokemonNavbar({
         </NavbarContent>
       </Navbar>
       <Drawer isOpen={isOpen} placement={'left'} onOpenChange={onOpenChange}>
-        <DrawerContent className="bg-background">
+        <DrawerContent className="bg-background overflow-y-auto">
           <>
-            <DrawerHeader className="flex-col gap-1">Filters</DrawerHeader>
+            <DrawerHeader className="flex-col gap-1"></DrawerHeader>
             <DrawerBody>
               <Sidebar
                 updateFilters={handleFilterChange}
@@ -84,6 +84,7 @@ function PokemonNavbar({
                 selectRoles={selectRoles}
                 selectObjectiveFunctions={selectObjectiveFunctions}
                 isMobile={true}
+                onClose={onOpenChange}
               />
             </DrawerBody>
           </>
