@@ -41,3 +41,13 @@ export interface ObjectiveFunction {
   name: string;
   value: string;
 }
+
+export interface Strategy {
+  key: string;
+  text: string;
+}
+
+export interface Role {
+  value: string;
+  text: string;
+}
