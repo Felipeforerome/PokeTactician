@@ -51,3 +51,9 @@ export interface Role {
   value: string;
   text: string;
 }
+
+// Generic item interface that your data types should match or extend
+export interface SelectableItem {
+  value: string;
+  name: string;
+}
