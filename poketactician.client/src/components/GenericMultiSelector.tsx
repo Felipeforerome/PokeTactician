@@ -77,6 +77,12 @@ export function GenericMultiSelector<T extends SelectableItem>({
       </PopoverTrigger>
       <PopoverContent className="max-h-[70vh] overflow-hidden">
         <div className="p-2 overflow-y-auto h-full max-h-[calc(70vh-20px)]">
+          <p
+            className="text-xs text-gray-500 text-right cursor-pointer"
+            onClick={() => handleSelectionChange(new Set())}
+          >
+            Clear
+          </p>
           <CheckboxGroup
             className="p-2"
             onValueChange={(value) => handleSelectionChange(new Set(value))}
