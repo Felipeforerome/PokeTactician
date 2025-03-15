@@ -57,7 +57,8 @@ namespace PokeTactician.Controllers
             }
             if (legendary.HasValue)
             {
-                if (!legendary.Value){
+                if (!legendary.Value)
+                {
                     predicate = predicate.And(p => p.Legendary == legendary.Value && p.Mythical == false);
                 }
             }
@@ -154,7 +155,10 @@ namespace PokeTactician.Controllers
 
         // GET: api/Pokemons/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<PokemonDtoOut>> GetPokemon(int id)
+        public async Task<ActionResult<PokemonDtoOut>> GetPokemon(
+            int id,
+            [FromQuery] List<int>? moves = null
+            )
         {
             var pokemon = await _context.Pokemons
                 .Include(p => p.Type1) // Eager load the Types property
@@ -163,6 +167,11 @@ namespace PokeTactician.Controllers
                 .ThenInclude(km => km.Type)
                 .Include(p => p.Games)
                 .FirstOrDefaultAsync(p => p.Id == id);
+
+            if (pokemon != null && moves != null && moves.Any())
+            {
+                pokemon.KnowableMoves = pokemon.KnowableMoves.Where(km => moves.Contains(km.Id)).ToList();
+            }
 
             if (pokemon == null)
             {
