@@ -131,7 +131,17 @@ function App() {
   );
 
   async function populatePokemonData(filterString: string = '') {
-    const response = await fetch(`/api/pokemons?${filterString}`);
+    const baseUrl = location.origin;
+    const response = await fetch(`${baseUrl}/optimize`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        accept: '*/*',
+      },
+      body: JSON.stringify({
+        argument: `--poklistUrl '${baseUrl}/api/Pokemons/?${filterString}'`,
+      }),
+    });
     const data = await response.json();
     setPokemons(data);
   }
