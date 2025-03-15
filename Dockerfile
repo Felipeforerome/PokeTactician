@@ -59,7 +59,7 @@ RUN apt-get update && \
 
 
 # Install a Python package (example: requests)
-RUN python3.12 -m pip install git+https://${PAT}@github.com/Felipeforerome/PokeTactician-Engine.git
+RUN python3.12 -m pip install requests git+https://${PAT}@github.com/Felipeforerome/PokeTactician-Engine.git
 
 USER $APP_UID
 
