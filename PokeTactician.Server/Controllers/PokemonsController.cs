@@ -126,9 +126,12 @@ namespace PokeTactician.Controllers
                 .ThenInclude(km => km.Type)
                 .Include(p => p.Games)
                 .AsQueryable()
-                .Where(predicate)
-            // TODO Remove when there is a Team return endpoint
-            .Take(6);
+                .Where(predicate);
+
+            if (preSelected != null && preSelected.Any())
+            {
+                query = query.OrderBy(p => p.Id).OrderByDescending(p => preSelected.Contains(p.Id));
+            }
 
             var pokemons = await query.ToListAsync();
             var pokemonDtos = _mapper.Map<List<PokemonDtoOut>>(pokemons);
