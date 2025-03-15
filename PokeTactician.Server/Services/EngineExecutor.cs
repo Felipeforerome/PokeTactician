@@ -6,14 +6,14 @@ using System.Threading.Tasks; // For EF data
 
 public class EngineExecutor
 {
-    public string ExecuteEngine(Dictionary<string, object> inputData)
+    public async Task<string> ExecuteEngine(Dictionary<string, object> inputData)
     {
         // Set up the process to run the engine
         var process = new Process
         {
             StartInfo = new ProcessStartInfo
             {
-                FileName = "python",
+                FileName = "python3.12",
                 Arguments = $"-m poketactician {inputData["argument"]}", // Pass JSON as an argument
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -24,7 +24,7 @@ public class EngineExecutor
         };
 
         // Start the process
-        process.Start();
+        await Task.Run(() => process.Start());
 
         // Read output and errors
         string output = process.StandardOutput.ReadToEnd();
