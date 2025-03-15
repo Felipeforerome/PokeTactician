@@ -123,6 +123,7 @@ namespace PokeTactician.Controllers
                 .Include(p => p.Type1)
                 .Include(p => p.Type2)
                 .Include(p => p.KnowableMoves)
+                .ThenInclude(km => km.Type)
                 .Include(p => p.Games)
                 .AsQueryable()
                 .Where(predicate)
@@ -155,7 +156,8 @@ namespace PokeTactician.Controllers
             var pokemon = await _context.Pokemons
                 .Include(p => p.Type1) // Eager load the Types property
                 .Include(p => p.Type2) // Eager load the Types property
-                .Include(p => p.KnowableMoves) // Eager load the KnowableMoves property
+                .Include(p => p.KnowableMoves)
+                .ThenInclude(km => km.Type)
                 .Include(p => p.Games)
                 .FirstOrDefaultAsync(p => p.Id == id);
 

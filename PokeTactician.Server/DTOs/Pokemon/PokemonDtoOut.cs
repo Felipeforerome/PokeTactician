@@ -11,10 +11,5 @@ public class PokemonDtoOut
     public int Spe { get; set; }
     public required string Type1 { get; set; }
     public string? Type2 { get; set; }
-    public bool Mythical { get; set; }
-    public bool Legendary { get; set; }
-    public bool BattleOnly { get; set; }
-    public bool Mega { get; set; }
-    public required List<string> KnowableMoves { get; set; } = new List<string>();
-    public required List<string> Games { get; set; } = new List<string>();
+    public required List<MoveDtoOut> KnowableMoves { get; set; } = new List<MoveDtoOut>();
 }

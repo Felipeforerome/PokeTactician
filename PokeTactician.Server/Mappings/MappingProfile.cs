@@ -13,8 +13,8 @@ namespace PokeTactician.Mappings
             CreateMap<Pokemon, PokemonDtoOut>()
                 .ForMember(dest => dest.Type1, opt => opt.MapFrom(src => src.Type1.Name))
                 .ForMember(dest => dest.Type2, opt => opt.MapFrom(src => src.Type2 != null ? src.Type2.Name : null))
-                .ForMember(dest => dest.KnowableMoves, opt => opt.MapFrom(src => src.KnowableMoves.Select(m => m.Name)))
-                .ForMember(dest => dest.Games, opt => opt.MapFrom(src => src.Games.Select(g => g.Name)));
+                .ForMember(dest => dest.KnowableMoves, opt => opt.MapFrom(src => src.KnowableMoves));
+            // .ForMember(dest => dest.Games, opt => opt.MapFrom(src => src.Games.Select(g => g.Name)));
             CreateMap<Move, MoveDtoName>();
             CreateMap<Move, MoveDtoOut>()
                 .ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.Type.Name));
