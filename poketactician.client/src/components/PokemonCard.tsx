@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Card, CardBody, Image } from "@heroui/react";
+import { Card, CardBody, Image } from '@heroui/react';
 import { Link } from 'react-router-dom';
 import { formatString, pokemonTypeColors } from '../utils';
 import { Pokemon } from '../types';
@@ -21,6 +21,18 @@ function PokemonCard({
   baseUrl,
   removePokemon,
 }: PokemonCardProps) {
+  const typeImageUrl = (type: string) => {
+    try {
+      return new URL(
+        `../assets/types/${type.toLowerCase()}.png`,
+        import.meta.url,
+      ).href;
+    } catch (error) {
+      console.error(`Failed to load image for type: ${type}`, error);
+      return ''; // Fallback empty string
+    }
+  };
+
   const type1Color = pokemonTypeColors[type1];
   const type2Color = type2 ? pokemonTypeColors[type2] : type1Color;
   const bgGradient = `linear-gradient(to right, ${type1Color}, ${type2Color})`;
@@ -68,14 +80,14 @@ function PokemonCard({
                         <Image
                           alt={type1}
                           height={20}
-                          src={`/src/assets/types/${type1}.png`}
+                          src={typeImageUrl(type1)}
                           width={20}
                         />
                         {type2 && (
                           <Image
                             alt={type2}
                             height={20}
-                            src={`/src/assets/types/${type2}.png`}
+                            src={typeImageUrl(type2)}
                             width={20}
                           />
                         )}
