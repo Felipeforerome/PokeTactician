@@ -42,11 +42,12 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy(name: "AllowFrontendLocalhost5173",
+    options.AddPolicy(name: "AllowFrontendLocalhost",
         policy =>
         {
             // NOTE: Use the exact URL (with scheme and port) that your React app runs on
-            policy.WithOrigins("https://localhost:5173")
+            var frontendUrl = Environment.GetEnvironmentVariable("FRONTEND_URL") ?? "http://localhost:8080";
+            policy.WithOrigins(frontendUrl)
                   .AllowAnyHeader()
                   .AllowAnyMethod()
                   // If you need credentials (cookies, auth), also add:
@@ -84,7 +85,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseCors("AllowFrontendLocalhost5173");
+app.UseCors("AllowFrontendLocalhost");
 
 app.UseAuthorization();
 
