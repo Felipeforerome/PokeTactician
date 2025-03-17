@@ -18,13 +18,14 @@ function App() {
   const [isSidebarVisible, setIsSidebarVisible] = useState(
     window.innerWidth >= 640,
   );
+  const [isLoading, setIsLoading] = useState(false);
 
   function handleFilterChange(id: string, value: any) {
     setFilters((prevFilters) => ({ ...prevFilters, [id]: value }));
   }
 
   const applyFilters = () => {
-    setPokemons(undefined);
+    setIsLoading(true);
     const filterArray: [string, any][] = [];
     for (const key in filtersStore) {
       if (Array.isArray(filtersStore[key])) {
@@ -81,6 +82,17 @@ function App() {
           }`}
         >
           <Router>
+            <div className="relative">
+              {isLoading && (
+                <div className="absolute -inset-1 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+                  <div
+                    className="spinner-border animate-spin inline-block w-12 h-12 border-4 rounded-full border-t-transparent border-blue-500"
+                    role="status"
+                  >
+                    <span className="sr-only">Loading...</span>
+                  </div>
+                </div>
+              )}
             <Routes>
               <Route
                 path="/"
@@ -123,6 +135,7 @@ function App() {
                 }
               />
             </Routes>
+            </div>
           </Router>
           <br />
         </div>
