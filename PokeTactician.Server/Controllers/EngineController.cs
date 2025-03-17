@@ -36,6 +36,10 @@ public class EngineController(PokemonContext context, IMapper mapper) : Controll
                             .Include(p => p.KnowableMoves)
                             .ThenInclude(km => km.Type)
                             .FirstOrDefaultAsync(p => p.Id == pokemonId);
+                        if (dbPokemon != null && moves != null && moves.Any())
+                        {
+                            dbPokemon.KnowableMoves = dbPokemon.KnowableMoves.Where(km => moves.Contains(km.Id)).ToList();
+                        }
 
                         if (dbPokemon != null)
                         {
