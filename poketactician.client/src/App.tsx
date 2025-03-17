@@ -27,6 +27,29 @@ function App() {
   const applyFilters = () => {
     setIsLoading(true);
     const filterArray: [string, any][] = [];
+    const preselectedMoves: string[] = [];
+    filterArray.push(['mega', false]);
+    filterArray.push(['battleOnly', false]);
+    filterArray.push(['totem', false]);
+
+    // Sort the pokemons by id
+    pokemons?.sort((a, b) => a.id - b.id);
+
+    // Add preselected pokemons to the filter array
+    pokemons?.forEach((pokemon) => {
+      filterArray.push(['preselected', pokemon.id]);
+      // Add preselected moves to the moves array
+      if (pokemon.moves.length > 0) {
+        const tempPreselectedMoves = pokemon.moves
+          .map((move) => move.id)
+          .join(',');
+        preselectedMoves.push(tempPreselectedMoves);
+      } else {
+        preselectedMoves.push('.');
+      }
+    });
+    const countPreselected = pokemons?.length;
+    // Add the rest of the filters to the filter array
     for (const key in filtersStore) {
       if (Array.isArray(filtersStore[key])) {
         filtersStore[key].forEach((item: any) => {
@@ -37,7 +60,11 @@ function App() {
       }
     }
     const filterParams = new URLSearchParams(filterArray);
-    populatePokemonData(filterParams.toString());
+    populatePokemonData(
+      filterParams.toString(),
+      countPreselected,
+      preselectedMoves,
+    );
   };
 
   useEffect(() => {
@@ -143,8 +170,23 @@ function App() {
     </>
   );
 
-  async function populatePokemonData(filterString: string = '') {
-    const baseUrl = location.origin;
+  async function populatePokemonData(
+    filterString: string = '',
+    countPreselected: number = 0,
+    preselectedMoves: string[] = [],
+  ) {
+    try {
+      const baseUrl =
+        import.meta.env.VITE_BACKEND_URL || 'http://localhost:8080';
+      console.log(location.origin);
+      var engineCommand = `--poklistUrl '${baseUrl}/api/Pokemons/?${filterString}'`;
+      if (countPreselected > 0) {
+        engineCommand += ` --preselected ${countPreselected}`;
+      }
+      if (preselectedMoves.length > 0) {
+        engineCommand += ` --preselected_moves ${preselectedMoves.join(' ')}`;
+      }
+
     const response = await fetch(`${baseUrl}/optimize`, {
       method: 'POST',
       headers: {
@@ -152,11 +194,25 @@ function App() {
         accept: '*/*',
       },
       body: JSON.stringify({
-        argument: `--poklistUrl '${baseUrl}/api/Pokemons/?${filterString}'`,
+          argument: engineCommand,
       }),
     });
-    const data = await response.json();
+      const rawData = await response.json();
+      const data = rawData.map((pokemon: any) => {
+        if (pokemon.knowableMoves) {
+          pokemon.moves = pokemon.knowableMoves;
+          delete pokemon.knowableMoves;
+        }
+        return pokemon;
+      });
+      setPokemons(undefined);
     setPokemons(data);
+    } catch (error) {
+      console.error('Error fetching Pokemon data:', error);
+    } finally {
+      // Set loading state to false after data is fetched
+      setIsLoading(false);
+    }
   }
 }
 
