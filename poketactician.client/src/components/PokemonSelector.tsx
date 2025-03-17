@@ -1,4 +1,4 @@
-import { Card, CardBody, Image, useDisclosure } from "@heroui/react";
+import { Card, CardBody, Image, useDisclosure } from '@heroui/react';
 import { motion } from 'framer-motion';
 import PokemonSelectorModal from './PokemonSelectorModal';
 
@@ -24,7 +24,7 @@ function PokemonSelector({ addPokemon }: PokemonSelectorProps) {
                 alt={'fdsaf'}
                 className={`object-cover scale-[1.225] rounded-lg`}
                 height={140}
-                src="/src/assets/pb-plus.png"
+                src={new URL('../assets/pb-plus.png', import.meta.url).href}
                 width="100%"
                 style={{
                   background: 'linear-gradient(to bottom, #EB5356, #B8B8D0)',
