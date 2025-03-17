@@ -120,48 +120,48 @@ function App() {
                   </div>
                 </div>
               )}
-            <Routes>
-              <Route
-                path="/"
-                element={
-                  <PokemonTeam
-                    team={pokemons != undefined ? pokemons : []}
-                    setTeam={setPokemons}
-                    baseUrl=""
-                  />
-                }
-              />
-              <Route
-                path="/:id"
-                element={
-                  <PokemonTeam
-                    team={pokemons != undefined ? pokemons : []}
-                    setTeam={setPokemons}
-                    baseUrl=""
-                  />
-                }
-              />
-              <Route
-                path="/results"
-                element={
-                  <PokemonTeam
-                    team={pokemons != undefined ? pokemons : []}
-                    setTeam={setPokemons}
-                    baseUrl="results/"
-                  />
-                }
-              />
-              <Route
-                path="/results/:id"
-                element={
-                  <PokemonTeam
-                    team={pokemons != undefined ? pokemons : []}
-                    setTeam={setPokemons}
-                    baseUrl="results/"
-                  />
-                }
-              />
-            </Routes>
+              <Routes>
+                <Route
+                  path="/"
+                  element={
+                    <PokemonTeam
+                      team={pokemons != undefined ? pokemons : []}
+                      setTeam={setPokemons}
+                      baseUrl=""
+                    />
+                  }
+                />
+                <Route
+                  path="/:id"
+                  element={
+                    <PokemonTeam
+                      team={pokemons != undefined ? pokemons : []}
+                      setTeam={setPokemons}
+                      baseUrl=""
+                    />
+                  }
+                />
+                <Route
+                  path="/results"
+                  element={
+                    <PokemonTeam
+                      team={pokemons != undefined ? pokemons : []}
+                      setTeam={setPokemons}
+                      baseUrl="results/"
+                    />
+                  }
+                />
+                <Route
+                  path="/results/:id"
+                  element={
+                    <PokemonTeam
+                      team={pokemons != undefined ? pokemons : []}
+                      setTeam={setPokemons}
+                      baseUrl="results/"
+                    />
+                  }
+                />
+              </Routes>
             </div>
           </Router>
           <br />
@@ -186,17 +186,25 @@ function App() {
       if (preselectedMoves.length > 0) {
         engineCommand += ` --preselected_moves ${preselectedMoves.join(' ')}`;
       }
-
-    const response = await fetch(`${baseUrl}/optimize`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        accept: '*/*',
-      },
-      body: JSON.stringify({
+      if (strategy !== 'none') {
+        engineCommand += ` --strategy ${strategy}`;
+      }
+      if (roles.length > 0) {
+        engineCommand += ` --roles ${roles.join(' ')}`;
+      }
+      if (objectiveFunctions.length > 0) {
+        engineCommand += ` --objfun ${objectiveFunctions.join(' ')}`;
+      }
+      const response = await fetch(`${baseUrl}/optimize`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          accept: '*/*',
+        },
+        body: JSON.stringify({
           argument: engineCommand,
-      }),
-    });
+        }),
+      });
       const rawData = await response.json();
       const data = rawData.map((pokemon: any) => {
         if (pokemon.knowableMoves) {
@@ -206,7 +214,7 @@ function App() {
         return pokemon;
       });
       setPokemons(undefined);
-    setPokemons(data);
+      setPokemons(data);
     } catch (error) {
       console.error('Error fetching Pokemon data:', error);
     } finally {
