@@ -17,6 +17,7 @@ services:
       context: .
       dockerfile: Dockerfile
       args:
+        - VITE_BACKEND_URL=
         - PAT=${PAT}
     ports:
       - '8080:8080'

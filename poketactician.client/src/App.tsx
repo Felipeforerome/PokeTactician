@@ -176,9 +176,7 @@ function App() {
     preselectedMoves: string[] = [],
   ) {
     try {
-      const baseUrl =
-        import.meta.env.VITE_BACKEND_URL || 'http://localhost:8080';
-      console.log(location.origin);
+      const baseUrl = import.meta.env.VITE_BACKEND_URL || `${location.origin}`;
       var engineCommand = `--poklistUrl '${baseUrl}/api/Pokemons/?${filterString}'`;
       if (countPreselected > 0) {
         engineCommand += ` --preselected ${countPreselected}`;
