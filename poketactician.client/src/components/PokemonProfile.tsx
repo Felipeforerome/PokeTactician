@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Image } from "@heroui/react";
+import { Image } from '@heroui/react';
 import { Link } from 'react-router-dom';
 import { Pokemon } from '../types';
 import { Radar } from 'react-chartjs-2';
@@ -88,7 +88,7 @@ function PokemonProfile({
       <Link to={`/${baseUrl}`}>
         <motion.div
           layoutId={`card-container-${index}`}
-          className="bg-black rounded-lg"
+          className="bg-black rounded-lg pl-5 pr-5"
           style={{ overflowY: 'scroll' }}
         >
           <motion.div layoutId={`card-${index}`}>
@@ -141,6 +141,7 @@ function PokemonProfile({
                       ? formatString(moves[3].name)
                       : ''}
                   </p>
+                  <br />
                 </div>
               </motion.div>
               <motion.div className="content-container">
