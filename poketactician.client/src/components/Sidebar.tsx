@@ -53,7 +53,7 @@ export default function Sidebar({
         isMobile={isMobile}
       />
       <Button color="primary" onPress={handleApply} className="min-h-[40px]">
-        Apply Filters
+        Suggest Team
       </Button>
     </aside>
   );
