@@ -65,11 +65,12 @@ function PokemonNavbar({
         ></NavbarContent>
         <NavbarContent justify="end">
           <NavbarItem className="hidden lg:flex"></NavbarItem>
+          {/* TODO: Either remove this page of fnd what it's good for
           <NavbarItem>
             <NextUILink color="foreground" href="/results">
               Results
             </NextUILink>
-          </NavbarItem>
+          </NavbarItem> */}
         </NavbarContent>
       </Navbar>
       <Drawer isOpen={isOpen} placement={'left'} onOpenChange={onOpenChange}>
