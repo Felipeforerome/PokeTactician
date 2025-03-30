@@ -1,6 +1,6 @@
 export const strategies = [
   { key: 'none', text: 'None' },
-  { key: 'general', text: 'Generalist' },
-  { key: 'defense', text: 'Defensive' },
-  { key: 'offense', text: 'Offensive' },
+  { key: 'Generalist', text: 'Generalist' },
+  { key: 'Defensive', text: 'Defensive' },
+  { key: 'Offensive', text: 'Offensive' },
 ];
