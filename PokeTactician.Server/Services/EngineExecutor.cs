@@ -9,20 +9,40 @@ public class EngineExecutor
     public async Task<string> ExecuteEngine(Dictionary<string, object> inputData)
     {
         // Set up the process to run the engine
-        var process = new Process
-        {
-            StartInfo = new ProcessStartInfo
-            {
-                FileName = "python3.12",
-                Arguments = $"-m poketactician {inputData["argument"]}", // Pass JSON as an argument
-                RedirectStandardOutput = true,
-                RedirectStandardError = true,
-                RedirectStandardInput = true,
-                UseShellExecute = false,
-                CreateNoWindow = true
-            }
-        };
+        Process process;
 
+        if (Environment.GetEnvironmentVariable("DOCKER") == "True")
+        {
+            process = new Process
+            {
+                StartInfo = new ProcessStartInfo
+                {
+                    FileName = "uv",
+                    Arguments = $"run -- python3.12 -m poketactician {inputData["argument"]}",
+                    RedirectStandardOutput = true,
+                    RedirectStandardError = true,
+                    RedirectStandardInput = true,
+                    UseShellExecute = false,
+                    CreateNoWindow = true
+                }
+            };
+        }
+        else
+        {
+            process = new Process
+            {
+                StartInfo = new ProcessStartInfo
+                {
+                    FileName = "/bin/bash",
+                    Arguments = $"-c \"source /Users/felipeforero/Dev/PokeTactician/PokeTactician/.venv/bin/activate && python3.12 -m poketactician {inputData["argument"]}\"", // Activate virtual environment and run script
+                    RedirectStandardOutput = true,
+                    RedirectStandardError = true,
+                    RedirectStandardInput = true,
+                    UseShellExecute = false,
+                    CreateNoWindow = true
+                }
+            };
+        }
         // Start the process
         await Task.Run(() => process.Start());
 

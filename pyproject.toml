@@ -1,0 +1,11 @@
+[project]
+name = "poketactician-server"
+version = "0.1.0"
+requires-python = ">=3.12.1"
+dependencies = [
+    "poketactician",
+    "requests>=2.32.3",
+]
+
+[tool.uv.sources]
+poketactician = { git = "https://github.com/Felipeforerome/PokeTactician-Engine.git" }
