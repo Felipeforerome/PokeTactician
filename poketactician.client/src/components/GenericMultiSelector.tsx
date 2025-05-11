@@ -54,7 +54,7 @@ export function GenericMultiSelector<T extends SelectableItem>({
 
   const selectComponent = (
     <Select
-      className="max-w-xs"
+      className="max-w-xs pb-3"
       items={items}
       label={title}
       placeholder={`Select ${title.toLowerCase()}`}

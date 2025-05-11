@@ -65,3 +65,8 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+aside > div > div > h2 > button {
+  background-color: rgba(0, 0, 0, 0);
+  border-bottom: 0.5px grey solid;
+}
