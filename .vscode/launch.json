@@ -8,12 +8,26 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Attach to Chrome",
-      "port": 9222,
+      "name": "Attach to Zen",
+      "port": 6000,
       "request": "attach",
-      "type": "chrome",
-      "url": "http://localhost:5173",
-      "webRoot": "${workspaceFolder}/poketactician.client/src"
+      "type": "firefox",
+      "reAttach": true,
+      "url": "https://localhost:5173",
+      "tabFilter": "https://localhost:5173/*",
+      "webRoot": "${workspaceFolder}/poketactician.client/src",
+      "pathMappings": [
+        {
+          "url": "https://localhost:5173/src",
+          "path": "${workspaceFolder}/poketactician.client/src"
+        }
+      ],
+      "log": {
+        "fileName": "${workspaceFolder}/log.txt",
+        "fileLevel": {
+            "default": "Debug"
+        }
+    }
     }
   ]
 }
