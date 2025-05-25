@@ -12,8 +12,8 @@ export function ObjectiveSelector({
   isMobile,
 }: ObjectiveSelectorProps) {
   const [objectiveFunctions, setObjectiveFunctions] = useState<
-    ObjectiveFunction[] // Objective function already has the same structure as SelectableItem
-  >([]);
+    ObjectiveFunction[]
+  >([{ value: 'attack', name: 'Attack' }]);
 
   useEffect(() => {
     populateObjFuncData();
@@ -26,6 +26,9 @@ export function ObjectiveSelector({
         items={objectiveFunctions}
         onSelectionChange={handleObjFunChange}
         isMobile={isMobile}
+        initialSelection={
+          objectiveFunctions[0].value ? [objectiveFunctions[0].value] : []
+        }
       />
     </>
   );

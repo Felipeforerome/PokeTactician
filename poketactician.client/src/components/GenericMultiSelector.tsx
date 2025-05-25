@@ -62,6 +62,7 @@ export function GenericMultiSelector<T extends SelectableItem>({
       scrollShadowProps={{
         isEnabled: false,
       }}
+      defaultSelectedKeys={selectedKeys}
       selectedKeys={selectedKeys}
       onSelectionChange={handleSelectionChange}
     >
