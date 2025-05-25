@@ -193,6 +193,11 @@ function App() {
       if (objectiveFunctions.length > 0) {
         engineCommand += ` --objfun ${objectiveFunctions.join(' ')}`;
       }
+      console.log(
+        JSON.stringify({
+          argument: engineCommand,
+        }),
+      );
       const response = await fetch(`${baseUrl}/optimize`, {
         method: 'POST',
         headers: {

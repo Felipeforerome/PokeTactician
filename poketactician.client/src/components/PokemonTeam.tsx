@@ -72,7 +72,7 @@ export function PokemonTeam({ team, setTeam, baseUrl }: PreSelectProps) {
                 {isFlipped ? 'Team' : 'Dashboard'}
               </button>
             ) : null} */}
-            {isFlipped ? 'Dashboard' : 'Your Team'}
+            {isFlipped ? 'Team Analysis Dashboard' : 'Your Team'}
           </h2>
           <div className="w-full flex justify-end hidden md:flex">
             {team.length > 0 ? (
@@ -82,7 +82,7 @@ export function PokemonTeam({ team, setTeam, baseUrl }: PreSelectProps) {
             ) : null}
           </div>
         </div>
-        <AnimatePresence mode="wait">
+        <AnimatePresence mode="sync">
           {!isFlipped ? (
             <motion.div
               key={'front'}
