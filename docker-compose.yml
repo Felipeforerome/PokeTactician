@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   db:
     image: postgres:latest
@@ -19,6 +17,7 @@ services:
       args:
         - VITE_BACKEND_URL=
         - PAT=${PAT}
+        - DOCKER=${DOCKER}
     ports:
       - '8080:8080'
     env_file:

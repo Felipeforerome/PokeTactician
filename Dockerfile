@@ -38,6 +38,7 @@ USER root
 
 COPY pyproject.toml /app/
 COPY uv.lock /app/
+COPY .python-version /app/.python-version
 
 # Install Python 3.12 with available packages
 RUN apt-get update && \
@@ -55,9 +56,7 @@ RUN sh /uv-installer.sh && rm /uv-installer.sh && \
 
 USER $APP_UID
 
-RUN uv python install 3.12 && \
-    uv venv
-
+RUN uv venv
 
 ENV PATH="/app/.venv/bin:$PATH"
 
