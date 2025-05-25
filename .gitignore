@@ -485,6 +485,7 @@ $RECYCLE.BIN/
 
 #Docker Data
 PokeTactician.Server/Data/DB
+PokeTactician.Server/Data/pokemon_data.json
 
 #Python
 .venv/
