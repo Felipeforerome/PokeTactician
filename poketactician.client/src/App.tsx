@@ -177,7 +177,7 @@ function App() {
   ) {
     try {
       const baseUrl = import.meta.env.VITE_BACKEND_URL || `${location.origin}`;
-      var engineCommand = `--poklistUrl '${baseUrl}/api/Pokemons/?${filterString}'`;
+      var engineCommand = `--poklistUrl '${baseUrl}/api/Pokemons/?heuristic=true&${filterString}'`;
       if (countPreselected > 0) {
         engineCommand += ` --preselected ${countPreselected}`;
       }
