@@ -30,7 +30,8 @@ namespace PokeTactician.Controllers
             [FromQuery] bool? mega = null,
             [FromQuery] bool? totem = null,
             [FromQuery] List<int>? games = null,
-            [FromQuery] List<int>? generations = null
+            [FromQuery] List<int>? generations = null,
+            [FromQuery] bool? heuristic = null
             )
         {
             var predicate = PredicateBuilder.New<Pokemon>(true); // Start with "true" to include all
@@ -80,6 +81,10 @@ namespace PokeTactician.Controllers
                 {
                     predicate = predicate.And(p => !p.Name.Contains("totem"));
                 }
+            }
+            if (heuristic.HasValue)
+            {
+                predicate = predicate.And(p => p.Hp + p.Att + p.Deff + p.SpAtt + p.SpDeff + p.Spe >= 500);
             }
             if (games != null && games.Any())
             {
