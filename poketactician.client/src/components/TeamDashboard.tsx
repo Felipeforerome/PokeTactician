@@ -284,6 +284,7 @@ export function TeamDashboard({ team }: TeamDashboardProps) {
         selectedKey={activeTab}
         onSelectionChange={(key) => setActiveTab(key as string)}
         className="mb-6"
+        destroyInactiveTabPanel={false}
       >
         <Tab key="stats" title="Team Stats">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

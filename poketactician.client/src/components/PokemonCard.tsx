@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { Card, CardBody, Image } from '@heroui/react';
 import { Link } from 'react-router-dom';
 import { formatString, pokemonTypeColors } from '../utils';

@@ -1,5 +1,5 @@
 import { Card, CardBody, Image, useDisclosure } from '@heroui/react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import PokemonSelectorModal from './PokemonSelectorModal';
 
 interface PokemonSelectorProps {
