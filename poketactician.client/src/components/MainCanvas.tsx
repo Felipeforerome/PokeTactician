@@ -1,12 +1,11 @@
 import { Pokemon } from '../types';
-import PokemonCard from './PokemonCard';
 import { useParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import PokemonSelector from './PokemonSelector';
 import PokemonProfile from './PokemonProfile';
 import { Link } from 'react-router-dom';
 import { useState, useRef, useEffect } from 'react';
 import { TeamDashboard } from './TeamDashboard';
+import { PokemonTeam } from './PokemonTeam';
 
 interface PreSelectProps {
   team: Pokemon[] | [];
@@ -85,18 +84,12 @@ export function MainCanvas({
             >
               <div className={gridClass}>
                 <AnimatePresence>
-                  {team.map((pokemon, index) => (
-                    <PokemonCard
-                      key={index}
-                      index={index + 1}
-                      baseUrl={baseUrl}
-                      removePokemon={handleRemovePokemon}
-                      {...pokemon}
-                    />
-                  ))}
-                  {team.length < 6 && baseUrl !== 'results/' ? (
-                    <PokemonSelector addPokemon={handleAddtoTeam} />
-                  ) : null}
+                  <PokemonTeam
+                    team={team}
+                    baseUrl={baseUrl}
+                    handleRemovePokemon={handleRemovePokemon}
+                    handleAddtoTeam={handleAddtoTeam}
+                  />
                 </AnimatePresence>
               </div>
             </motion.div>
