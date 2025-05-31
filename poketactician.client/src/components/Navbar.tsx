@@ -22,6 +22,8 @@ interface SidebarProps extends FiltersProps {
   selectStrategy: (strategy: string) => void;
   selectRoles: (roles: string[]) => void;
   selectObjectiveFunctions: (objectiveFunctions: string[]) => void;
+  isFlipped: boolean;
+  setIsFlipped: (flipped: boolean) => void;
 }
 
 function PokemonNavbar({
@@ -30,6 +32,8 @@ function PokemonNavbar({
   selectStrategy,
   selectRoles,
   selectObjectiveFunctions,
+  isFlipped,
+  setIsFlipped,
 }: SidebarProps) {
   let [ref, { height }] = useMeasure();
 
@@ -38,6 +42,11 @@ function PokemonNavbar({
   };
 
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+
+  function handleClick() {
+    setIsFlipped(!isFlipped);
+  }
+
   return (
     <>
       <Navbar
@@ -65,6 +74,11 @@ function PokemonNavbar({
         ></NavbarContent>
         <NavbarContent justify="end">
           <NavbarItem className="hidden lg:flex"></NavbarItem>
+          <div className="w-full flex justify-end hidden md:flex">
+            <button onClick={handleClick} className="m-2 z-10">
+              {isFlipped ? 'Team' : 'Dashboard'}
+            </button>
+          </div>
           {/* TODO: Either remove this page of fnd what it's good for
           <NavbarItem>
             <NextUILink color="foreground" href="/results">

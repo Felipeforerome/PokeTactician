@@ -278,6 +278,7 @@ export function TeamDashboard({ team }: TeamDashboardProps) {
 
   return (
     <div className="container mx-auto p-4">
+      <h1 className="text-2xl font-bold mb-6">Team Analysis Dashboard</h1>
       <br />
       <Tabs
         aria-label="Team Dashboard Tabs"

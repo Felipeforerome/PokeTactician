@@ -12,12 +12,18 @@ interface PreSelectProps {
   team: Pokemon[] | [];
   setTeam: React.Dispatch<React.SetStateAction<Pokemon[] | undefined>>;
   baseUrl: string;
+  isFlipped: boolean;
 }
 
-export function PokemonTeam({ team, setTeam, baseUrl }: PreSelectProps) {
+export function MainCanvas({
+  team,
+  setTeam,
+  baseUrl,
+  isFlipped = false,
+}: PreSelectProps) {
   const { id } = useParams<{ id: string }>();
   const pokemon = id ? team[parseInt(id) - 1] : undefined;
-  const [isFlipped, setIsFlipped] = useState<boolean>(false);
+  // const [isFlipped, setIsFlipped] = useState<boolean>(false);
   const [maxWidth, setMaxWidth] = useState<number>(0);
   const frontRef = useRef<HTMLDivElement>(null);
   const backRef = useRef<HTMLDivElement>(null);
@@ -47,10 +53,6 @@ export function PokemonTeam({ team, setTeam, baseUrl }: PreSelectProps) {
     team.length > 0 ? 'xl:grid-cols-3' : 'xl:grid-cols-1'
   } gap-4 overflow-visible justify-items-center`;
 
-  function handleClick() {
-    setIsFlipped(!isFlipped);
-  }
-
   async function handleAddtoTeam(pokemonParam: any) {
     const pokemon = pokemonParam[0];
     let pokemonMember = await getPokemon(pokemon[0]);
@@ -69,13 +71,6 @@ export function PokemonTeam({ team, setTeam, baseUrl }: PreSelectProps) {
           <h2 className="pt-5 pb-20 md:pb-0 sm:pt-20 text-3xl text-center">
             {isFlipped ? 'Team Analysis Dashboard' : 'Your Team'}
           </h2>
-          <div className="w-full flex justify-end hidden md:flex">
-            {team.length > 0 ? (
-              <button onClick={handleClick} className="m-2 z-10">
-                {isFlipped ? 'Team' : 'Dashboard'}
-              </button>
-            ) : null}
-          </div>
         </div>
         <AnimatePresence mode="wait" initial={false}>
           {!isFlipped ? (
@@ -114,7 +109,7 @@ export function PokemonTeam({ team, setTeam, baseUrl }: PreSelectProps) {
               animate={{ rotateY: 0, opacity: 1 }}
               exit={{ rotateY: 90, opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="flex-grow items-center -mt-[55px] md:-mt-[85px]"
+              className="flex-grow items-center"
             >
               <TeamDashboard team={team} />
             </motion.div>

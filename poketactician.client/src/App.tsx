@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import PokemonNavbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
 import { Pokemon } from './types';
-import { PokemonTeam } from './components/PokemonTeam';
+import { MainCanvas } from './components/MainCanvas';
 
 function App() {
   const [pokemons, setPokemons] = useState<Pokemon[]>();
@@ -19,7 +19,7 @@ function App() {
     window.innerWidth >= 640,
   );
   const [isLoading, setIsLoading] = useState(false);
-
+  const [isFlipped, setIsFlipped] = useState(false);
   function handleFilterChange(id: string, value: any) {
     setFilters((prevFilters) => ({ ...prevFilters, [id]: value }));
   }
@@ -89,6 +89,8 @@ function App() {
         selectRoles={setRoles}
         selectObjectiveFunctions={setObjectiveFunctions}
         isMobile={true}
+        isFlipped={isFlipped}
+        setIsFlipped={setIsFlipped}
       />
       <div className="container pt-12 sm:pt-0 flex h-screen">
         {isSidebarVisible && (
@@ -124,40 +126,44 @@ function App() {
                 <Route
                   path="/"
                   element={
-                    <PokemonTeam
+                    <MainCanvas
                       team={pokemons != undefined ? pokemons : []}
                       setTeam={setPokemons}
                       baseUrl=""
+                      isFlipped={isFlipped}
                     />
                   }
                 />
                 <Route
                   path="/:id"
                   element={
-                    <PokemonTeam
+                    <MainCanvas
                       team={pokemons != undefined ? pokemons : []}
                       setTeam={setPokemons}
                       baseUrl=""
+                      isFlipped={isFlipped}
                     />
                   }
                 />
                 <Route
                   path="/results"
                   element={
-                    <PokemonTeam
+                    <MainCanvas
                       team={pokemons != undefined ? pokemons : []}
                       setTeam={setPokemons}
                       baseUrl="results/"
+                      isFlipped={isFlipped}
                     />
                   }
                 />
                 <Route
                   path="/results/:id"
                   element={
-                    <PokemonTeam
+                    <MainCanvas
                       team={pokemons != undefined ? pokemons : []}
                       setTeam={setPokemons}
                       baseUrl="results/"
+                      isFlipped={isFlipped}
                     />
                   }
                 />
